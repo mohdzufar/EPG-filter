@@ -81,17 +81,13 @@ def smart_open(source):
 def inject_display_name(channel_elem, ch_id, id_to_name):
     """If the channel element has no <display-name> with actual text,
     insert one using the tvg-name from the playlist (if available)."""
-    # Check if any existing display-name has text
     existing = channel_elem.findall('display-name')
     for dn in existing:
         if dn.text and dn.text.strip():
             return  # already has a name, do nothing
 
-    # If we have a name in the playlist, insert it
     name = id_to_name.get(ch_id)
     if name:
-        # Create a <display-name> element and insert at the beginning
-        # (after the attributes but before other children)
         dn_elem = ET.Element('display-name')
         dn_elem.text = name
         channel_elem.insert(0, dn_elem)
@@ -121,15 +117,16 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources):
                             ch_id = elem.get('id')
                             if ch_id in wanted_ids and ch_id not in seen_channels:
                                 seen_channels.add(ch_id)
-                                # Enrich with playlist name if missing
                                 inject_display_name(elem, ch_id, id_to_name)
                                 out.write(ET.tostring(elem, encoding='unicode'))
                                 src_channels += 1
+                            elem.clear()   # clear after done
                         elif tag == 'programme':
                             if elem.get('channel') in wanted_ids:
                                 out.write(ET.tostring(elem, encoding='unicode'))
                                 src_programmes += 1
-                        elem.clear()
+                            elem.clear()   # clear after done
+                        # (no clearing for other elements like <title>, <desc> etc.)
             except HTTPError as e:
                 print(f"HTTP Error: {e.code} {e.reason}", file=sys.stderr)
             except ET.ParseError as e:
