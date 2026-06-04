@@ -10,7 +10,6 @@ on:
   schedule:
     - cron: '0 3 * * *'   # daily at 03:00 UTC
 
-# Grant write permissions so the workflow can commit
 permissions:
   contents: write
 
@@ -37,9 +36,7 @@ jobs:
       - name: Filter and compress EPG
         run: |
           python filter_epg.py "$PLAYLIST_URL" \
-            "https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz" \
-            "https://iptv-org.github.io/epg/guides/all.xml.gz" \
-            "https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz" \
+            --sources EPG_Sources.txt \
             -o EPG.xml.gz
 
       - name: Commit and push EPG.xml.gz to repo
@@ -47,7 +44,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add EPG.xml.gz
-          # Only commit if the file actually changed (avoids empty commits)
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
