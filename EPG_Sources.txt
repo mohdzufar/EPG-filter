@@ -1,3 +1,5 @@
 https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz
 https://iptv-org.github.io/epg/guides/all.xml.gz
 https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz
+https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml
+https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml
