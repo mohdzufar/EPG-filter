@@ -25,11 +25,6 @@ A report (EPG_Report.txt) is also generated, showing which channels were found a
 | .github/workflows/filter-epg.yml | Default playlist URL & schedule |
 | filter_epg.py | Python filter script (usually no changes needed) |
 
-## Example EPG_Sources.txt
-
-https://raw.githubusercontent.com/user/repo/main/epg.xml.gz
-https://iptv-org.github.io/epg/guides/en.xml.gz
-
 ## Need Help?
 
 - No channels matched? Your playlist’s tvg-id values probably don’t match the EPG IDs. Check a sample from the source.
