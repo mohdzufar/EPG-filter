@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 EPG Filter + Channel Name Injector
-- Filters EPG by tvg-id from an M3U playlist.
-- If a <channel> has no (or empty) <display-name>, it inserts the tvg-name
-  from the playlist (if available).
+- Filters EPG by tvg-id from an M3U playlist (URL or local file).
+- Reads EPG source URLs from a text file (--sources) or directly from command line.
+- Enriches channel names from the playlist if missing.
+- Outputs a gzip‑compressed XMLTV file.
 """
 
 import argparse
@@ -34,14 +35,12 @@ def parse_playlist(location):
         with open(location, 'r', encoding='utf-8') as f:
             lines = f.readlines()
 
-    # Patterns for tvg-id and tvg-name (both quoted and bare)
     id_quoted = re.compile(r'tvg-id="([^"]*)"', re.I)
     id_bare   = re.compile(r'tvg-id=([^\s",]+)', re.I)
     name_quoted = re.compile(r'tvg-name="([^"]*)"', re.I)
     name_bare   = re.compile(r'tvg-name=([^\s",]+)', re.I)
 
     for line in lines:
-        # extract id
         m_id = id_quoted.search(line) or id_bare.search(line)
         if not m_id:
             continue
@@ -49,8 +48,6 @@ def parse_playlist(location):
         if not ch_id:
             continue
         ids.add(ch_id)
-
-        # extract name if not already stored for this id
         if ch_id not in id_to_name:
             m_name = name_quoted.search(line) or name_bare.search(line)
             name = m_name.group(1).strip() if m_name else None
@@ -59,7 +56,15 @@ def parse_playlist(location):
     return ids, id_to_name
 
 # ------------------------------------------------------------
-# 2. Smart opener for EPG sources
+# 2. Read EPG source URLs from a text file
+# ------------------------------------------------------------
+def read_epg_sources(file_path):
+    """Read a list of EPG URLs from a text file (one per line, ignore empty lines)."""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return [line.strip() for line in f if line.strip() and not line.startswith('#')]
+
+# ------------------------------------------------------------
+# 3. Smart opener for EPG sources
 # ------------------------------------------------------------
 def smart_open(source):
     if re.match(r'https?://', source):
@@ -76,16 +81,13 @@ def smart_open(source):
         return open(path, 'r', encoding='utf-8')
 
 # ------------------------------------------------------------
-# 3. Helper: ensure a channel element has at least one non‑empty display-name
+# 4. Inject display name if missing
 # ------------------------------------------------------------
 def inject_display_name(channel_elem, ch_id, id_to_name):
-    """If the channel element has no <display-name> with actual text,
-    insert one using the tvg-name from the playlist (if available)."""
     existing = channel_elem.findall('display-name')
     for dn in existing:
         if dn.text and dn.text.strip():
-            return  # already has a name, do nothing
-
+            return
     name = id_to_name.get(ch_id)
     if name:
         dn_elem = ET.Element('display-name')
@@ -93,7 +95,7 @@ def inject_display_name(channel_elem, ch_id, id_to_name):
         channel_elem.insert(0, dn_elem)
 
 # ------------------------------------------------------------
-# 4. Core filter → gzipped output
+# 5. Core filter → gzipped output
 # ------------------------------------------------------------
 def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources):
     total_channels = 0
@@ -120,13 +122,12 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources):
                                 inject_display_name(elem, ch_id, id_to_name)
                                 out.write(ET.tostring(elem, encoding='unicode'))
                                 src_channels += 1
-                            elem.clear()   # clear after done
+                            elem.clear()
                         elif tag == 'programme':
                             if elem.get('channel') in wanted_ids:
                                 out.write(ET.tostring(elem, encoding='unicode'))
                                 src_programmes += 1
-                            elem.clear()   # clear after done
-                        # (no clearing for other elements like <title>, <desc> etc.)
+                            elem.clear()
             except HTTPError as e:
                 print(f"HTTP Error: {e.code} {e.reason}", file=sys.stderr)
             except ET.ParseError as e:
@@ -146,16 +147,26 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources):
     print(f"Output written to:          {output_path}", file=sys.stderr)
 
 # ------------------------------------------------------------
-# 5. CLI
+# 6. CLI
 # ------------------------------------------------------------
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Filter EPG by tvg-id and enrich channel names from playlist'
     )
     parser.add_argument('playlist', help='URL or local path to M3U playlist')
-    parser.add_argument('epg_sources', nargs='+', help='EPG URLs or local files')
+    parser.add_argument('epg_sources', nargs='*', help='EPG URLs or local files (ignored if --sources is used)')
+    parser.add_argument('--sources', help='Text file containing EPG source URLs (one per line)')
     parser.add_argument('-o', '--output', default='EPG.xml.gz', help='Output file')
     args = parser.parse_args()
+
+    # Determine EPG source list
+    if args.sources:
+        epg_list = read_epg_sources(args.sources)
+    elif args.epg_sources:
+        epg_list = args.epg_sources
+    else:
+        print("No EPG sources provided. Use --sources or positional arguments.", file=sys.stderr)
+        sys.exit(1)
 
     wanted_ids, id_to_name = parse_playlist(args.playlist)
     print(f"Extracted {len(wanted_ids)} tvg-ids, {len(id_to_name)} have names.", file=sys.stderr)
@@ -166,4 +177,4 @@ if __name__ == '__main__':
         print("No tvg-ids found. Exiting.", file=sys.stderr)
         sys.exit(1)
 
-    filter_and_enrich(args.output, wanted_ids, id_to_name, args.epg_sources)
+    filter_and_enrich(args.output, wanted_ids, id_to_name, epg_list)
