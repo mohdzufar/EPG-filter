@@ -3,25 +3,27 @@
 EPG Filter by tvg-id from an M3U playlist (remote or local).
 Output: a gzip‑compressed XMLTV file containing only matching channels/programmes.
 
-Logs detailed statistics to stderr for debugging.
+Fixes:
+- Properly handles remote .gz files (decompresses on‑the‑fly).
+- Converts all remote responses to text (UTF‑8).
+- Keeps detailed debug logging.
 """
 
 import argparse
 import gzip
+import io
 import re
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.request import urlopen
+from urllib.error import HTTPError
 
 # ------------------------------------------------------------
-# 1. Extract tvg-id’s from playlist (URL or local file)
-#    Now handles both quoted and unquoted values.
+# 1. Extract tvg-id’s (supports quoted / unquoted)
 # ------------------------------------------------------------
 def extract_ids(playlist_location):
-    """Fetch playlist and return a set of tvg-id values."""
     ids = set()
-
     if re.match(r'https?://', playlist_location):
         with urlopen(playlist_location) as response:
             content = response.read().decode('utf-8')
@@ -30,31 +32,38 @@ def extract_ids(playlist_location):
         with open(playlist_location, 'r', encoding='utf-8') as f:
             lines = f.readlines()
 
-    # Two patterns: with double quotes or without (up to whitespace/comma/end)
-    pattern_quoted = re.compile(r'tvg-id="([^"]*)"', re.IGNORECASE)
-    pattern_bare   = re.compile(r'tvg-id=([^\s",]+)', re.IGNORECASE)
-
+    quoted = re.compile(r'tvg-id="([^"]*)"', re.I)
+    bare   = re.compile(r'tvg-id=([^\s",]+)', re.I)
     for line in lines:
-        m = pattern_quoted.search(line)
-        if not m:
-            m = pattern_bare.search(line)
+        m = quoted.search(line) or bare.search(line)
         if m:
             val = m.group(1).strip()
             if val:
                 ids.add(val)
-
     return ids
 
 # ------------------------------------------------------------
-# 2. Smart opener for EPG sources (URL, .gz, plain XML)
+# 2. Smart opener – now correctly handles remote .gz / plain
 # ------------------------------------------------------------
 def smart_open(source):
+    """Return a text-mode file‑like object for the EPG source."""
     if re.match(r'https?://', source):
-        return urlopen(source)
-    path = Path(source)
-    if path.suffix == '.gz':
-        return gzip.open(path, 'rt', encoding='utf-8')
-    return open(path, 'r', encoding='utf-8')
+        # Open remote file (binary stream)
+        response = urlopen(source)
+        # Is it a gzip compressed file? (by extension)
+        if source.lower().endswith('.gz'):
+            # Decompress on‑the‑fly and wrap in text reader
+            binary_stream = gzip.GzipFile(fileobj=response, mode='rb')
+            return io.TextIOWrapper(binary_stream, encoding='utf-8')
+        else:
+            # Plain text response
+            return io.TextIOWrapper(response, encoding='utf-8')
+    else:
+        # Local file
+        path = Path(source)
+        if path.suffix == '.gz':
+            return gzip.open(path, 'rt', encoding='utf-8')
+        return open(path, 'r', encoding='utf-8')
 
 # ------------------------------------------------------------
 # 3. Core filter → gzipped output + logging
@@ -88,10 +97,13 @@ def filter_and_compress(output_path, wanted_ids, epg_sources):
                             if prog_ch in wanted_ids:
                                 out.write(ET.tostring(elem, encoding='unicode'))
                                 src_programmes += 1
-                        # Free memory
                         elem.clear()
+            except HTTPError as e:
+                print(f"HTTP Error: {e.code} {e.reason}", file=sys.stderr)
+            except ET.ParseError as e:
+                print(f"XML Parse Error: {e}", file=sys.stderr)
             except Exception as e:
-                print(f"ERROR processing {src}: {e}", file=sys.stderr)
+                print(f"Error processing {src}: {e}", file=sys.stderr)
 
             total_channels += src_channels
             total_programmes += src_programmes
@@ -107,7 +119,7 @@ def filter_and_compress(output_path, wanted_ids, epg_sources):
         print("WARNING: No channels matched! Check if playlist tvg-id's match EPG channel IDs.", file=sys.stderr)
 
 # ------------------------------------------------------------
-# 4. Command‑line interface
+# 4. CLI
 # ------------------------------------------------------------
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
