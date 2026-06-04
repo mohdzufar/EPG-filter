@@ -33,20 +33,21 @@ jobs:
             echo "PLAYLIST_URL=https://raw.githubusercontent.com/mohdzufar/IPTV/main/Channels/Flatten.m3u8" >> $GITHUB_ENV
           fi
 
-      - name: Filter and compress EPG
+      - name: Filter and compress EPG (with report)
         run: |
           python filter_epg.py "$PLAYLIST_URL" \
             --sources EPG_Sources.txt \
-            -o EPG.xml.gz
+            -o EPG.xml.gz \
+            --report
 
-      - name: Commit and push EPG.xml.gz to repo
+      - name: Commit and push EPG + Report to repo
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add EPG.xml.gz
+          git add EPG.xml.gz EPG_Report.txt
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update filtered EPG [skip ci]"
+            git commit -m "Update filtered EPG and report [skip ci]"
             git push
           fi
