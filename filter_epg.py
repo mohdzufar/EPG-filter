@@ -6,6 +6,7 @@ EPG Filter + Channel Name Injector + Dynamic Report with Summary
 - Enriches channel names from the playlist if missing.
 - Outputs a gzip‑compressed XMLTV file.
 - Generates a report with playlist statistics and EPG matching summary.
+- Uses a browser User‑Agent to avoid 403 errors on some servers.
 """
 
 import argparse
@@ -15,7 +16,7 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
 # ------------------------------------------------------------
@@ -29,7 +30,8 @@ def parse_playlist(location):
     with_tvg_id = 0
 
     if re.match(r'https?://', location):
-        with urlopen(location) as response:
+        req = Request(location, headers={'User-Agent': 'Mozilla/5.0'})
+        with urlopen(req) as response:
             content = response.read().decode('utf-8')
             lines = content.splitlines()
     else:
@@ -42,7 +44,6 @@ def parse_playlist(location):
     name_bare   = re.compile(r'tvg-name=([^\s",]+)', re.I)
 
     for line in lines:
-        # Count EXTINF lines
         if re.match(r'#EXTINF', line, re.I):
             total_extinf += 1
 
@@ -51,7 +52,7 @@ def parse_playlist(location):
             ch_id = m_id.group(1).strip()
             if ch_id:
                 ids.add(ch_id)
-                with_tvg_id += 1  # this line carries a tvg-id
+                with_tvg_id += 1
                 if ch_id not in id_to_name:
                     m_name = name_quoted.search(line) or name_bare.search(line)
                     name = m_name.group(1).strip() if m_name else None
@@ -73,11 +74,12 @@ def read_epg_sources(file_path):
         return [line.strip() for line in f if line.strip() and not line.startswith('#')]
 
 # ------------------------------------------------------------
-# 3. Smart opener for EPG sources
+# 3. Smart opener for EPG sources (with User-Agent)
 # ------------------------------------------------------------
 def smart_open(source):
     if re.match(r'https?://', source):
-        response = urlopen(source)
+        req = Request(source, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+        response = urlopen(req)
         if source.lower().endswith('.gz'):
             binary_stream = gzip.GzipFile(fileobj=response, mode='rb')
             return io.TextIOWrapper(binary_stream, encoding='utf-8')
@@ -169,7 +171,6 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist
 # 6. Report with summary and dynamic column widths
 # ------------------------------------------------------------
 def generate_report(report_path, found_channel_ids, id_to_name, channel_sources, wanted_ids, playlist_stats):
-    """Write a report with summary statistics and a detailed table."""
     total_unique = playlist_stats['total_unique_ids']
     total_extinf = playlist_stats['total_extinf']
     with_tvg = playlist_stats['with_tvg_id']
@@ -178,25 +179,17 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
     not_found_count = total_unique - found_count
 
     with open(report_path, 'w', encoding='utf-8') as f:
-        # Title
         f.write("EPG Filter Report\n")
         f.write("-------------------\n\n")
-
-        # Playlist Summary
         f.write("Playlist Summary:\n")
         f.write(f"  Total unique tvg-id entries   : {total_unique}\n")
         f.write(f"  #EXTINF lines with tvg-id     : {with_tvg}\n")
         f.write(f"  #EXTINF lines without tvg-id  : {without_tvg}\n\n")
-
-        # EPG Matching
         f.write("EPG Matching:\n")
         f.write(f"  Channels found in EPG         : {found_count}\n")
         f.write(f"  Channels NOT found            : {not_found_count}\n\n")
-
-        # Divider
         f.write("-" * 80 + "\n")
 
-        # Build table rows
         rows = []
         for cid in found_channel_ids:
             name = id_to_name.get(cid) or 'N/A'
@@ -204,10 +197,8 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
             sources_str = ', '.join(sources_list)
             rows.append((name, cid, sources_str))
 
-        # Sort rows by name (case‑insensitive), then by ID
         rows.sort(key=lambda r: (r[0].lower(), r[1]))
 
-        # Determine column widths (minimum based on header)
         name_width = max(len('Channel Name'), max((len(r[0]) for r in rows), default=0)) + 2
         id_width = max(len('ID'), max((len(r[1]) for r in rows), default=0)) + 2
         source_width = max(len('Source(s)'), max((len(r[2]) for r in rows), default=0)) + 2
@@ -215,7 +206,6 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
         header = f"{'Channel Name':<{name_width}} {'ID':<{id_width}} {'Source(s)':<{source_width}}"
         f.write(header + '\n')
         f.write('-' * len(header) + '\n')
-
         for name, cid, sources_str in rows:
             line = f"{name:<{name_width}} {cid:<{id_width}} {sources_str:<{source_width}}"
             f.write(line + '\n')
@@ -237,7 +227,6 @@ if __name__ == '__main__':
     parser.add_argument('--report-file', default='EPG_Report.txt', help='Report file name (default: EPG_Report.txt)')
     args = parser.parse_args()
 
-    # EPG source list
     if args.sources:
         epg_list = read_epg_sources(args.sources)
     elif args.epg_sources:
