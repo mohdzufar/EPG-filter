@@ -7,9 +7,8 @@ on:
         description: 'URL of the M3U playlist (raw file)'
         required: true
         default: 'https://raw.githubusercontent.com/mohdzufar/IPTV/main/Channels/Flatten.m3u8'
-  # Optional: run daily with the default playlist
   schedule:
-    - cron: '0 3 * * *'   # 03:00 UTC daily
+    - cron: '0 3 * * *'   # runs daily at 03:00 UTC with the default playlist
 
 jobs:
   filter-epg:
@@ -23,16 +22,16 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Set playlist URL (use input if available, otherwise default)
+      - name: Set playlist URL
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "PLAYLIST_URL=${{ github.event.inputs.playlist_url }}" >> $GITHUB_ENV
           else
-            # Default URL for scheduled runs (change if needed)
+            # Default playlist for scheduled runs – change this to whatever you want
             echo "PLAYLIST_URL=https://raw.githubusercontent.com/mohdzufar/IPTV/main/Channels/Flatten.m3u8" >> $GITHUB_ENV
           fi
 
-      - name: Filter EPG
+      - name: Filter and compress EPG
         run: |
           python filter_epg.py "$PLAYLIST_URL" \
             "https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz" \
@@ -40,8 +39,16 @@ jobs:
             "https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz" \
             -o EPG.xml.gz
 
-      - name: Upload artifact
+      - name: Upload artifact (so you can download manually)
         uses: actions/upload-artifact@v4
         with:
           name: filtered-epg
           path: EPG.xml.gz
+
+      - name: Deploy to GitHub Pages (public permanent URL)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          keep_files: false   # only the latest EPG.xml.gz will be published
