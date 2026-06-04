@@ -1,4 +1,4 @@
-name: Generate Filtered EPG
+name: Generate Filtered EPG and Store in Repo
 
 on:
   workflow_dispatch:
@@ -8,13 +8,17 @@ on:
         required: true
         default: 'https://raw.githubusercontent.com/mohdzufar/IPTV/main/Channels/Flatten.m3u8'
   schedule:
-    - cron: '0 3 * * *'   # runs daily at 03:00 UTC with the default playlist
+    - cron: '0 3 * * *'   # daily at 03:00 UTC
+
+# Grant write permissions so the workflow can commit
+permissions:
+  contents: write
 
 jobs:
   filter-epg:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository (for the Python script)
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -27,7 +31,6 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "PLAYLIST_URL=${{ github.event.inputs.playlist_url }}" >> $GITHUB_ENV
           else
-            # Default playlist for scheduled runs – change this to whatever you want
             echo "PLAYLIST_URL=https://raw.githubusercontent.com/mohdzufar/IPTV/main/Channels/Flatten.m3u8" >> $GITHUB_ENV
           fi
 
@@ -39,16 +42,15 @@ jobs:
             "https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz" \
             -o EPG.xml.gz
 
-      - name: Upload artifact (so you can download manually)
-        uses: actions/upload-artifact@v4
-        with:
-          name: filtered-epg
-          path: EPG.xml.gz
-
-      - name: Deploy to GitHub Pages (public permanent URL)
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          publish_branch: gh-pages
-          keep_files: false   # only the latest EPG.xml.gz will be published
+      - name: Commit and push EPG.xml.gz to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add EPG.xml.gz
+          # Only commit if the file actually changed (avoids empty commits)
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update filtered EPG [skip ci]"
+            git push
+          fi
