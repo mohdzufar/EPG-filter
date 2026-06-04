@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-EPG Filter + Channel Name Injector + Dynamic Report
+EPG Filter + Channel Name Injector + Dynamic Report with Summary
 - Filters EPG by tvg-id from an M3U playlist.
 - Reads EPG source URLs from a text file (--sources) or command line.
 - Enriches channel names from the playlist if missing.
 - Outputs a gzip‑compressed XMLTV file.
-- Generates a plain‑text report with auto‑sized columns.
+- Generates a report with playlist statistics and EPG matching summary.
 """
 
 import argparse
@@ -19,11 +19,15 @@ from urllib.request import urlopen
 from urllib.error import HTTPError
 
 # ------------------------------------------------------------
-# 1. Parse playlist → (set of ids, dict of id->name)
+# 1. Parse playlist → (ids, id_to_name, stats dict)
 # ------------------------------------------------------------
 def parse_playlist(location):
+    """Return (unique_ids_set, id_to_name_dict, stats_dict)."""
     ids = set()
     id_to_name = {}
+    total_extinf = 0
+    with_tvg_id = 0
+
     if re.match(r'https?://', location):
         with urlopen(location) as response:
             content = response.read().decode('utf-8')
@@ -38,19 +42,28 @@ def parse_playlist(location):
     name_bare   = re.compile(r'tvg-name=([^\s",]+)', re.I)
 
     for line in lines:
-        m_id = id_quoted.search(line) or id_bare.search(line)
-        if not m_id:
-            continue
-        ch_id = m_id.group(1).strip()
-        if not ch_id:
-            continue
-        ids.add(ch_id)
-        if ch_id not in id_to_name:
-            m_name = name_quoted.search(line) or name_bare.search(line)
-            name = m_name.group(1).strip() if m_name else None
-            id_to_name[ch_id] = name
+        # Count EXTINF lines
+        if re.match(r'#EXTINF', line, re.I):
+            total_extinf += 1
 
-    return ids, id_to_name
+        m_id = id_quoted.search(line) or id_bare.search(line)
+        if m_id:
+            ch_id = m_id.group(1).strip()
+            if ch_id:
+                ids.add(ch_id)
+                with_tvg_id += 1  # this line carries a tvg-id
+                if ch_id not in id_to_name:
+                    m_name = name_quoted.search(line) or name_bare.search(line)
+                    name = m_name.group(1).strip() if m_name else None
+                    id_to_name[ch_id] = name
+
+    stats = {
+        'total_unique_ids': len(ids),
+        'total_extinf': total_extinf,
+        'with_tvg_id': with_tvg_id,
+        'without_tvg_id': total_extinf - with_tvg_id,
+    }
+    return ids, id_to_name, stats
 
 # ------------------------------------------------------------
 # 2. Read EPG source URLs from a text file
@@ -93,7 +106,7 @@ def inject_display_name(channel_elem, ch_id, id_to_name):
 # ------------------------------------------------------------
 # 5. Core filter → gzipped output + report data
 # ------------------------------------------------------------
-def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, report_path=None):
+def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist_stats=None, report_path=None):
     total_channels = 0
     total_programmes = 0
     seen_channels = set()
@@ -104,9 +117,7 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, report_p
         out.write('<tv>\n')
 
         for src in epg_sources:
-            # For the report we store the full source string (URL or path)
             source_identifier = src
-
             print(f"\n>>> Processing source: {src}", file=sys.stderr)
             src_channels = 0
             src_programmes = 0
@@ -152,33 +163,59 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, report_p
     print(f"Output written to:          {output_path}", file=sys.stderr)
 
     if report_path:
-        generate_report(report_path, seen_channels, id_to_name, channel_sources)
+        generate_report(report_path, seen_channels, id_to_name, channel_sources, wanted_ids, playlist_stats)
 
 # ------------------------------------------------------------
-# 6. Report with dynamic column widths
+# 6. Report with summary and dynamic column widths
 # ------------------------------------------------------------
-def generate_report(report_path, channel_ids, id_to_name, channel_sources):
-    """Write a fixed‑width table, automatically sizing columns."""
-    rows = []
-    for cid in channel_ids:
-        name = id_to_name.get(cid) or 'N/A'
-        sources_list = sorted(channel_sources.get(cid, []))
-        sources_str = ', '.join(sources_list)
-        rows.append((name, cid, sources_str))
-
-    # Sort rows by name (case‑insensitive), then by ID
-    rows.sort(key=lambda r: (r[0].lower(), r[1]))
-
-    # Determine column widths (minimum based on header)
-    name_width = max(len('Channel Name'), max((len(r[0]) for r in rows), default=0)) + 2
-    id_width = max(len('ID'), max((len(r[1]) for r in rows), default=0)) + 2
-    source_width = max(len('Source(s)'), max((len(r[2]) for r in rows), default=0)) + 2
-
-    header = (f"{'Channel Name':<{name_width}} {'ID':<{id_width}} {'Source(s)':<{source_width}}")
+def generate_report(report_path, found_channel_ids, id_to_name, channel_sources, wanted_ids, playlist_stats):
+    """Write a report with summary statistics and a detailed table."""
+    total_unique = playlist_stats['total_unique_ids']
+    total_extinf = playlist_stats['total_extinf']
+    with_tvg = playlist_stats['with_tvg_id']
+    without_tvg = playlist_stats['without_tvg_id']
+    found_count = len(found_channel_ids)
+    not_found_count = total_unique - found_count
 
     with open(report_path, 'w', encoding='utf-8') as f:
+        # Title
+        f.write("EPG Filter Report\n")
+        f.write("-------------------\n\n")
+
+        # Playlist Summary
+        f.write("Playlist Summary:\n")
+        f.write(f"  Total unique tvg-id entries   : {total_unique}\n")
+        f.write(f"  #EXTINF lines with tvg-id     : {with_tvg}\n")
+        f.write(f"  #EXTINF lines without tvg-id  : {without_tvg}\n\n")
+
+        # EPG Matching
+        f.write("EPG Matching:\n")
+        f.write(f"  Channels found in EPG         : {found_count}\n")
+        f.write(f"  Channels NOT found            : {not_found_count}\n\n")
+
+        # Divider
+        f.write("-" * 80 + "\n")
+
+        # Build table rows
+        rows = []
+        for cid in found_channel_ids:
+            name = id_to_name.get(cid) or 'N/A'
+            sources_list = sorted(channel_sources.get(cid, []))
+            sources_str = ', '.join(sources_list)
+            rows.append((name, cid, sources_str))
+
+        # Sort rows by name (case‑insensitive), then by ID
+        rows.sort(key=lambda r: (r[0].lower(), r[1]))
+
+        # Determine column widths (minimum based on header)
+        name_width = max(len('Channel Name'), max((len(r[0]) for r in rows), default=0)) + 2
+        id_width = max(len('ID'), max((len(r[1]) for r in rows), default=0)) + 2
+        source_width = max(len('Source(s)'), max((len(r[2]) for r in rows), default=0)) + 2
+
+        header = f"{'Channel Name':<{name_width}} {'ID':<{id_width}} {'Source(s)':<{source_width}}"
         f.write(header + '\n')
         f.write('-' * len(header) + '\n')
+
         for name, cid, sources_str in rows:
             line = f"{name:<{name_width}} {cid:<{id_width}} {sources_str:<{source_width}}"
             f.write(line + '\n')
@@ -209,8 +246,8 @@ if __name__ == '__main__':
         print("No EPG sources provided. Use --sources or positional arguments.", file=sys.stderr)
         sys.exit(1)
 
-    wanted_ids, id_to_name = parse_playlist(args.playlist)
-    print(f"Extracted {len(wanted_ids)} tvg-ids, {len(id_to_name)} have names.", file=sys.stderr)
+    wanted_ids, id_to_name, stats = parse_playlist(args.playlist)
+    print(f"Extracted {stats['total_unique_ids']} unique tvg-ids, {len(id_to_name)} have names.", file=sys.stderr)
     if wanted_ids:
         sample = list(wanted_ids)[:10]
         print(f"Sample IDs: {sample}", file=sys.stderr)
@@ -219,4 +256,4 @@ if __name__ == '__main__':
         sys.exit(1)
 
     report_path = args.report_file if args.report else None
-    filter_and_enrich(args.output, wanted_ids, id_to_name, epg_list, report_path)
+    filter_and_enrich(args.output, wanted_ids, id_to_name, epg_list, playlist_stats=stats, report_path=report_path)
