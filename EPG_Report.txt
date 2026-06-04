@@ -1,0 +1,66 @@
+Channel Name                   ID           Source(s)                                         
+----------------------------------------------------------------------------------------------
+8TV                            1122         epg.xml.gz                                        
+Al-Hijrah                      369680       epg.xml.gz                                        
+Al-Jazeera (English)           3416         epg.xml.gz                                        
+Animal Planet                  Animal.Planet.HD.us2 TV.xml                                            
+Astro Arena Bola               4209         epg.xml.gz                                        
+Astro Arena Bola 2             4215         epg.xml.gz                                        
+Astro Awani                    3958         epg.xml.gz                                        
+Astro Badminton                397400       epg.xml.gz                                        
+Astro Football                 397399       epg.xml.gz                                        
+BBC Earth                      4030         epg.xml.gz                                        
+BBC News                       464746       epg.xml.gz                                        
+Bein Sports 1                  399482       epg.xml.gz                                        
+Bein Sports 2                  4146         epg.xml.gz                                        
+Bein Sports 3                  3118         epg.xml.gz                                        
+Berita RTM                     370132       epg.xml.gz                                        
+Bernama                        1835         epg.xml.gz                                        
+Cartoon Network                Cartoon.Network.HD.us2 TV.xml                                            
+CBS News 24/7                  464941       epg.xml.gz                                        
+Cinemax                        Cinemax.HD.us2 TV.xml                                            
+Discovery Channel              Discovery.Channel.HD.us2 TV.xml                                            
+Discovery Life                 Discovery.Life.Channel.us2 TV.xml                                            
+Discovery Science              Science.Channel.HD.us2 TV.xml                                            
+Disney Channel                 Disney.Channel.HD.us2 TV.xml                                            
+Disney XD                      Disney.XD.HD.us2 TV.xml                                            
+Drama Hebat                    DramaHebat   epg.xml                                           
+Drama Hotpot                   DramaHotpot  epg.xml                                           
+EuroNews                       12529        epg.xml.gz                                        
+Fifa+                          492830       epg.xml.gz                                        
+Filem Mantap                   FilemMantap  epg.xml                                           
+FOX NFL                        465532       epg.xml.gz                                        
+Hallmark Channel               Hallmark.Channel.HD.us2 TV.xml                                            
+HBO                            HBO.East.us2 TV.xml                                            
+HBO 2                          HBO2.HD.us2  TV.xml                                            
+HBO Comedy                     HBO.Comedy.HD.us2 TV.xml                                            
+Jom Ngaji                      JomNgaji     epg.xml                                           
+Lawak Sentral                  LawakSentral epg.xml                                           
+MBC America                    464845       epg.xml.gz                                        
+MLB                            464873       epg.xml.gz                                        
+Movie Sphere Aus               538953       epg.xml.gz                                        
+Movie Sphere UK                510891       epg.xml.gz                                        
+Oh My Ceria!                   OhMyCeria    epg.xml                                           
+Okey TV                        370134       epg.xml.gz                                        
+RTM Apetito                    479619       epg.xml.gz                                        
+RTM Aura                       479618       epg.xml.gz                                        
+RTM Fitrah                     479449       epg.xml.gz                                        
+RTM Junior                     502308       epg.xml.gz                                        
+RTM Lead                       538300       epg.xml.gz                                        
+RTM Roll                       521957       epg.xml.gz                                        
+RTM Snap                       538142       epg.xml.gz                                        
+RTM Sukan                      370133       epg.xml.gz                                        
+RTM TV1                        3683         epg.xml.gz                                        
+RTM TV2                        370135       epg.xml.gz                                        
+RTM World                      535994       epg.xml.gz                                        
+Sky News                       12069        epg.xml.gz                                        
+Sony Movie Channel             Sony.Movie.Channel.HD.us2 TV.xml                                            
+Travel & Taste                 TravelandTaste epg.xml                                           
+TV3                            1072         epg.xml.gz                                        
+TV6                            370131       epg.xml.gz                                        
+TV9                            902          epg.xml.gz                                        
+TVBS Asia                      412193       epg.xml.gz                                        
+tvN Movies                     524137       epg.xml.gz                                        
+TVS                            3942         epg.xml.gz                                        
+UFC 1                          446965       epg.xml.gz                                        
+Wild Earth                     405628       epg.xml.gz                                        
