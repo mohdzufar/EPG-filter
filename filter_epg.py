@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 """
-EPG Filter by tvg-id from an M3U playlist (remote or local).
-Output: a gzip‑compressed XMLTV file containing only matching channels/programmes.
-
-Fixes:
-- Properly handles remote .gz files (decompresses on‑the‑fly).
-- Converts all remote responses to text (UTF‑8).
-- Keeps detailed debug logging.
+EPG Filter + Channel Name Injector
+- Filters EPG by tvg-id from an M3U playlist.
+- If a <channel> has no (or empty) <display-name>, it inserts the tvg-name
+  from the playlist (if available).
 """
 
 import argparse
@@ -20,55 +17,89 @@ from urllib.request import urlopen
 from urllib.error import HTTPError
 
 # ------------------------------------------------------------
-# 1. Extract tvg-id’s (supports quoted / unquoted)
+# 1. Parse playlist → (set of ids, dict of id->name)
 # ------------------------------------------------------------
-def extract_ids(playlist_location):
+def parse_playlist(location):
+    """
+    Returns (wanted_ids: set, id_to_name: dict)
+    id_to_name maps tvg-id → the first tvg-name found (or None if no name).
+    """
     ids = set()
-    if re.match(r'https?://', playlist_location):
-        with urlopen(playlist_location) as response:
+    id_to_name = {}
+    if re.match(r'https?://', location):
+        with urlopen(location) as response:
             content = response.read().decode('utf-8')
             lines = content.splitlines()
     else:
-        with open(playlist_location, 'r', encoding='utf-8') as f:
+        with open(location, 'r', encoding='utf-8') as f:
             lines = f.readlines()
 
-    quoted = re.compile(r'tvg-id="([^"]*)"', re.I)
-    bare   = re.compile(r'tvg-id=([^\s",]+)', re.I)
+    # Patterns for tvg-id and tvg-name (both quoted and bare)
+    id_quoted = re.compile(r'tvg-id="([^"]*)"', re.I)
+    id_bare   = re.compile(r'tvg-id=([^\s",]+)', re.I)
+    name_quoted = re.compile(r'tvg-name="([^"]*)"', re.I)
+    name_bare   = re.compile(r'tvg-name=([^\s",]+)', re.I)
+
     for line in lines:
-        m = quoted.search(line) or bare.search(line)
-        if m:
-            val = m.group(1).strip()
-            if val:
-                ids.add(val)
-    return ids
+        # extract id
+        m_id = id_quoted.search(line) or id_bare.search(line)
+        if not m_id:
+            continue
+        ch_id = m_id.group(1).strip()
+        if not ch_id:
+            continue
+        ids.add(ch_id)
+
+        # extract name if not already stored for this id
+        if ch_id not in id_to_name:
+            m_name = name_quoted.search(line) or name_bare.search(line)
+            name = m_name.group(1).strip() if m_name else None
+            id_to_name[ch_id] = name
+
+    return ids, id_to_name
 
 # ------------------------------------------------------------
-# 2. Smart opener – now correctly handles remote .gz / plain
+# 2. Smart opener for EPG sources
 # ------------------------------------------------------------
 def smart_open(source):
-    """Return a text-mode file‑like object for the EPG source."""
     if re.match(r'https?://', source):
-        # Open remote file (binary stream)
         response = urlopen(source)
-        # Is it a gzip compressed file? (by extension)
         if source.lower().endswith('.gz'):
-            # Decompress on‑the‑fly and wrap in text reader
             binary_stream = gzip.GzipFile(fileobj=response, mode='rb')
             return io.TextIOWrapper(binary_stream, encoding='utf-8')
         else:
-            # Plain text response
             return io.TextIOWrapper(response, encoding='utf-8')
     else:
-        # Local file
         path = Path(source)
         if path.suffix == '.gz':
             return gzip.open(path, 'rt', encoding='utf-8')
         return open(path, 'r', encoding='utf-8')
 
 # ------------------------------------------------------------
-# 3. Core filter → gzipped output + logging
+# 3. Helper: ensure a channel element has at least one non‑empty display-name
 # ------------------------------------------------------------
-def filter_and_compress(output_path, wanted_ids, epg_sources):
+def inject_display_name(channel_elem, ch_id, id_to_name):
+    """If the channel element has no <display-name> with actual text,
+    insert one using the tvg-name from the playlist (if available)."""
+    # Check if any existing display-name has text
+    existing = channel_elem.findall('display-name')
+    for dn in existing:
+        if dn.text and dn.text.strip():
+            return  # already has a name, do nothing
+
+    # If we have a name in the playlist, insert it
+    name = id_to_name.get(ch_id)
+    if name:
+        # Create a <display-name> element and insert at the beginning
+        # (after the attributes but before other children)
+        dn_elem = ET.Element('display-name')
+        dn_elem.text = name
+        channel_elem.insert(0, dn_elem)
+
+# ------------------------------------------------------------
+# 4. Core filter → gzipped output
+# ------------------------------------------------------------
+def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources):
     total_channels = 0
     total_programmes = 0
     seen_channels = set()
@@ -90,11 +121,12 @@ def filter_and_compress(output_path, wanted_ids, epg_sources):
                             ch_id = elem.get('id')
                             if ch_id in wanted_ids and ch_id not in seen_channels:
                                 seen_channels.add(ch_id)
+                                # Enrich with playlist name if missing
+                                inject_display_name(elem, ch_id, id_to_name)
                                 out.write(ET.tostring(elem, encoding='unicode'))
                                 src_channels += 1
                         elif tag == 'programme':
-                            prog_ch = elem.get('channel')
-                            if prog_ch in wanted_ids:
+                            if elem.get('channel') in wanted_ids:
                                 out.write(ET.tostring(elem, encoding='unicode'))
                                 src_programmes += 1
                         elem.clear()
@@ -115,28 +147,26 @@ def filter_and_compress(output_path, wanted_ids, epg_sources):
     print(f"Total unique channels kept: {len(seen_channels)}", file=sys.stderr)
     print(f"Total programmes kept:      {total_programmes}", file=sys.stderr)
     print(f"Output written to:          {output_path}", file=sys.stderr)
-    if total_channels == 0:
-        print("WARNING: No channels matched! Check if playlist tvg-id's match EPG channel IDs.", file=sys.stderr)
 
 # ------------------------------------------------------------
-# 4. CLI
+# 5. CLI
 # ------------------------------------------------------------
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Filter EPG by tvg-id from an M3U playlist (URL or local file)'
+        description='Filter EPG by tvg-id and enrich channel names from playlist'
     )
-    parser.add_argument('playlist', help='URL or local path to the M3U playlist')
-    parser.add_argument('epg_sources', nargs='+', help='EPG URLs or local files (.gz or .xml)')
-    parser.add_argument('-o', '--output', default='EPG.xml.gz', help='Output gzipped XML file')
+    parser.add_argument('playlist', help='URL or local path to M3U playlist')
+    parser.add_argument('epg_sources', nargs='+', help='EPG URLs or local files')
+    parser.add_argument('-o', '--output', default='EPG.xml.gz', help='Output file')
     args = parser.parse_args()
 
-    wanted = extract_ids(args.playlist)
-    print(f"Extracted {len(wanted)} unique tvg-id(s) from playlist.", file=sys.stderr)
-    if wanted:
-        sample = list(wanted)[:10]
-        print(f"Sample (first 10): {sample}", file=sys.stderr)
+    wanted_ids, id_to_name = parse_playlist(args.playlist)
+    print(f"Extracted {len(wanted_ids)} tvg-ids, {len(id_to_name)} have names.", file=sys.stderr)
+    if wanted_ids:
+        sample = list(wanted_ids)[:10]
+        print(f"Sample IDs: {sample}", file=sys.stderr)
     else:
-        print("No tvg-id found – nothing to filter. Exiting.", file=sys.stderr)
+        print("No tvg-ids found. Exiting.", file=sys.stderr)
         sys.exit(1)
 
-    filter_and_compress(args.output, wanted, args.epg_sources)
+    filter_and_enrich(args.output, wanted_ids, id_to_name, args.epg_sources)
