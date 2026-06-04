@@ -1,66 +1,66 @@
-Channel Name                   ID           Source(s)                                         
-----------------------------------------------------------------------------------------------
-8TV                            1122         epg.xml.gz                                        
-Al-Hijrah                      369680       epg.xml.gz                                        
-Al-Jazeera (English)           3416         epg.xml.gz                                        
-Animal Planet                  Animal.Planet.HD.us2 TV.xml                                            
-Astro Arena Bola               4209         epg.xml.gz                                        
-Astro Arena Bola 2             4215         epg.xml.gz                                        
-Astro Awani                    3958         epg.xml.gz                                        
-Astro Badminton                397400       epg.xml.gz                                        
-Astro Football                 397399       epg.xml.gz                                        
-BBC Earth                      4030         epg.xml.gz                                        
-BBC News                       464746       epg.xml.gz                                        
-Bein Sports 1                  399482       epg.xml.gz                                        
-Bein Sports 2                  4146         epg.xml.gz                                        
-Bein Sports 3                  3118         epg.xml.gz                                        
-Berita RTM                     370132       epg.xml.gz                                        
-Bernama                        1835         epg.xml.gz                                        
-Cartoon Network                Cartoon.Network.HD.us2 TV.xml                                            
-CBS News 24/7                  464941       epg.xml.gz                                        
-Cinemax                        Cinemax.HD.us2 TV.xml                                            
-Discovery Channel              Discovery.Channel.HD.us2 TV.xml                                            
-Discovery Life                 Discovery.Life.Channel.us2 TV.xml                                            
-Discovery Science              Science.Channel.HD.us2 TV.xml                                            
-Disney Channel                 Disney.Channel.HD.us2 TV.xml                                            
-Disney XD                      Disney.XD.HD.us2 TV.xml                                            
-Drama Hebat                    DramaHebat   epg.xml                                           
-Drama Hotpot                   DramaHotpot  epg.xml                                           
-EuroNews                       12529        epg.xml.gz                                        
-Fifa+                          492830       epg.xml.gz                                        
-Filem Mantap                   FilemMantap  epg.xml                                           
-FOX NFL                        465532       epg.xml.gz                                        
-Hallmark Channel               Hallmark.Channel.HD.us2 TV.xml                                            
-HBO                            HBO.East.us2 TV.xml                                            
-HBO 2                          HBO2.HD.us2  TV.xml                                            
-HBO Comedy                     HBO.Comedy.HD.us2 TV.xml                                            
-Jom Ngaji                      JomNgaji     epg.xml                                           
-Lawak Sentral                  LawakSentral epg.xml                                           
-MBC America                    464845       epg.xml.gz                                        
-MLB                            464873       epg.xml.gz                                        
-Movie Sphere Aus               538953       epg.xml.gz                                        
-Movie Sphere UK                510891       epg.xml.gz                                        
-Oh My Ceria!                   OhMyCeria    epg.xml                                           
-Okey TV                        370134       epg.xml.gz                                        
-RTM Apetito                    479619       epg.xml.gz                                        
-RTM Aura                       479618       epg.xml.gz                                        
-RTM Fitrah                     479449       epg.xml.gz                                        
-RTM Junior                     502308       epg.xml.gz                                        
-RTM Lead                       538300       epg.xml.gz                                        
-RTM Roll                       521957       epg.xml.gz                                        
-RTM Snap                       538142       epg.xml.gz                                        
-RTM Sukan                      370133       epg.xml.gz                                        
-RTM TV1                        3683         epg.xml.gz                                        
-RTM TV2                        370135       epg.xml.gz                                        
-RTM World                      535994       epg.xml.gz                                        
-Sky News                       12069        epg.xml.gz                                        
-Sony Movie Channel             Sony.Movie.Channel.HD.us2 TV.xml                                            
-Travel & Taste                 TravelandTaste epg.xml                                           
-TV3                            1072         epg.xml.gz                                        
-TV6                            370131       epg.xml.gz                                        
-TV9                            902          epg.xml.gz                                        
-TVBS Asia                      412193       epg.xml.gz                                        
-tvN Movies                     524137       epg.xml.gz                                        
-TVS                            3942         epg.xml.gz                                        
-UFC 1                          446965       epg.xml.gz                                        
-Wild Earth                     405628       epg.xml.gz                                        
+Channel Name           ID                           Source(s)                                                                        
+-------------------------------------------------------------------------------------------------------------------------------------
+8TV                    1122                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Al-Hijrah              369680                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Al-Jazeera (English)   3416                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Animal Planet          Animal.Planet.HD.us2         https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+Astro Arena Bola       4209                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Astro Arena Bola 2     4215                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Astro Awani            3958                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Astro Badminton        397400                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Astro Football         397399                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+BBC Earth              4030                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+BBC News               464746                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Bein Sports 1          399482                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Bein Sports 2          4146                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Bein Sports 3          3118                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Berita RTM             370132                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Bernama                1835                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Cartoon Network        Cartoon.Network.HD.us2       https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+CBS News 24/7          464941                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Cinemax                Cinemax.HD.us2               https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+Discovery Channel      Discovery.Channel.HD.us2     https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+Discovery Life         Discovery.Life.Channel.us2   https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+Discovery Science      Science.Channel.HD.us2       https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+Disney Channel         Disney.Channel.HD.us2        https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+Disney XD              Disney.XD.HD.us2             https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+Drama Hebat            DramaHebat                   https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
+Drama Hotpot           DramaHotpot                  https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
+EuroNews               12529                        https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Fifa+                  492830                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Filem Mantap           FilemMantap                  https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
+FOX NFL                465532                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Hallmark Channel       Hallmark.Channel.HD.us2      https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+HBO                    HBO.East.us2                 https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+HBO 2                  HBO2.HD.us2                  https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+HBO Comedy             HBO.Comedy.HD.us2            https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+Jom Ngaji              JomNgaji                     https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
+Lawak Sentral          LawakSentral                 https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
+MBC America            464845                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+MLB                    464873                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Movie Sphere Aus       538953                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Movie Sphere UK        510891                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Oh My Ceria!           OhMyCeria                    https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
+Okey TV                370134                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+RTM Apetito            479619                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+RTM Aura               479618                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+RTM Fitrah             479449                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+RTM Junior             502308                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+RTM Lead               538300                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+RTM Roll               521957                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+RTM Snap               538142                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+RTM Sukan              370133                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+RTM TV1                3683                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+RTM TV2                370135                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+RTM World              535994                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Sky News               12069                        https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Sony Movie Channel     Sony.Movie.Channel.HD.us2    https://raw.githubusercontent.com/doms9/iptv/refs/heads/default/M3U8/TV.xml      
+Travel & Taste         TravelandTaste               https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
+TV3                    1072                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+TV6                    370131                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+TV9                    902                          https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+TVBS Asia              412193                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+tvN Movies             524137                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+TVS                    3942                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+UFC 1                  446965                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Wild Earth             405628                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
