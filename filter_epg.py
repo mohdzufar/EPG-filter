@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-EPG Filter – keep only channels that exist in a given M3U playlist (by tvg-id).
+EPG Filter by tvg-id from an M3U playlist (remote or local).
+Output: a gzip‑compressed XMLTV file containing only matching channels/programmes.
 
-Usage:
-    python filter_epg.py <playlist_url> <epg_source1> [epg_source2 ...] -o output.xml.gz
+Usage examples:
+  python filter_epg.py https://example.com/playlist.m3u epg.xml.gz -o out.xml.gz
+  python filter_epg.py ./local_playlist.m3u https://epg.example.com/guide.xml -o out.xml.gz
 """
 
 import argparse
@@ -13,22 +15,19 @@ import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.request import urlopen
-from urllib.parse import urlparse
 
 # ------------------------------------------------------------
-# 1. Extract tvg-id’s from a playlist (URL or local file)
+# 1. Extract tvg-id’s from playlist (URL or local file)
 # ------------------------------------------------------------
 def extract_ids(playlist_location):
-    """Fetches playlist (http/https or local path) and returns a set of tvg-id values."""
+    """Fetch playlist (http/https or local path) and return a set of tvg-id values."""
     ids = set()
-    # If it looks like a URL, fetch it
+
     if re.match(r'https?://', playlist_location):
         with urlopen(playlist_location) as response:
-            # Decode from bytes to string (assuming UTF-8)
             content = response.read().decode('utf-8')
             lines = content.splitlines()
     else:
-        # Local file
         with open(playlist_location, 'r', encoding='utf-8') as f:
             lines = f.readlines()
 
@@ -41,7 +40,7 @@ def extract_ids(playlist_location):
     return ids
 
 # ------------------------------------------------------------
-# 2. Smart opener for EPG sources (URL, .gz, plain)
+# 2. Smart opener for EPG sources (URL, .gz, plain XML)
 # ------------------------------------------------------------
 def smart_open(source):
     if re.match(r'https?://', source):
@@ -52,7 +51,7 @@ def smart_open(source):
     return open(path, 'r', encoding='utf-8')
 
 # ------------------------------------------------------------
-# 3. Filter and write compressed output
+# 3. Core filter → gzipped output
 # ------------------------------------------------------------
 def filter_and_compress(output_path, wanted_ids, epg_sources):
     with gzip.open(output_path, 'wt', encoding='utf-8') as out:
@@ -76,6 +75,7 @@ def filter_and_compress(output_path, wanted_ids, epg_sources):
                         elif tag == 'programme':
                             if elem.get('channel') in wanted_ids:
                                 out.write(ET.tostring(elem, encoding='unicode'))
+                        # Free memory
                         elem.clear()
             except Exception as e:
                 print(f"Error processing {src}: {e}", file=sys.stderr)
@@ -83,7 +83,7 @@ def filter_and_compress(output_path, wanted_ids, epg_sources):
         out.write('</tv>\n')
 
 # ------------------------------------------------------------
-# 4. CLI
+# 4. Command‑line interface
 # ------------------------------------------------------------
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
