@@ -7,8 +7,8 @@ Playlist Summary:
   #EXTINF lines without tvg-id  : 43
 
 EPG Matching:
-  Channels found in EPG         : 86
-  Channels NOT found            : 61
+  Channels found in EPG         : 85
+  Channels NOT found            : 62
 
 --------------------------------------------------------------------------------
 Channel Name               ID                           Source(s)                                                                        
@@ -23,6 +23,7 @@ Astro Arena Bola 2         4215                         https://raw.githubuserco
 Astro Awani                3958                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Astro Badminton            397400                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Astro Football             397399                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+AXN Asia                   369716                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 BBC Earth                  4030                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 BBC News                   464746                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Bein Sports 1              399482                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
@@ -72,9 +73,7 @@ RTM Apetito                479619                       https://raw.githubuserco
 RTM Aura                   479618                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 RTM Fitrah                 479449                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 RTM Junior                 502308                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
-RTM Lead                   538300                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 RTM Roll                   521957                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
-RTM Snap                   538142                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 RTM Sukan                  370133                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 RTM TV1                    3683                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 RTM TV2                    370135                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
