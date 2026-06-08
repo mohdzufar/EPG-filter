@@ -2,13 +2,13 @@ EPG Filter Report
 -------------------
 
 Playlist Summary:
-  Total unique tvg-id entries   : 147
-  #EXTINF lines with tvg-id     : 148
+  Total unique tvg-id entries   : 148
+  #EXTINF lines with tvg-id     : 149
   #EXTINF lines without tvg-id  : 43
 
 EPG Matching:
   Channels found in EPG         : 85
-  Channels NOT found            : 62
+  Channels NOT found            : 63
 
 --------------------------------------------------------------------------------
 Channel Name               ID                           Source(s)                                                                        
