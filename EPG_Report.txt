@@ -7,8 +7,8 @@ Playlist Summary:
   #EXTINF lines without tvg-id  : 43
 
 EPG Matching:
-  Channels found in EPG         : 85
-  Channels NOT found            : 63
+  Channels found in EPG         : 84
+  Channels NOT found            : 64
 
 --------------------------------------------------------------------------------
 Channel Name               ID                           Source(s)                                                                        
@@ -77,7 +77,6 @@ RTM Roll                   521957                       https://raw.githubuserco
 RTM Sukan                  370133                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 RTM TV1                    3683                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 RTM TV2                    370135                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
-RTM World                  535994                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 SBS_Golf                   SBSGolf.kr                   https://iptv-epg.org/files/epg-kr.xml.gz                                         
 Sky News                   12069                        https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Sky Sport F1               SkySportsF1.uk               https://iptv-epg.org/files/epg-gb.xml.gz                                         
