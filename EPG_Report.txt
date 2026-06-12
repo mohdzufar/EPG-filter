@@ -3,7 +3,7 @@ EPG Filter Report
 
 Playlist Summary:
   Total unique tvg-id entries   : 148
-  #EXTINF lines with tvg-id     : 149
+  #EXTINF lines with tvg-id     : 150
   #EXTINF lines without tvg-id  : 43
 
 EPG Matching:
