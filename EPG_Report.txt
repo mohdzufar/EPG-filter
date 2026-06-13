@@ -7,8 +7,8 @@ Playlist Summary:
   #EXTINF lines without tvg-id  : 46
 
 EPG Matching:
-  Channels found in EPG         : 89
-  Channels NOT found            : 67
+  Channels found in EPG         : 92
+  Channels NOT found            : 64
 
 --------------------------------------------------------------------------------
 Channel Name               ID                           Source(s)                                                                        
@@ -57,6 +57,8 @@ HBO Family                 HBO.Drama.us2                https://epgshare01.onlin
 HITS Movies                HITSMovies.sg                https://iptv-epg.org/files/epg-sg.xml.gz                                         
 HITS NOW                   HITS.sg                      https://iptv-epg.org/files/epg-sg.xml.gz                                         
 Jom Ngaji                  JomNgaji                     https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
+K POP by CJ ENM            CA3900002PM                  https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
+K-Drama+                   CA17000023Q                  https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Lawak Sentral              LawakSentral                 https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 MBC America                464845                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 MLB                        464873                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
@@ -87,6 +89,7 @@ Sony Movie Channel         Sony.Movie.Channel.HD.us2    https://epgshare01.onlin
 Speed Vision               SPEEDVISION.us               https://iptv-epg.org/files/epg-us.xml.gz                                         
 TechStorm                  TechStorm.sg                 https://iptv-epg.org/files/epg-sg.xml.gz                                         
 Tennis Channel             TennisChannel.us             https://iptv-epg.org/files/epg-us.xml.gz                                         
+Tennis TV                  6627621d56fc840008e47c90     https://i.mjh.nz/PlutoTV/all.xml.gz                                              
 Travel & Taste             TravelandTaste               https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 TSN 1                      470446                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 TSN 2                      470401                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
