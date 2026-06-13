@@ -2,13 +2,13 @@ EPG Filter Report
 -------------------
 
 Playlist Summary:
-  Total unique tvg-id entries   : 148
-  #EXTINF lines with tvg-id     : 150
-  #EXTINF lines without tvg-id  : 43
+  Total unique tvg-id entries   : 156
+  #EXTINF lines with tvg-id     : 157
+  #EXTINF lines without tvg-id  : 46
 
 EPG Matching:
-  Channels found in EPG         : 84
-  Channels NOT found            : 64
+  Channels found in EPG         : 89
+  Channels NOT found            : 67
 
 --------------------------------------------------------------------------------
 Channel Name               ID                           Source(s)                                                                        
@@ -88,6 +88,11 @@ Speed Vision               SPEEDVISION.us               https://iptv-epg.org/fil
 TechStorm                  TechStorm.sg                 https://iptv-epg.org/files/epg-sg.xml.gz                                         
 Tennis Channel             TennisChannel.us             https://iptv-epg.org/files/epg-us.xml.gz                                         
 Travel & Taste             TravelandTaste               https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
+TSN 1                      470446                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+TSN 2                      470401                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+TSN 3                      470389                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+TSN 4                      470915                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+TSN 5                      470513                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 TV3                        1072                         https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 TV6                        370131                       https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 TV9                        902                          https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
