@@ -1,6 +1,10 @@
 # EPG Filter
 
-Generate a filtered EPG (.xml.gz) that contains only the channels in your IPTV playlist (matched by tvg-id).  
+Generate a filtered EPG (.xml.gz) that contains only the channels in your IPTV playlist (matched by tvg-id).
+This should remove any EPG channel that are not listed in your IPTV list.
+This will make the EPG load faster for your IPTV.
+
+Remember, this repo is matching up EPG based on tvg-id. So, you will need to have correct tvg-id each of your channels.
 Runs automatically on GitHub Actions – updates the file daily, ready to use in any IPTV player.
 
 ## Quick Start
