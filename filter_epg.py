@@ -168,7 +168,7 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist
         generate_report(report_path, seen_channels, id_to_name, channel_sources, wanted_ids, playlist_stats)
 
 # ------------------------------------------------------------
-# 6. Report with summary and dynamic column widths
+# 6. Report with summary, missing channels list, and dynamic column widths
 # ------------------------------------------------------------
 def generate_report(report_path, found_channel_ids, id_to_name, channel_sources, wanted_ids, playlist_stats):
     total_unique = playlist_stats['total_unique_ids']
@@ -177,6 +177,9 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
     without_tvg = playlist_stats['without_tvg_id']
     found_count = len(found_channel_ids)
     not_found_count = total_unique - found_count
+
+    # Calculate missing channels
+    missing_ids = sorted(set(wanted_ids) - found_channel_ids)
 
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write("EPG Filter Report\n")
@@ -188,6 +191,19 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
         f.write("EPG Matching:\n")
         f.write(f"  Channels found in EPG         : {found_count}\n")
         f.write(f"  Channels NOT found            : {not_found_count}\n\n")
+        
+        # New section: list missing channels
+        if missing_ids:
+            f.write("=" * 80 + "\n")
+            f.write("MISSING CHANNELS (no EPG data found)\n")
+            f.write("=" * 80 + "\n")
+            for cid in missing_ids:
+                name = id_to_name.get(cid, 'N/A')
+                f.write(f"  {cid}  ({name})\n")
+            f.write("\n")
+        
+        f.write("-" * 80 + "\n")
+        f.write("FOUND CHANNELS (with EPG data)\n")
         f.write("-" * 80 + "\n")
 
         rows = []
