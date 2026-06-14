@@ -168,7 +168,7 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist
         generate_report(report_path, seen_channels, id_to_name, channel_sources, wanted_ids, playlist_stats)
 
 # ------------------------------------------------------------
-# 6. Report with summary, missing channels list, and dynamic column widths
+# 6. Report with summary, found channels table, missing channels table
 # ------------------------------------------------------------
 def generate_report(report_path, found_channel_ids, id_to_name, channel_sources, wanted_ids, playlist_stats):
     total_unique = playlist_stats['total_unique_ids']
@@ -192,39 +192,67 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
         f.write(f"  Channels found in EPG         : {found_count}\n")
         f.write(f"  Channels NOT found            : {not_found_count}\n\n")
         
-        # New section: list missing channels
-        if missing_ids:
-            f.write("=" * 80 + "\n")
-            f.write("MISSING CHANNELS (no EPG data found)\n")
-            f.write("=" * 80 + "\n")
-            for cid in missing_ids:
-                name = id_to_name.get(cid, 'N/A')
-                f.write(f"  {cid}  ({name})\n")
-            f.write("\n")
-        
+        # ------------------------------------------------------------
+        # 1. TABLE OF FOUND CHANNELS (with Source(s))
+        # ------------------------------------------------------------
         f.write("-" * 80 + "\n")
         f.write("FOUND CHANNELS (with EPG data)\n")
         f.write("-" * 80 + "\n")
 
-        rows = []
+        found_rows = []
         for cid in found_channel_ids:
             name = id_to_name.get(cid) or 'N/A'
             sources_list = sorted(channel_sources.get(cid, []))
             sources_str = ', '.join(sources_list)
-            rows.append((name, cid, sources_str))
+            found_rows.append((name, cid, sources_str))
 
-        rows.sort(key=lambda r: (r[0].lower(), r[1]))
+        found_rows.sort(key=lambda r: (r[0].lower(), r[1]))
 
-        name_width = max(len('Channel Name'), max((len(r[0]) for r in rows), default=0)) + 2
-        id_width = max(len('ID'), max((len(r[1]) for r in rows), default=0)) + 2
-        source_width = max(len('Source(s)'), max((len(r[2]) for r in rows), default=0)) + 2
+        if found_rows:
+            name_width = max(len('Channel Name'), max((len(r[0]) for r in found_rows), default=0)) + 2
+            id_width = max(len('ID'), max((len(r[1]) for r in found_rows), default=0)) + 2
+            source_width = max(len('Source(s)'), max((len(r[2]) for r in found_rows), default=0)) + 2
 
-        header = f"{'Channel Name':<{name_width}} {'ID':<{id_width}} {'Source(s)':<{source_width}}"
-        f.write(header + '\n')
-        f.write('-' * len(header) + '\n')
-        for name, cid, sources_str in rows:
-            line = f"{name:<{name_width}} {cid:<{id_width}} {sources_str:<{source_width}}"
-            f.write(line + '\n')
+            header = f"{'Channel Name':<{name_width}} {'ID':<{id_width}} {'Source(s)':<{source_width}}"
+            f.write(header + '\n')
+            f.write('-' * len(header) + '\n')
+            for name, cid, sources_str in found_rows:
+                line = f"{name:<{name_width}} {cid:<{id_width}} {sources_str:<{source_width}}"
+                f.write(line + '\n')
+        else:
+            f.write("No channels found.\n")
+        f.write("\n")
+
+        # ------------------------------------------------------------
+        # 2. TABLE OF MISSING CHANNELS (only Name and ID)
+        # ------------------------------------------------------------
+        if missing_ids:
+            f.write("-" * 80 + "\n")
+            f.write("MISSING CHANNELS (no EPG data found)\n")
+            f.write("-" * 80 + "\n")
+
+            missing_rows = []
+            for cid in missing_ids:
+                name = id_to_name.get(cid, 'N/A')
+                missing_rows.append((name, cid))
+
+            missing_rows.sort(key=lambda r: (r[0].lower(), r[1]))
+
+            # Dynamic column widths
+            name_width = max(len('Channel Name'), max((len(r[0]) for r in missing_rows), default=0)) + 2
+            id_width = max(len('ID'), max((len(r[1]) for r in missing_rows), default=0)) + 2
+
+            header = f"{'Channel Name':<{name_width}} {'ID':<{id_width}}"
+            f.write(header + '\n')
+            f.write('-' * len(header) + '\n')
+            for name, cid in missing_rows:
+                line = f"{name:<{name_width}} {cid:<{id_width}}"
+                f.write(line + '\n')
+        else:
+            f.write("-" * 80 + "\n")
+            f.write("MISSING CHANNELS (no EPG data found)\n")
+            f.write("-" * 80 + "\n")
+            f.write("None – all channels have EPG data!\n")
 
     print(f"Report written to: {report_path}", file=sys.stderr)
 
