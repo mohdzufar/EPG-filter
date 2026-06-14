@@ -10,75 +10,6 @@ EPG Matching:
   Channels found in EPG         : 95
   Channels NOT found            : 65
 
-================================================================================
-MISSING CHANNELS (no EPG data found)
-================================================================================
-  30AGolfKingdom.us  (Golf Kingdom)
-  535994  (RTM World)
-  538142  (RTM Snap)
-  538300  (RTM Lead)
-  6882521ac258734a42a60ed0  (DP World Tour)
-  AdventureEarth.de  (Adventure Earth)
-  AlQuranAlKareemTV.sa  (Quran (Mecca))
-  AniplusAsia.sg  (Aniplus Asia)
-  BollywoodClassic.ro  (Bollywood Classic)
-  CCTVGolfTennis.cn  (CCTV-Golf & Tennis)
-  Channel5.sg  (Channel 5)
-  Channel8.sg  (Channel 8)
-  ChannelU.sg  (Channel U)
-  DewanNegara.my  (Dewan Negara)
-  DewanRakyat.my  (Dewan Rakyat)
-  DidikTVKPM.my  (Didik TV)
-  DocumentaryPlus.us  (Documentary+)
-  DramaSangat.my  (Drama Sangat)
-  FUELTV.pt  (Fuel TV)
-  GolfChannelLatinAmerica.us  (Golf Channel (Latin America))
-  GolfNetwork.jp  (GolfNetwork Japan)
-  HBOSignatureAsia.sg  (HBO Signature)
-  HBOZone.us  (HBO Zone)
-  KBSWorld.kr  (KBS World)
-  KCM.sg  (KCM)
-  KContentbyCJENM.us  (K-Content)
-  KpopMix.ar  (KPOP Mix)
-  LovePets.ca  (Love Pets)
-  LoveThePlanet.es  (Love The Planet)
-  MMATV.us  (MMA-TV International)
-  MovieSphere.us  (Movie Sphere by Lionsgate)
-  MusicIndia.in  (Music India)
-  MusicJapanTV.jp  (Music Japan)
-  MyTimeMovieNetwork.uk  (MyTime Movie Network)
-  NBCNewsNOW.us  (NBC News Now)
-  NBCSportsNOW.us  (NBC Sport Now)
-  NEWKPOP.us  (New KPOP)
-  NHKWorldJapan.jp  (NHK World-Japan)
-  NatureTime.ca  (NatureTime)
-  OneGolf.pk  (One Golf)
-  ParamountMovieChannel.us  (Paramount Movie Channel)
-  RakutenTVTopMovies.es  (Rakuten Top Movies UK)
-  RealWild.uk  (Real Wild)
-  RedBullTV.at  (RedBull TV)
-  SalamBaitullahTV.my  (Salam Baitullah 2026)
-  SelangorTV.my  (SelangorTV)
-  Sky Sports Mix  (Sky Sport Mix)
-  SportsConnect.za  (Sports Connect)
-  SukeTV.my  (SukeTV)
-  SwerveSports.us  (Swerve Sport)
-  TVIKIM.my  (TV IKIM)
-  TerraMaterWILD.de  (Terra Mater Wild)
-  TopGear.uk  (BBC Top Gear)
-  Vevo2K.us  (Vevo 2k)
-  Wired2FishTV.us  (Wired2Fish)
-  WorldBilliards.pl  (World Billiards TV)
-  ZooMoo.sg  (ZooMoo)
-  beINSPORTSXTRA.us  (Bein Xtra)
-  beINSports4.qa  (Bein Sports 4)
-  beINSports5.qa  (Bein Sports 5)
-  beINSports6.qa  (Bein Sports 6)
-  beINSports7.qa  (Bein Sports 7)
-  beINSports8.qa  (Bein Sports 8)
-  beINSportsXtra2.qa  (Bein Xtra 2)
-  meWATCHLIVE1.sg  (meWATCH LIVE 1)
-
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
 --------------------------------------------------------------------------------
@@ -179,3 +110,74 @@ UFC 1                      446965                                              h
 Wedotv Movies              64305451fc3be5947773c339-642d67a42476824150b0a6e9   https://i.mjh.nz/Plex/all.xml.gz                                                 
 Wild Earth                 405628                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Yahoo! Finance             YahooFinance.us                                     https://iptv-epg.org/files/epg-us.xml.gz                                         
+
+--------------------------------------------------------------------------------
+MISSING CHANNELS (no EPG data found)
+--------------------------------------------------------------------------------
+Channel Name                   ID                          
+-----------------------------------------------------------
+Adventure Earth                AdventureEarth.de           
+Aniplus Asia                   AniplusAsia.sg              
+BBC Top Gear                   TopGear.uk                  
+Bein Sports 4                  beINSports4.qa              
+Bein Sports 5                  beINSports5.qa              
+Bein Sports 6                  beINSports6.qa              
+Bein Sports 7                  beINSports7.qa              
+Bein Sports 8                  beINSports8.qa              
+Bein Xtra                      beINSPORTSXTRA.us           
+Bein Xtra 2                    beINSportsXtra2.qa          
+Bollywood Classic              BollywoodClassic.ro         
+CCTV-Golf & Tennis             CCTVGolfTennis.cn           
+Channel 5                      Channel5.sg                 
+Channel 8                      Channel8.sg                 
+Channel U                      ChannelU.sg                 
+Dewan Negara                   DewanNegara.my              
+Dewan Rakyat                   DewanRakyat.my              
+Didik TV                       DidikTVKPM.my               
+Documentary+                   DocumentaryPlus.us          
+DP World Tour                  6882521ac258734a42a60ed0    
+Drama Sangat                   DramaSangat.my              
+Fuel TV                        FUELTV.pt                   
+Golf Channel (Latin America)   GolfChannelLatinAmerica.us  
+Golf Kingdom                   30AGolfKingdom.us           
+GolfNetwork Japan              GolfNetwork.jp              
+HBO Signature                  HBOSignatureAsia.sg         
+HBO Zone                       HBOZone.us                  
+K-Content                      KContentbyCJENM.us          
+KBS World                      KBSWorld.kr                 
+KCM                            KCM.sg                      
+KPOP Mix                       KpopMix.ar                  
+Love Pets                      LovePets.ca                 
+Love The Planet                LoveThePlanet.es            
+meWATCH LIVE 1                 meWATCHLIVE1.sg             
+MMA-TV International           MMATV.us                    
+Movie Sphere by Lionsgate      MovieSphere.us              
+Music India                    MusicIndia.in               
+Music Japan                    MusicJapanTV.jp             
+MyTime Movie Network           MyTimeMovieNetwork.uk       
+NatureTime                     NatureTime.ca               
+NBC News Now                   NBCNewsNOW.us               
+NBC Sport Now                  NBCSportsNOW.us             
+New KPOP                       NEWKPOP.us                  
+NHK World-Japan                NHKWorldJapan.jp            
+One Golf                       OneGolf.pk                  
+Paramount Movie Channel        ParamountMovieChannel.us    
+Quran (Mecca)                  AlQuranAlKareemTV.sa        
+Rakuten Top Movies UK          RakutenTVTopMovies.es       
+Real Wild                      RealWild.uk                 
+RedBull TV                     RedBullTV.at                
+RTM Lead                       538300                      
+RTM Snap                       538142                      
+RTM World                      535994                      
+Salam Baitullah 2026           SalamBaitullahTV.my         
+SelangorTV                     SelangorTV.my               
+Sky Sport Mix                  Sky Sports Mix              
+Sports Connect                 SportsConnect.za            
+SukeTV                         SukeTV.my                   
+Swerve Sport                   SwerveSports.us             
+Terra Mater Wild               TerraMaterWILD.de           
+TV IKIM                        TVIKIM.my                   
+Vevo 2k                        Vevo2K.us                   
+Wired2Fish                     Wired2FishTV.us             
+World Billiards TV             WorldBilliards.pl           
+ZooMoo                         ZooMoo.sg                   
