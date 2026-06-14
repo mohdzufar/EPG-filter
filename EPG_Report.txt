@@ -7,8 +7,8 @@ Playlist Summary:
   #EXTINF lines without tvg-id  : 41
 
 EPG Matching:
-  Channels found in EPG         : 133
-  Channels NOT found            : 30
+  Channels found in EPG         : 141
+  Channels NOT found            : 22
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -96,12 +96,18 @@ Movie Sphere UK               GBBA33000557H                                     
 Music India                   MusicIndia.uk                                       https://iptv-epg.org/files/epg-gb.xml.gz                                         
 MyTime Movie Network          MyTimeMovieNetwork.us                               https://iptv-epg.org/files/epg-us.xml.gz                                         
 NatureTime                    GB2100004H5                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
+New KPOP                      USAJ3000013FJ                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
+NHK World-Japan               NHKWorld.my                                         https://iptv-epg.org/files/epg-my.xml.gz                                         
 Nickelodeon Asia              NickelodeonAsia.sg                                  https://iptv-epg.org/files/epg-sg.xml.gz                                         
 Oh My Ceria!                  OhMyCeria                                           https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 Okey TV                       370134                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Paramount Movie Channel       ParamountMovieChannel.pluto                         https://iptv-epg.org/files/epg-us.xml.gz                                         
 PGA Tour                      PGATOUR.pluto                                       https://iptv-epg.org/files/epg-us.xml.gz                                         
+Quran (Mecca)                 524012                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Rakuten Top Movies UK         GB2600018PD                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Real Madrid TV                RealMadridTV.es                                     https://iptv-epg.org/files/epg-es.xml.gz                                         
+Real Wild                     GBBB1000005IO                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
+RedBull TV                    GBBD2300003IK                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Reuters                       ReutersTV.us                                        https://iptv-epg.org/files/epg-us.xml.gz                                         
 ROCK Action                   ROCKAction.sg                                       https://iptv-epg.org/files/epg-sg.xml.gz                                         
 ROCK Entertainment            ROCKEntertainment.sg                                https://iptv-epg.org/files/epg-sg.xml.gz                                         
@@ -126,9 +132,11 @@ Sky Sport Premier League      SkySportsPremierLeague.uk                         
 Sony Movie Channel            Sony.Movie.Channel.HD.us2                           https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 Speed Vision                  SPEEDVISION.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
 Suria                         513284                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Swerve Sport                  683df56f5195c2a60a3f5559                            https://i.mjh.nz/PlutoTV/all.xml.gz                                              
 TechStorm                     TechStorm.sg                                        https://iptv-epg.org/files/epg-sg.xml.gz                                         
 Tennis Channel                TennisChannel.us                                    https://iptv-epg.org/files/epg-us.xml.gz                                         
 Tennis TV                     6627621d56fc840008e47c90                            https://i.mjh.nz/PlutoTV/all.xml.gz                                              
+Terra Mater Wild              DEAJ32000012H                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Travel & Taste                TravelandTaste                                      https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 TSN 1                         470446                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 TSN 2                         470401                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
@@ -169,18 +177,10 @@ meWATCH LIVE 1                 meWATCHLIVE1.sg
 Music Japan                    MUSICONTVエムオン.jp            
 NBC News Now                   NBCNewsNOW.us               
 NBC Sport Now                  NBCSportsNOW.us             
-New KPOP                       NEWKPOP.us                  
-NHK World-Japan                NHKWorldJapan.jp            
 One Golf                       OneGolf.pk                  
-Paramount Movie Channel        ParamountMovieChannel.us    
-Quran (Mecca)                  AlQuranAlKareemTV.sa        
-Real Wild                      RealWild.uk                 
-RedBull TV                     RedBullTV.at                
 Salam Baitullah 2026           SalamBaitullahTV.my         
 SelangorTV                     SelangorTV.my               
 Sports Connect                 SportsConnect.za            
 SukeTV                         SukeTV.my                   
-Swerve Sport                   SwerveSports.us             
-Terra Mater Wild               TerraMaterWILD.de           
 TV IKIM                        TVIKIM.my                   
 ZooMoo                         ZooMoo.sg                   
