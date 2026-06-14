@@ -2,13 +2,13 @@ EPG Filter Report
 -------------------
 
 Playlist Summary:
-  Total unique tvg-id entries   : 163
-  #EXTINF lines with tvg-id     : 164
-  #EXTINF lines without tvg-id  : 41
+  Total unique tvg-id entries   : 168
+  #EXTINF lines with tvg-id     : 169
+  #EXTINF lines without tvg-id  : 43
 
 EPG Matching:
-  Channels found in EPG         : 146
-  Channels NOT found            : 17
+  Channels found in EPG         : 152
+  Channels NOT found            : 16
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -16,6 +16,7 @@ FOUND CHANNELS (with EPG data)
 Channel Name                  ID                                                  Source(s)                                                                        
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 8TV                           1122                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Adventure Earth               GBBC900015D3                                        https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Al-Hijrah                     369680                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Al-Jazeera (English)          3416                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Animal Planet                 Animal.Planet.HD.us2                                https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
@@ -131,10 +132,15 @@ Sky News                      12069                                             
 Sky Sport F1                  SkySportsF1.uk                                      https://iptv-epg.org/files/epg-gb.xml.gz                                         
 Sky Sport Football            SkySportsFootball.uk                                https://iptv-epg.org/files/epg-gb.xml.gz                                         
 Sky Sport Golf                SkySportsGolf.uk                                    https://iptv-epg.org/files/epg-gb.xml.gz                                         
-Sky Sport Mix                 SkySportsMix.uk                                     https://iptv-epg.org/files/epg-gb.xml.gz                                         
 Sky Sport Premier League      SkySportsPremierLeague.uk                           https://iptv-epg.org/files/epg-gb.xml.gz                                         
+Sky Sports Action             SkySportsAction.uk                                  https://iptv-epg.org/files/epg-gb.xml.gz                                         
+Sky Sports Live+              SkySportsPlus.uk                                    https://iptv-epg.org/files/epg-gb.xml.gz                                         
+Sky Sports MIX                SkySportsMix.uk                                     https://iptv-epg.org/files/epg-gb.xml.gz                                         
+Sky Sports News               SkySportsNews.uk                                    https://iptv-epg.org/files/epg-gb.xml.gz                                         
+Sky Sports Racing             SkySportsRacing.uk                                  https://iptv-epg.org/files/epg-gb.xml.gz                                         
 Sony Movie Channel            Sony.Movie.Channel.HD.us2                           https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 Speed Vision                  SPEEDVISION.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
+SSky Sports Main Events       SkySportsMainEvent.uk                               https://iptv-epg.org/files/epg-gb.xml.gz                                         
 Suria                         513284                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Swerve Sport                  683df56f5195c2a60a3f5559                            https://i.mjh.nz/PlutoTV/all.xml.gz                                              
 TechStorm                     TechStorm.sg                                        https://iptv-epg.org/files/epg-sg.xml.gz                                         
@@ -167,7 +173,6 @@ MISSING CHANNELS (no EPG data found)
 --------------------------------------------------------------------------------
 Channel Name                   ID                          
 -----------------------------------------------------------
-Adventure Earth                AdventureEarth.de           
 Bein Xtra 2                    beINSportsXtra2.qa          
 CCTV-Golf & Tennis             CCTVGolfTennis.cn           
 Golf Channel (Latin America)   GolfChannelLatinAmerica.us  
