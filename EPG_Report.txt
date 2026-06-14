@@ -7,8 +7,8 @@ Playlist Summary:
   #EXTINF lines without tvg-id  : 41
 
 EPG Matching:
-  Channels found in EPG         : 141
-  Channels NOT found            : 22
+  Channels found in EPG         : 146
+  Channels NOT found            : 17
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -53,6 +53,9 @@ Channel U                     492864                                            
 Cinemax                       Cinemax.HD.us2                                      https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 CNA                           CNA.sg                                              https://iptv-epg.org/files/epg-sg.xml.gz                                         
 Crunchyroll                   Crunchyroll.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
+Dewan Negara                  DewanNegara.my                                      https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml     
+Dewan Rakyat                  DewanRakyat.my                                      https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml     
+Didik TV                      DidikTVKPM.my                                       https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml     
 Discovery Channel             Discovery.Channel.HD.us2                            https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 Discovery Life                Discovery.Life.Channel.us2                          https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 Discovery Science             Science.Channel.HD.us2                              https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
@@ -62,6 +65,7 @@ Documentary+                  Documentary+.us                                   
 DP World Tour                 GB5200001TM                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Drama Hebat                   DramaHebat                                          https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 Drama Hotpot                  DramaHotpot                                         https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
+Drama Sangat                  DramaSangat.my                                      https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml     
 EuroNews                      12529                                               https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Fifa+                         492830                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Filem Mantap                  FilemMantap                                         https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
@@ -143,6 +147,7 @@ TSN 2                         470401                                            
 TSN 3                         470389                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 TSN 4                         470915                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 TSN 5                         470513                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+TV IKIM                       TVIKIM.my                                           https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml     
 TV3                           1072                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 TV6                           370131                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 TV9                           DidikTVKPM                                          https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
@@ -165,10 +170,6 @@ Channel Name                   ID
 Adventure Earth                AdventureEarth.de           
 Bein Xtra 2                    beINSportsXtra2.qa          
 CCTV-Golf & Tennis             CCTVGolfTennis.cn           
-Dewan Negara                   DewanNegara.my              
-Dewan Rakyat                   DewanRakyat.my              
-Didik TV                       DidikTVKPM.my               
-Drama Sangat                   DramaSangat.my              
 Golf Channel (Latin America)   GolfChannelLatinAmerica.us  
 Golf Kingdom                   30AGolfKingdom.us           
 GolfNetwork Japan              GolfNetwork.jp              
@@ -182,5 +183,4 @@ Salam Baitullah 2026           SalamBaitullahTV.my
 SelangorTV                     SelangorTV.my               
 Sports Connect                 SportsConnect.za            
 SukeTV                         SukeTV.my                   
-TV IKIM                        TVIKIM.my                   
 ZooMoo                         ZooMoo.sg                   
