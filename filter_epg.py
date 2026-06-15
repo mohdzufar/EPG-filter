@@ -28,7 +28,7 @@ def parse_playlist(location):
     Return:
         unique_ids_set,
         id_to_name_dict (first occurrence name),
-        no_id_list: list of (channel_name, line_number) for lines without valid tvg-id,
+        no_id_list: list of (channel_name, line_number) for #EXTINF lines without valid tvg-id,
         duplicate_dict {id: [(name, line), ...]},
         stats_dict
     """
@@ -54,8 +54,11 @@ def parse_playlist(location):
     name_bare   = re.compile(r'tvg-name=([^\s",]+)', re.I)
 
     for line_num, line in enumerate(lines, start=1):
-        if re.match(r'#EXTINF', line, re.I):
-            total_extinf += 1
+        # Only process lines that start with #EXTINF
+        if not re.match(r'#EXTINF', line, re.I):
+            continue
+
+        total_extinf += 1
 
         # ----- Try to extract tvg-id -----
         m_id = id_quoted.search(line) or id_bare.search(line)
@@ -85,6 +88,7 @@ def parse_playlist(location):
             if m_name:
                 channel_name = m_name.group(1).strip()
             else:
+                # Fallback: text after the last comma (typical M3U format)
                 parts = line.split(',', 1)
                 if len(parts) > 1:
                     channel_name = parts[1].strip()
@@ -220,9 +224,7 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
     # Missing channels (have tvg-id but no EPG)
     missing_ids = sorted(set(wanted_ids) - found_channel_ids)
 
-    # Process no_id_list: remove duplicates per channel name? Keep all occurrences with line numbers.
-    # We'll show each occurrence as a separate row because line numbers matter.
-    # But to avoid huge lists, we keep as is (each line with missing ID is a row).
+    # Keep all no-id entries (each line is a separate row)
     no_id_rows = sorted(no_id_list, key=lambda x: x[0].lower())
 
     with open(report_path, 'w', encoding='utf-8') as f:
@@ -238,7 +240,7 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
         f.write(f"  Channels NOT found            : {not_found_count}\n\n")
         
         # ------------------------------------------------------------
-        # 1. TABLE OF FOUND CHANNELS (no line numbers)
+        # 1. TABLE OF FOUND CHANNELS
         # ------------------------------------------------------------
         f.write("-" * 80 + "\n")
         f.write("FOUND CHANNELS (with EPG data)\n")
@@ -269,7 +271,7 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
         f.write("\n")
 
         # ------------------------------------------------------------
-        # 2. TABLE OF MISSING CHANNELS (have ID but no EPG) - no line numbers
+        # 2. TABLE OF MISSING CHANNELS (have ID but no EPG)
         # ------------------------------------------------------------
         if missing_ids:
             f.write("-" * 80 + "\n")
@@ -300,7 +302,7 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
         f.write("\n")
 
         # ------------------------------------------------------------
-        # 3. TABLE OF DUPLICATE TVG-IDS (no line numbers)
+        # 3. TABLE OF DUPLICATE TVG-IDS
         # ------------------------------------------------------------
         if duplicate_dict:
             f.write("-" * 80 + "\n")
@@ -339,7 +341,6 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
             f.write("CHANNELS WITH NO TVG-ID (missing or empty tvg-id)\n")
             f.write("-" * 80 + "\n")
 
-            # Dynamic column widths
             name_width = max(len('Channel Name'), max((len(row[0]) for row in no_id_rows), default=0)) + 2
             line_width = max(len('Line'), max((len(str(row[1])) for row in no_id_rows), default=0)) + 2
 
