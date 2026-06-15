@@ -6,7 +6,7 @@ EPG Filter + Channel Name Injector + Dynamic Report with Summary
 - Enriches channel names from the playlist if missing.
 - Outputs a gzip‑compressed XMLTV file.
 - Generates a report with playlist statistics and EPG matching summary.
-- Uses a browser User‑Agent to avoid 403 errors on some servers.
+- Uses a browser‑like User‑Agent and retries to avoid 403 errors.
 """
 
 import argparse
@@ -14,10 +14,11 @@ import gzip
 import io
 import re
 import sys
+import time
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.request import Request, urlopen
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 from collections import defaultdict
 
 # ------------------------------------------------------------
@@ -88,7 +89,6 @@ def parse_playlist(location):
             if m_name:
                 channel_name = m_name.group(1).strip()
             else:
-                # Fallback: text after the last comma (typical M3U format)
                 parts = line.split(',', 1)
                 if len(parts) > 1:
                     channel_name = parts[1].strip()
@@ -116,18 +116,41 @@ def read_epg_sources(file_path):
         return [line.strip() for line in f if line.strip() and not line.startswith('#')]
 
 # ------------------------------------------------------------
-# 3. Smart opener for EPG sources (with User-Agent)
+# 3. Smart opener for EPG sources (with browser headers + retry)
 # ------------------------------------------------------------
-def smart_open(source):
+def smart_open(source, retries=3, delay=5):
+    """Open a URL or local file, with retries and browser‑like headers."""
+    # Browser‑like headers to avoid 403
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+    }
+
     if re.match(r'https?://', source):
-        req = Request(source, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
-        response = urlopen(req)
-        if source.lower().endswith('.gz'):
-            binary_stream = gzip.GzipFile(fileobj=response, mode='rb')
-            return io.TextIOWrapper(binary_stream, encoding='utf-8')
-        else:
-            return io.TextIOWrapper(response, encoding='utf-8')
+        last_exception = None
+        for attempt in range(retries):
+            try:
+                req = Request(source, headers=headers)
+                response = urlopen(req, timeout=30)
+                # Handle gzipped content
+                if source.lower().endswith('.gz'):
+                    binary_stream = gzip.GzipFile(fileobj=response, mode='rb')
+                    return io.TextIOWrapper(binary_stream, encoding='utf-8')
+                else:
+                    return io.TextIOWrapper(response, encoding='utf-8')
+            except (HTTPError, URLError) as e:
+                last_exception = e
+                print(f"  Attempt {attempt+1}/{retries} failed for {source}: {e}", file=sys.stderr)
+                if attempt < retries - 1:
+                    time.sleep(delay)
+        # If all retries fail, re‑raise the last exception
+        raise last_exception
     else:
+        # Local file
         path = Path(source)
         if path.suffix == '.gz':
             return gzip.open(path, 'rt', encoding='utf-8')
@@ -188,12 +211,9 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist
                                 src_programmes += 1
                                 channel_sources.setdefault(prog_ch, set()).add(source_identifier)
                             elem.clear()
-            except HTTPError as e:
-                print(f"HTTP Error: {e.code} {e.reason}", file=sys.stderr)
-            except ET.ParseError as e:
-                print(f"XML Parse Error: {e}", file=sys.stderr)
             except Exception as e:
-                print(f"Error processing {src}: {e}", file=sys.stderr)
+                print(f"  Error processing {src}: {e} (skipping source)", file=sys.stderr)
+                continue
 
             total_channels += src_channels
             total_programmes += src_programmes
