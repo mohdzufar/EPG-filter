@@ -2,13 +2,13 @@ EPG Filter Report
 -------------------
 
 Playlist Summary:
-  Total unique tvg-id entries   : 173
+  Total unique tvg-id entries   : 174
   #EXTINF lines with tvg-id     : 174
   #EXTINF lines without tvg-id  : 38
-  Duplicate tvg-ids (case-sensitive) : 1
+  Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 158
+  Channels found in EPG         : 159
   Channels NOT found            : 15
 
 --------------------------------------------------------------------------------
@@ -170,6 +170,7 @@ UFC 1                         446965                                            
 Vevo 2k                       497977                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Wedotv Movies                 64305451fc3be5947773c339-642d67a42476824150b0a6e9   https://i.mjh.nz/Plex/all.xml.gz                                                 
 Wild Earth                    405628                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
+Wild Planet                   GBBB5000002PL                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Wired2Fish                    6a1610bebdf296985fd95603-608a2c722957c9002c6a617b   https://i.mjh.nz/Plex/all.xml.gz                                                 
 World Billiards TV            KRBC3200011N3                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Xumo NBC Sport                NBCSports4K.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
@@ -197,16 +198,50 @@ SukeTV                         SukeTV.my
 ZooMoo                         ZooMoo.sg                   
 
 --------------------------------------------------------------------------------
-DUPLICATE TVG-IDS (same ID appears multiple times)
+DUPLICATE TVG-IDS
 --------------------------------------------------------------------------------
-Channel Name(s)           ID      
-----------------------------------
-Wild Earth, Wild Planet   405628  
+None – all tvg-ids are unique.
 
 --------------------------------------------------------------------------------
-CHANNELS WITH NO TVG-ID (cannot be matched)
+CHANNELS WITH NO TVG-ID (missing or empty tvg-id)
 --------------------------------------------------------------------------------
 Channel Name                                
 --------------------------------------------
+BorneoTV                                    
+CS2                                         
+DotA2                                       
+douyu 19                                    
+EnjoyTV                                     
+Go Wild                                     
+Golf Television                             
+GolfNetwork                                 
+GolfPass                                    
+K-Stories                                   
+KoreaTV                                     
 like Gecko) Chrome/120.0.0.0 Safari/537.36  
+MediaCorp (English)                         
+MediaCorp (Tamil)                           
+Miramax                                     
+mn静静nm                                      
+Movie Sphere 2                              
+News World                                  
+NHL                                         
+RTB Aneka                                   
+RTB Sukmaindera                             
+RTM World Cup 1                             
+RTM World Cup 2                             
+RTM World Cup 3                             
+SBS_Golf_2                                  
+Sky Sports (UK)                             
+Sky Sports Arena                            
+Song TV                                     
+SukanPlus                                   
+Tennis Channel 2                            
+Tennis TV 2                                 
+Tennis+                                     
+UEFA Champion League                        
+Universal Movie                             
 Unknown                                     
+Wild Nature                                 
+Xumo Nature & Wildlife TV                   
+万事通熊猫                                       
