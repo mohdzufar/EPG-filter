@@ -8,8 +8,8 @@ Playlist Summary:
   Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 159
-  Channels NOT found            : 15
+  Channels found in EPG         : 105
+  Channels NOT found            : 69
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -21,8 +21,6 @@ Adventure Earth               GBBC900015D3                                      
 Al-Hijrah                     369680                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Al-Jazeera (English)          3416                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Animal Planet                 Animal.Planet.HD.us2                                https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
-Aniplus Asia                  ANIPLUS.sg                                          https://iptv-epg.org/files/epg-sg.xml.gz                                         
-AsianCrush                    AsianCrush.us                                       https://iptv-epg.org/files/epg-us.xml.gz                                         
 Astro Arena Bola              4209                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Astro Arena Bola 2            4215                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Astro Awani                   3958                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
@@ -31,30 +29,15 @@ Astro Football                397399                                            
 AXN Asia                      369716                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 BBC Earth                     4030                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 BBC News                      464746                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
-BBC Top Gear                  TopGear.peacocktv                                   https://iptv-epg.org/files/epg-us.xml.gz                                         
-Bein Sports 1                 beINSPORTS1.au                                      https://iptv-epg.org/files/epg-au.xml.gz                                         
-Bein Sports 2                 beINSPORTS2.au                                      https://iptv-epg.org/files/epg-au.xml.gz                                         
-Bein Sports 3                 beINSPORTS3.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
-Bein Sports 4                 beINSPORTS4.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
-Bein Sports 5                 beINSPORTS5.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
-Bein Sports 6                 beINSPORTS6.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
-Bein Sports 7                 beINSPORTS7.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
-Bein Sports 8                 beINSPORTS8.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
-Bein Xtra                     beINSportsXtra.us                                   https://iptv-epg.org/files/epg-us.xml.gz                                         
 Berita RTM                    370132                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Bernama                       1835                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
-Billiard TV                   BilliardTV.us                                       https://iptv-epg.org/files/epg-us.xml.gz                                         
 Bob Ross Channel              CABC2300015UM                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
-Bollywood                     Bollywood.ro                                        https://iptv-epg.org/files/epg-ro.xml.gz                                         
-Bollywood Classic             BollywoodClasic.ro                                  https://iptv-epg.org/files/epg-ro.xml.gz                                         
 Cartoon Network               Cartoon.Network.HD.us2                              https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 CBS News 24/7                 464941                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Channel 5                     492816                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Channel 8                     492894                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Channel U                     492864                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Cinemax                       Cinemax.HD.us2                                      https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
-CNA                           CNA.sg                                              https://iptv-epg.org/files/epg-sg.xml.gz                                         
-Crunchyroll                   Crunchyroll.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
 Dewan Negara                  DewanNegara.my                                      https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml     
 Dewan Rakyat                  DewanRakyat.my                                      https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml     
 Didik TV                      DidikTVKPM.my                                       https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml     
@@ -63,7 +46,6 @@ Discovery Life                Discovery.Life.Channel.us2                        
 Discovery Science             Science.Channel.HD.us2                              https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 Disney Channel                Disney.Channel.HD.us2                               https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 Disney XD                     Disney.XD.HD.us2                                    https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
-Documentary+                  Documentary+.us                                     https://iptv-epg.org/files/epg-us.xml.gz                                         
 DP World Tour                 GB5200001TM                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Drama Hebat                   DramaHebat                                          https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 Drama Hotpot                  DramaHotpot                                         https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
@@ -72,23 +54,16 @@ EuroNews                      12529                                             
 Fifa+                         492830                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Filem Mantap                  FilemMantap                                         https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 FOX NFL                       465532                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
-Fuel TV                       FuelTV.pt                                           https://iptv-epg.org/files/epg-pt.xml.gz                                         
-Goal TV                       Goal.ca                                             https://iptv-epg.org/files/epg-ca.xml.gz                                         
-Golf Channel                  GolfChannel.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
 Hallmark Channel              Hallmark.Channel.HD.us2                             https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 HBO                           HBO.East.us2                                        https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 HBO 2                         HBO2.HD.us2                                         https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 HBO Comedy                    HBO.Comedy.HD.us2                                   https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 HBO Family                    HBO.Drama.us2                                       https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
-HBO Signature                 HBOSignature.sg                                     https://iptv-epg.org/files/epg-sg.xml.gz                                         
 HBO Zone                      465104                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
-HITS Movies                   HITSMovies.sg                                       https://iptv-epg.org/files/epg-sg.xml.gz                                         
-HITS NOW                      HITS.sg                                             https://iptv-epg.org/files/epg-sg.xml.gz                                         
 Jom Ngaji                     JomNgaji                                            https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 K POP by CJ ENM               CA3900002PM                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 K-Content                     CA1800004L7                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 K-Drama+                      CA17000023Q                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
-KBS World                     KBSWorld.my                                         https://iptv-epg.org/files/epg-my.xml.gz                                         
 KCM                           IN1600011DE                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Lawak Sentral                 LawakSentral                                        https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 Love Pets                     CA300017ZS                                          https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
@@ -100,26 +75,14 @@ Movie Sphere Aus              538953                                            
 Movie Sphere by Lionsgate     645e7828e1979c00087b75b4                            https://i.mjh.nz/PlutoTV/all.xml.gz                                              
 Movie Sphere by Lionsgate 2   64a3d96f060e830008af6745                            https://i.mjh.nz/PlutoTV/all.xml.gz                                              
 Movie Sphere UK               GBBA33000557H                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
-Music India                   MusicIndia.uk                                       https://iptv-epg.org/files/epg-gb.xml.gz                                         
-MyTime Movie Network          MyTimeMovieNetwork.us                               https://iptv-epg.org/files/epg-us.xml.gz                                         
 NatureTime                    GB2100004H5                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
-NBC News Now                  NBCNewsNow.us                                       https://iptv-epg.org/files/epg-us.xml.gz                                         
-NBC Sport Now                 NBCSportsNOW.pluto                                  https://iptv-epg.org/files/epg-us.xml.gz                                         
 New KPOP                      USAJ3000013FJ                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
-NHK World-Japan               NHKWorld.my                                         https://iptv-epg.org/files/epg-my.xml.gz                                         
-Nickelodeon Asia              NickelodeonAsia.sg                                  https://iptv-epg.org/files/epg-sg.xml.gz                                         
 Oh My Ceria!                  OhMyCeria                                           https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 Okey TV                       370134                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
-Paramount Movie Channel       ParamountMovieChannel.pluto                         https://iptv-epg.org/files/epg-us.xml.gz                                         
-PGA Tour                      PGATOUR.pluto                                       https://iptv-epg.org/files/epg-us.xml.gz                                         
 Quran (Mecca)                 524012                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Rakuten Top Movies UK         GB2600018PD                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
-Real Madrid TV                RealMadridTV.es                                     https://iptv-epg.org/files/epg-es.xml.gz                                         
 Real Wild                     GBBB1000005IO                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 RedBull TV                    GBBD2300003IK                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
-Reuters                       ReutersTV.us                                        https://iptv-epg.org/files/epg-us.xml.gz                                         
-ROCK Action                   ROCKAction.sg                                       https://iptv-epg.org/files/epg-sg.xml.gz                                         
-ROCK Entertainment            ROCKEntertainment.sg                                https://iptv-epg.org/files/epg-sg.xml.gz                                         
 RTM Apetito                   479619                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 RTM Aura                      479618                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 RTM Fitrah                    479449                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
@@ -131,28 +94,13 @@ RTM Sukan                     370133                                            
 RTM TV1                       3683                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 RTM TV2                       370135                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 RTM World                     547581                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
-SBS_Golf                      SBSGolf.kr                                          https://iptv-epg.org/files/epg-kr.xml.gz                                         
 Sky News                      12069                                               https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
-Sky Sport F1                  SkySportsF1.uk                                      https://iptv-epg.org/files/epg-gb.xml.gz                                         
-Sky Sport Football            SkySportsFootball.uk                                https://iptv-epg.org/files/epg-gb.xml.gz                                         
-Sky Sport Golf                SkySportsGolf.uk                                    https://iptv-epg.org/files/epg-gb.xml.gz                                         
-Sky Sport Premier League      SkySportsPremierLeague.uk                           https://iptv-epg.org/files/epg-gb.xml.gz                                         
-Sky Sports Action             SkySportsAction.uk                                  https://iptv-epg.org/files/epg-gb.xml.gz                                         
-Sky Sports Live+              SkySportsPlus.uk                                    https://iptv-epg.org/files/epg-gb.xml.gz                                         
-Sky Sports Main Events        SkySportsMainEvent.uk                               https://iptv-epg.org/files/epg-gb.xml.gz                                         
-Sky Sports MIX                SkySportsMix.uk                                     https://iptv-epg.org/files/epg-gb.xml.gz                                         
-Sky Sports News               SkySportsNews.uk                                    https://iptv-epg.org/files/epg-gb.xml.gz                                         
-Sky Sports Racing             SkySportsRacing.uk                                  https://iptv-epg.org/files/epg-gb.xml.gz                                         
 Sony Movie Channel            Sony.Movie.Channel.HD.us2                           https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
-Speed Vision                  SPEEDVISION.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
 Sport Fishing TV              465358                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Suria                         513284                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Swerve Sport                  683df56f5195c2a60a3f5559                            https://i.mjh.nz/PlutoTV/all.xml.gz                                              
-TechStorm                     TechStorm.sg                                        https://iptv-epg.org/files/epg-sg.xml.gz                                         
-Tennis Channel                TennisChannel.us                                    https://iptv-epg.org/files/epg-us.xml.gz                                         
 Tennis TV                     6627621d56fc840008e47c90                            https://i.mjh.nz/PlutoTV/all.xml.gz                                              
 Terra Mater Wild              DEAJ32000012H                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
-TNA Wresling                  TNAWrestling.pluto                                  https://iptv-epg.org/files/epg-us.xml.gz                                         
 Travel & Taste                TravelandTaste                                      https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 TSN 1                         470446                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 TSN 2                         470401                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
@@ -173,29 +121,81 @@ Wild Earth                    405628                                            
 Wild Planet                   GBBB5000002PL                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Wired2Fish                    6a1610bebdf296985fd95603-608a2c722957c9002c6a617b   https://i.mjh.nz/Plex/all.xml.gz                                                 
 World Billiards TV            KRBC3200011N3                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
-Xumo NBC Sport                NBCSports4K.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
-Yahoo! Finance                YahooFinance.us                                     https://iptv-epg.org/files/epg-us.xml.gz                                         
 
 --------------------------------------------------------------------------------
 MISSING CHANNELS (have tvg-id but no EPG data)
 --------------------------------------------------------------------------------
-Channel Name                   ID                          
------------------------------------------------------------
-Bein Xtra 2                    beINSportsXtra2.qa          
-CCTV-Golf & Tennis             CCTVGolfTennis.cn           
-Golf Channel (Latin America)   GolfChannelLatinAmerica.us  
-Golf Kingdom                   30AGolfKingdom.us           
-GolfNetwork Japan              GolfNetwork.jp              
-KPOP Mix                       KpopMix.ar                  
-meWATCH LIVE 1                 meWATCHLIVE1.sg             
-Music Japan                    MusicJapanTV.jp             
-One Golf                       OneGolf.pk                  
-Pro Fight League               PFLMMA.us                   
-Salam Baitullah 2026           SalamBaitullahTV.my         
-SelangorTV                     SelangorTV.my               
-Sports Connect                 SportsConnect.za            
-SukeTV                         SukeTV.my                   
-ZooMoo                         ZooMoo.sg                   
+Channel Name                   ID                           
+------------------------------------------------------------
+Aniplus Asia                   ANIPLUS.sg                   
+AsianCrush                     AsianCrush.us                
+BBC Top Gear                   TopGear.peacocktv            
+Bein Sports 1                  beINSPORTS1.au               
+Bein Sports 2                  beINSPORTS2.au               
+Bein Sports 3                  beINSPORTS3.us               
+Bein Sports 4                  beINSPORTS4.us               
+Bein Sports 5                  beINSPORTS5.us               
+Bein Sports 6                  beINSPORTS6.us               
+Bein Sports 7                  beINSPORTS7.us               
+Bein Sports 8                  beINSPORTS8.us               
+Bein Xtra                      beINSportsXtra.us            
+Bein Xtra 2                    beINSportsXtra2.qa           
+Billiard TV                    BilliardTV.us                
+Bollywood                      Bollywood.ro                 
+Bollywood Classic              BollywoodClasic.ro           
+CCTV-Golf & Tennis             CCTVGolfTennis.cn            
+CNA                            CNA.sg                       
+Crunchyroll                    Crunchyroll.us               
+Documentary+                   Documentary+.us              
+Fuel TV                        FuelTV.pt                    
+Goal TV                        Goal.ca                      
+Golf Channel                   GolfChannel.us               
+Golf Channel (Latin America)   GolfChannelLatinAmerica.us   
+Golf Kingdom                   30AGolfKingdom.us            
+GolfNetwork Japan              GolfNetwork.jp               
+HBO Signature                  HBOSignature.sg              
+HITS Movies                    HITSMovies.sg                
+HITS NOW                       HITS.sg                      
+KBS World                      KBSWorld.my                  
+KPOP Mix                       KpopMix.ar                   
+meWATCH LIVE 1                 meWATCHLIVE1.sg              
+Music India                    MusicIndia.uk                
+Music Japan                    MusicJapanTV.jp              
+MyTime Movie Network           MyTimeMovieNetwork.us        
+NBC News Now                   NBCNewsNow.us                
+NBC Sport Now                  NBCSportsNOW.pluto           
+NHK World-Japan                NHKWorld.my                  
+Nickelodeon Asia               NickelodeonAsia.sg           
+One Golf                       OneGolf.pk                   
+Paramount Movie Channel        ParamountMovieChannel.pluto  
+PGA Tour                       PGATOUR.pluto                
+Pro Fight League               PFLMMA.us                    
+Real Madrid TV                 RealMadridTV.es              
+Reuters                        ReutersTV.us                 
+ROCK Action                    ROCKAction.sg                
+ROCK Entertainment             ROCKEntertainment.sg         
+Salam Baitullah 2026           SalamBaitullahTV.my          
+SBS_Golf                       SBSGolf.kr                   
+SelangorTV                     SelangorTV.my                
+Sky Sport F1                   SkySportsF1.uk               
+Sky Sport Football             SkySportsFootball.uk         
+Sky Sport Golf                 SkySportsGolf.uk             
+Sky Sport Premier League       SkySportsPremierLeague.uk    
+Sky Sports Action              SkySportsAction.uk           
+Sky Sports Live+               SkySportsPlus.uk             
+Sky Sports Main Events         SkySportsMainEvent.uk        
+Sky Sports MIX                 SkySportsMix.uk              
+Sky Sports News                SkySportsNews.uk             
+Sky Sports Racing              SkySportsRacing.uk           
+Speed Vision                   SPEEDVISION.us               
+Sports Connect                 SportsConnect.za             
+SukeTV                         SukeTV.my                    
+TechStorm                      TechStorm.sg                 
+Tennis Channel                 TennisChannel.us             
+TNA Wresling                   TNAWrestling.pluto           
+Xumo NBC Sport                 NBCSports4K.us               
+Yahoo! Finance                 YahooFinance.us              
+ZooMoo                         ZooMoo.sg                    
 
 --------------------------------------------------------------------------------
 DUPLICATE TVG-IDS
@@ -205,305 +205,43 @@ None – all tvg-ids are unique.
 --------------------------------------------------------------------------------
 CHANNELS WITH NO TVG-ID (missing or empty tvg-id)
 --------------------------------------------------------------------------------
-Channel Name                                 Line  
----------------------------------------------------
-BorneoTV                                     59    
-CS2                                          322   
-CS2                                          324   
-DotA2                                        326   
-DotA2                                        328   
-douyu 19                                     459   
-EnjoyTV                                      57    
-Go Wild                                      424   
-Golf Television                              190   
-GolfNetwork                                  178   
-GolfPass                                     184   
-K-Stories                                    467   
-KoreaTV                                      473   
-like Gecko) Chrome/120.0.0.0 Safari/537.36   10    
-like Gecko) Chrome/120.0.0.0 Safari/537.36   14    
-like Gecko) Chrome/120.0.0.0 Safari/537.36   18    
-like Gecko) Chrome/120.0.0.0 Safari/537.36   22    
-MediaCorp (English)                          138   
-MediaCorp (Tamil)                            140   
-Miramax                                      364   
-mn静静nm                                       455   
-Movie Sphere 2                               354   
-News World                                   408   
-NHL                                          274   
-RTB Aneka                                    148   
-RTB Sukmaindera                              150   
-RTM World Cup 1                              35    
-RTM World Cup 2                              37    
-RTM World Cup 3                              39    
-SBS_Golf_2                                   194   
-Sky Sports (UK)                              201   
-Sky Sports Arena                             217   
-Song TV                                      342   
-SukanPlus                                    67    
-Tennis Channel 2                             265   
-Tennis TV 2                                  259   
-Tennis+                                      261   
-UEFA Champion League                         276   
-Universal Movie                              366   
-Unknown                                      1     
-Unknown                                      2     
-Unknown                                      4     
-Unknown                                      6     
-Unknown                                      7     
-Unknown                                      8     
-Unknown                                      11    
-Unknown                                      12    
-Unknown                                      15    
-Unknown                                      16    
-Unknown                                      19    
-Unknown                                      20    
-Unknown                                      23    
-Unknown                                      24    
-Unknown                                      25    
-Unknown                                      26    
-Unknown                                      28    
-Unknown                                      30    
-Unknown                                      32    
-Unknown                                      34    
-Unknown                                      36    
-Unknown                                      38    
-Unknown                                      40    
-Unknown                                      42    
-Unknown                                      44    
-Unknown                                      46    
-Unknown                                      48    
-Unknown                                      50    
-Unknown                                      52    
-Unknown                                      53    
-Unknown                                      54    
-Unknown                                      56    
-Unknown                                      58    
-Unknown                                      60    
-Unknown                                      62    
-Unknown                                      64    
-Unknown                                      66    
-Unknown                                      68    
-Unknown                                      70    
-Unknown                                      71    
-Unknown                                      72    
-Unknown                                      74    
-Unknown                                      76    
-Unknown                                      78    
-Unknown                                      80    
-Unknown                                      82    
-Unknown                                      84    
-Unknown                                      86    
-Unknown                                      88    
-Unknown                                      90    
-Unknown                                      92    
-Unknown                                      93    
-Unknown                                      95    
-Unknown                                      97    
-Unknown                                      99    
-Unknown                                      101   
-Unknown                                      103   
-Unknown                                      105   
-Unknown                                      107   
-Unknown                                      109   
-Unknown                                      110   
-Unknown                                      111   
-Unknown                                      113   
-Unknown                                      115   
-Unknown                                      117   
-Unknown                                      119   
-Unknown                                      121   
-Unknown                                      123   
-Unknown                                      125   
-Unknown                                      127   
-Unknown                                      129   
-Unknown                                      131   
-Unknown                                      133   
-Unknown                                      135   
-Unknown                                      137   
-Unknown                                      139   
-Unknown                                      141   
-Unknown                                      143   
-Unknown                                      145   
-Unknown                                      147   
-Unknown                                      149   
-Unknown                                      151   
-Unknown                                      153   
-Unknown                                      154   
-Unknown                                      155   
-Unknown                                      157   
-Unknown                                      159   
-Unknown                                      160   
-Unknown                                      162   
-Unknown                                      164   
-Unknown                                      166   
-Unknown                                      168   
-Unknown                                      169   
-Unknown                                      170   
-Unknown                                      171   
-Unknown                                      173   
-Unknown                                      175   
-Unknown                                      177   
-Unknown                                      179   
-Unknown                                      181   
-Unknown                                      183   
-Unknown                                      185   
-Unknown                                      187   
-Unknown                                      189   
-Unknown                                      191   
-Unknown                                      193   
-Unknown                                      195   
-Unknown                                      197   
-Unknown                                      199   
-Unknown                                      200   
-Unknown                                      202   
-Unknown                                      204   
-Unknown                                      206   
-Unknown                                      208   
-Unknown                                      210   
-Unknown                                      212   
-Unknown                                      214   
-Unknown                                      216   
-Unknown                                      218   
-Unknown                                      220   
-Unknown                                      222   
-Unknown                                      223   
-Unknown                                      225   
-Unknown                                      227   
-Unknown                                      229   
-Unknown                                      231   
-Unknown                                      233   
-Unknown                                      235   
-Unknown                                      237   
-Unknown                                      239   
-Unknown                                      241   
-Unknown                                      243   
-Unknown                                      244   
-Unknown                                      246   
-Unknown                                      248   
-Unknown                                      250   
-Unknown                                      252   
-Unknown                                      254   
-Unknown                                      255   
-Unknown                                      256   
-Unknown                                      258   
-Unknown                                      260   
-Unknown                                      262   
-Unknown                                      264   
-Unknown                                      266   
-Unknown                                      267   
-Unknown                                      269   
-Unknown                                      271   
-Unknown                                      273   
-Unknown                                      275   
-Unknown                                      277   
-Unknown                                      279   
-Unknown                                      281   
-Unknown                                      283   
-Unknown                                      285   
-Unknown                                      287   
-Unknown                                      289   
-Unknown                                      291   
-Unknown                                      293   
-Unknown                                      295   
-Unknown                                      297   
-Unknown                                      299   
-Unknown                                      301   
-Unknown                                      303   
-Unknown                                      305   
-Unknown                                      307   
-Unknown                                      309   
-Unknown                                      311   
-Unknown                                      313   
-Unknown                                      315   
-Unknown                                      317   
-Unknown                                      319   
-Unknown                                      320   
-Unknown                                      321   
-Unknown                                      323   
-Unknown                                      325   
-Unknown                                      327   
-Unknown                                      329   
-Unknown                                      330   
-Unknown                                      331   
-Unknown                                      333   
-Unknown                                      335   
-Unknown                                      337   
-Unknown                                      339   
-Unknown                                      341   
-Unknown                                      343   
-Unknown                                      345   
-Unknown                                      346   
-Unknown                                      347   
-Unknown                                      349   
-Unknown                                      351   
-Unknown                                      353   
-Unknown                                      355   
-Unknown                                      357   
-Unknown                                      359   
-Unknown                                      361   
-Unknown                                      363   
-Unknown                                      365   
-Unknown                                      367   
-Unknown                                      369   
-Unknown                                      371   
-Unknown                                      373   
-Unknown                                      375   
-Unknown                                      377   
-Unknown                                      379   
-Unknown                                      381   
-Unknown                                      383   
-Unknown                                      385   
-Unknown                                      387   
-Unknown                                      389   
-Unknown                                      391   
-Unknown                                      392   
-Unknown                                      393   
-Unknown                                      395   
-Unknown                                      397   
-Unknown                                      399   
-Unknown                                      401   
-Unknown                                      403   
-Unknown                                      405   
-Unknown                                      407   
-Unknown                                      409   
-Unknown                                      411   
-Unknown                                      412   
-Unknown                                      413   
-Unknown                                      415   
-Unknown                                      417   
-Unknown                                      419   
-Unknown                                      421   
-Unknown                                      423   
-Unknown                                      425   
-Unknown                                      427   
-Unknown                                      429   
-Unknown                                      431   
-Unknown                                      433   
-Unknown                                      435   
-Unknown                                      437   
-Unknown                                      438   
-Unknown                                      439   
-Unknown                                      441   
-Unknown                                      442   
-Unknown                                      444   
-Unknown                                      446   
-Unknown                                      448   
-Unknown                                      450   
-Unknown                                      452   
-Unknown                                      453   
-Unknown                                      454   
-Unknown                                      456   
-Unknown                                      458   
-Unknown                                      460   
-Unknown                                      461   
-Unknown                                      462   
-Unknown                                      464   
-Unknown                                      466   
-Unknown                                      468   
-Unknown                                      470   
-Unknown                                      472   
-Unknown                                      474   
-Wild Nature                                  426   
-Xumo Nature & Wildlife TV                    432   
-万事通熊猫                                        457   
+Channel Name                Line  
+----------------------------------
+BorneoTV                    59    
+CS2                         322   
+CS2                         324   
+DotA2                       326   
+DotA2                       328   
+douyu 19                    459   
+EnjoyTV                     57    
+Go Wild                     424   
+Golf Television             190   
+GolfNetwork                 178   
+GolfPass                    184   
+K-Stories                   467   
+KoreaTV                     473   
+MediaCorp (English)         138   
+MediaCorp (Tamil)           140   
+Miramax                     364   
+mn静静nm                      455   
+Movie Sphere 2              354   
+News World                  408   
+NHL                         274   
+RTB Aneka                   148   
+RTB Sukmaindera             150   
+RTM World Cup 1             35    
+RTM World Cup 2             37    
+RTM World Cup 3             39    
+SBS_Golf_2                  194   
+Sky Sports (UK)             201   
+Sky Sports Arena            217   
+Song TV                     342   
+SukanPlus                   67    
+Tennis Channel 2            265   
+Tennis TV 2                 259   
+Tennis+                     261   
+UEFA Champion League        276   
+Universal Movie             366   
+Wild Nature                 426   
+Xumo Nature & Wildlife TV   432   
+万事通熊猫                       457   
