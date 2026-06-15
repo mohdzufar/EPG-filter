@@ -21,22 +21,20 @@ from urllib.error import HTTPError
 from collections import defaultdict
 
 # ------------------------------------------------------------
-# 1. Parse playlist → (ids, id_to_name, id_to_line, no_id_channels, duplicates, stats)
+# 1. Parse playlist → (ids, id_to_name, no_id_list, duplicates, stats)
 # ------------------------------------------------------------
 def parse_playlist(location):
     """
     Return:
         unique_ids_set,
         id_to_name_dict (first occurrence name),
-        id_to_line_dict (first occurrence line number),
-        no_id_channels_list (channel names without tvg-id or tvg-id=""),
-        duplicate_dict {id: [(name, line), ...] for duplicates},
+        no_id_list: list of (channel_name, line_number) for lines without valid tvg-id,
+        duplicate_dict {id: [(name, line), ...]},
         stats_dict
     """
     ids = set()
     id_to_name = {}
-    id_to_line = {}
-    no_id_channels = []
+    no_id_list = []          # list of (channel_name, line_number)
     id_occurrences = defaultdict(list)   # id -> list of (channel_name, line_number)
     total_extinf = 0
     with_tvg_id = 0
@@ -70,18 +68,17 @@ def parse_playlist(location):
                 has_valid_id = True
                 ids.add(ch_id)
                 with_tvg_id += 1
-                # Store first name and first line for id_to_name / id_to_line
+                # Store first name for id_to_name
                 if ch_id not in id_to_name:
                     m_name = name_quoted.search(line) or name_bare.search(line)
                     name = m_name.group(1).strip() if m_name else None
                     id_to_name[ch_id] = name
-                    id_to_line[ch_id] = line_num
                 # Record occurrence for duplicate detection (store name and line)
                 m_name = name_quoted.search(line) or name_bare.search(line)
                 channel_name = m_name.group(1).strip() if m_name else "Unknown"
                 id_occurrences[ch_id].append((channel_name, line_num))
 
-        # ----- If no valid tvg-id, treat as "no tvg-id" -----
+        # ----- If no valid tvg-id, treat as "no tvg-id" and store with line number -----
         if not has_valid_id:
             # Extract channel name
             m_name = name_quoted.search(line) or name_bare.search(line)
@@ -93,7 +90,7 @@ def parse_playlist(location):
                     channel_name = parts[1].strip()
                 else:
                     channel_name = "Unknown"
-            no_id_channels.append(channel_name)
+            no_id_list.append((channel_name, line_num))
 
     # Build duplicate dict (ids that appear more than once)
     duplicate_dict = {id: entries for id, entries in id_occurrences.items() if len(entries) > 1}
@@ -105,7 +102,7 @@ def parse_playlist(location):
         'without_tvg_id': total_extinf - with_tvg_id,
         'duplicate_id_count': len(duplicate_dict),
     }
-    return ids, id_to_name, id_to_line, no_id_channels, duplicate_dict, stats
+    return ids, id_to_name, no_id_list, duplicate_dict, stats
 
 # ------------------------------------------------------------
 # 2. Read EPG source URLs from a text file
@@ -149,7 +146,7 @@ def inject_display_name(channel_elem, ch_id, id_to_name):
 # ------------------------------------------------------------
 # 5. Core filter → gzipped output + report data
 # ------------------------------------------------------------
-def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist_stats=None, report_path=None, no_id_channels=None, duplicate_dict=None, id_to_line=None):
+def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist_stats=None, report_path=None, no_id_list=None, duplicate_dict=None):
     total_channels = 0
     total_programmes = 0
     seen_channels = set()
@@ -206,12 +203,12 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist
     print(f"Output written to:          {output_path}", file=sys.stderr)
 
     if report_path:
-        generate_report(report_path, seen_channels, id_to_name, channel_sources, wanted_ids, playlist_stats, no_id_channels, duplicate_dict, id_to_line)
+        generate_report(report_path, seen_channels, id_to_name, channel_sources, wanted_ids, playlist_stats, no_id_list, duplicate_dict)
 
 # ------------------------------------------------------------
-# 6. Report with all tables + line numbers
+# 6. Report with all tables (line numbers only for no-ID channels)
 # ------------------------------------------------------------
-def generate_report(report_path, found_channel_ids, id_to_name, channel_sources, wanted_ids, playlist_stats, no_id_channels, duplicate_dict, id_to_line):
+def generate_report(report_path, found_channel_ids, id_to_name, channel_sources, wanted_ids, playlist_stats, no_id_list, duplicate_dict):
     total_unique = playlist_stats['total_unique_ids']
     total_extinf = playlist_stats['total_extinf']
     with_tvg = playlist_stats['with_tvg_id']
@@ -223,13 +220,10 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
     # Missing channels (have tvg-id but no EPG)
     missing_ids = sorted(set(wanted_ids) - found_channel_ids)
 
-    # Deduplicate no_id_channels while preserving order
-    unique_no_id = []
-    seen = set()
-    for ch in no_id_channels:
-        if ch not in seen:
-            seen.add(ch)
-            unique_no_id.append(ch)
+    # Process no_id_list: remove duplicates per channel name? Keep all occurrences with line numbers.
+    # We'll show each occurrence as a separate row because line numbers matter.
+    # But to avoid huge lists, we keep as is (each line with missing ID is a row).
+    no_id_rows = sorted(no_id_list, key=lambda x: x[0].lower())
 
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write("EPG Filter Report\n")
@@ -244,40 +238,38 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
         f.write(f"  Channels NOT found            : {not_found_count}\n\n")
         
         # ------------------------------------------------------------
-        # 1. TABLE OF FOUND CHANNELS (with Source(s) and Line)
+        # 1. TABLE OF FOUND CHANNELS (no line numbers)
         # ------------------------------------------------------------
-        f.write("-" * 100 + "\n")
+        f.write("-" * 80 + "\n")
         f.write("FOUND CHANNELS (with EPG data)\n")
-        f.write("-" * 100 + "\n")
+        f.write("-" * 80 + "\n")
 
         found_rows = []
         for cid in found_channel_ids:
             name = id_to_name.get(cid) or 'N/A'
-            line_num = id_to_line.get(cid, '?')
             sources_list = sorted(channel_sources.get(cid, []))
             sources_str = ', '.join(sources_list)
-            found_rows.append((name, cid, line_num, sources_str))
+            found_rows.append((name, cid, sources_str))
 
         found_rows.sort(key=lambda r: (r[0].lower(), r[1]))
 
         if found_rows:
             name_width = max(len('Channel Name'), max((len(r[0]) for r in found_rows), default=0)) + 2
             id_width = max(len('ID'), max((len(r[1]) for r in found_rows), default=0)) + 2
-            line_width = max(len('Line'), max((len(str(r[2])) for r in found_rows), default=0)) + 2
-            source_width = max(len('Source(s)'), max((len(r[3]) for r in found_rows), default=0)) + 2
+            source_width = max(len('Source(s)'), max((len(r[2]) for r in found_rows), default=0)) + 2
 
-            header = f"{'Channel Name':<{name_width}} {'ID':<{id_width}} {'Line':<{line_width}} {'Source(s)':<{source_width}}"
+            header = f"{'Channel Name':<{name_width}} {'ID':<{id_width}} {'Source(s)':<{source_width}}"
             f.write(header + '\n')
             f.write('-' * len(header) + '\n')
-            for name, cid, line_num, sources_str in found_rows:
-                line = f"{name:<{name_width}} {cid:<{id_width}} {line_num:<{line_width}} {sources_str:<{source_width}}"
+            for name, cid, sources_str in found_rows:
+                line = f"{name:<{name_width}} {cid:<{id_width}} {sources_str:<{source_width}}"
                 f.write(line + '\n')
         else:
             f.write("No channels found.\n")
         f.write("\n")
 
         # ------------------------------------------------------------
-        # 2. TABLE OF MISSING CHANNELS (have ID but no EPG) + Line
+        # 2. TABLE OF MISSING CHANNELS (have ID but no EPG) - no line numbers
         # ------------------------------------------------------------
         if missing_ids:
             f.write("-" * 80 + "\n")
@@ -287,20 +279,18 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
             missing_rows = []
             for cid in missing_ids:
                 name = id_to_name.get(cid, 'N/A')
-                line_num = id_to_line.get(cid, '?')
-                missing_rows.append((name, cid, line_num))
+                missing_rows.append((name, cid))
 
             missing_rows.sort(key=lambda r: (r[0].lower(), r[1]))
 
             name_width = max(len('Channel Name'), max((len(r[0]) for r in missing_rows), default=0)) + 2
             id_width = max(len('ID'), max((len(r[1]) for r in missing_rows), default=0)) + 2
-            line_width = max(len('Line'), max((len(str(r[2])) for r in missing_rows), default=0)) + 2
 
-            header = f"{'Channel Name':<{name_width}} {'ID':<{id_width}} {'Line':<{line_width}}"
+            header = f"{'Channel Name':<{name_width}} {'ID':<{id_width}}"
             f.write(header + '\n')
             f.write('-' * len(header) + '\n')
-            for name, cid, line_num in missing_rows:
-                line = f"{name:<{name_width}} {cid:<{id_width}} {line_num:<{line_width}}"
+            for name, cid in missing_rows:
+                line = f"{name:<{name_width}} {cid:<{id_width}}"
                 f.write(line + '\n')
         else:
             f.write("-" * 80 + "\n")
@@ -310,7 +300,7 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
         f.write("\n")
 
         # ------------------------------------------------------------
-        # 3. TABLE OF DUPLICATE TVG-IDS (with all line numbers)
+        # 3. TABLE OF DUPLICATE TVG-IDS (no line numbers)
         # ------------------------------------------------------------
         if duplicate_dict:
             f.write("-" * 80 + "\n")
@@ -319,23 +309,20 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
 
             duplicate_rows = []
             for cid, entries in duplicate_dict.items():
-                # entries is list of (name, line)
                 unique_names = list(dict.fromkeys([name for name, _ in entries]))
                 names_str = ', '.join(unique_names)
-                lines_str = ', '.join(str(line) for _, line in entries)
-                duplicate_rows.append((names_str, cid, lines_str))
+                duplicate_rows.append((names_str, cid))
 
             duplicate_rows.sort(key=lambda r: (r[0].lower(), r[1]))
 
             name_width = max(len('Channel Name(s)'), max((len(r[0]) for r in duplicate_rows), default=0)) + 2
             id_width = max(len('ID'), max((len(r[1]) for r in duplicate_rows), default=0)) + 2
-            line_width = max(len('Line(s)'), max((len(r[2]) for r in duplicate_rows), default=0)) + 2
 
-            header = f"{'Channel Name(s)':<{name_width}} {'ID':<{id_width}} {'Line(s)':<{line_width}}"
+            header = f"{'Channel Name(s)':<{name_width}} {'ID':<{id_width}}"
             f.write(header + '\n')
             f.write('-' * len(header) + '\n')
-            for names_str, cid, lines_str in duplicate_rows:
-                line = f"{names_str:<{name_width}} {cid:<{id_width}} {lines_str:<{line_width}}"
+            for names_str, cid in duplicate_rows:
+                line = f"{names_str:<{name_width}} {cid:<{id_width}}"
                 f.write(line + '\n')
         else:
             f.write("-" * 80 + "\n")
@@ -345,23 +332,22 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
         f.write("\n")
 
         # ------------------------------------------------------------
-        # 4. TABLE OF CHANNELS WITH NO TVG-ID (no line numbers)
+        # 4. TABLE OF CHANNELS WITH NO TVG-ID (with line numbers)
         # ------------------------------------------------------------
-        if unique_no_id:
+        if no_id_rows:
             f.write("-" * 80 + "\n")
             f.write("CHANNELS WITH NO TVG-ID (missing or empty tvg-id)\n")
             f.write("-" * 80 + "\n")
 
-            unique_no_id.sort(key=str.lower)
+            # Dynamic column widths
+            name_width = max(len('Channel Name'), max((len(row[0]) for row in no_id_rows), default=0)) + 2
+            line_width = max(len('Line'), max((len(str(row[1])) for row in no_id_rows), default=0)) + 2
 
-            name_width = max(len('Channel Name'), max((len(ch) for ch in unique_no_id), default=0)) + 2
-
-            header = f"{'Channel Name':<{name_width}}"
+            header = f"{'Channel Name':<{name_width}} {'Line':<{line_width}}"
             f.write(header + '\n')
             f.write('-' * len(header) + '\n')
-            for ch_name in unique_no_id:
-                line = f"{ch_name:<{name_width}}"
-                f.write(line + '\n')
+            for ch_name, line_num in no_id_rows:
+                f.write(f"{ch_name:<{name_width}} {line_num:<{line_width}}\n")
         else:
             f.write("-" * 80 + "\n")
             f.write("CHANNELS WITH NO TVG-ID\n")
@@ -393,9 +379,9 @@ if __name__ == '__main__':
         print("No EPG sources provided. Use --sources or positional arguments.", file=sys.stderr)
         sys.exit(1)
 
-    wanted_ids, id_to_name, id_to_line, no_id_channels, duplicate_dict, stats = parse_playlist(args.playlist)
+    wanted_ids, id_to_name, no_id_list, duplicate_dict, stats = parse_playlist(args.playlist)
     print(f"Extracted {stats['total_unique_ids']} unique tvg-ids, {len(id_to_name)} have names.", file=sys.stderr)
-    print(f"Found {len(no_id_channels)} #EXTINF lines without or with empty tvg-id.", file=sys.stderr)
+    print(f"Found {len(no_id_list)} #EXTINF lines without or with empty tvg-id.", file=sys.stderr)
     print(f"Found {stats['duplicate_id_count']} duplicate tvg-ids.", file=sys.stderr)
     if wanted_ids:
         sample = list(wanted_ids)[:10]
@@ -406,5 +392,4 @@ if __name__ == '__main__':
 
     report_path = args.report_file if args.report else None
     filter_and_enrich(args.output, wanted_ids, id_to_name, epg_list, playlist_stats=stats,
-                      report_path=report_path, no_id_channels=no_id_channels,
-                      duplicate_dict=duplicate_dict, id_to_line=id_to_line)
+                      report_path=report_path, no_id_list=no_id_list, duplicate_dict=duplicate_dict)
