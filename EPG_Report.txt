@@ -8,8 +8,8 @@ Playlist Summary:
   Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 141
-  Channels NOT found            : 33
+  Channels found in EPG         : 146
+  Channels NOT found            : 28
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -32,6 +32,8 @@ AXN Asia                      369716                                            
 BBC Earth                     4030                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 BBC News                      464746                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 BBC Top Gear                  TopGear.peacocktv                                   https://iptv-epg.org/files/epg-us.xml.gz                                         
+Bein Sports 1                 beINSPORTS1.au                                      https://iptv-epg.org/files/epg-au.xml.gz                                         
+Bein Sports 2                 beINSPORTS2.au                                      https://iptv-epg.org/files/epg-au.xml.gz                                         
 Bein Sports 3                 beINSPORTS3.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
 Bein Sports 4                 beINSPORTS4.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
 Bein Sports 5                 beINSPORTS5.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
@@ -64,6 +66,7 @@ EuroNews                      12529                                             
 Fifa+                         492830                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 FOX NFL                       465532                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Fuel TV                       FuelTV.pt                                           https://iptv-epg.org/files/epg-pt.xml.gz                                         
+Goal TV                       Goal.ca                                             https://iptv-epg.org/files/epg-ca.xml.gz                                         
 Golf Channel                  GolfChannel.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
 Hallmark Channel              Hallmark.Channel.HD.us2                             https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 HBO                           HBO.East.us2                                        https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
@@ -77,6 +80,7 @@ HITS NOW                      HITS.sg                                           
 K POP by CJ ENM               CA3900002PM                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 K-Content                     CA1800004L7                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 K-Drama+                      CA17000023Q                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
+KBS World                     KBSWorld.my                                         https://iptv-epg.org/files/epg-my.xml.gz                                         
 KCM                           IN1600011DE                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Love Pets                     CA300017ZS                                          https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 Love The Planet               DEBC4700004VZ                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
@@ -93,6 +97,7 @@ NatureTime                    GB2100004H5                                       
 NBC News Now                  NBCNewsNow.us                                       https://iptv-epg.org/files/epg-us.xml.gz                                         
 NBC Sport Now                 NBCSportsNOW.pluto                                  https://iptv-epg.org/files/epg-us.xml.gz                                         
 New KPOP                      USAJ3000013FJ                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
+NHK World-Japan               NHKWorld.my                                         https://iptv-epg.org/files/epg-my.xml.gz                                         
 Nickelodeon Asia              NickelodeonAsia.sg                                  https://iptv-epg.org/files/epg-sg.xml.gz                                         
 Okey TV                       370134                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Paramount Movie Channel       ParamountMovieChannel.pluto                         https://iptv-epg.org/files/epg-us.xml.gz                                         
@@ -163,8 +168,6 @@ MISSING CHANNELS (have tvg-id but no EPG data)
 --------------------------------------------------------------------------------
 Channel Name                   ID                          
 -----------------------------------------------------------
-Bein Sports 1                  beINSPORTS1.au              
-Bein Sports 2                  beINSPORTS2.au              
 Bein Xtra 2                    beINSportsXtra2.qa          
 CCTV-Golf & Tennis             CCTVGolfTennis.cn           
 Dewan Negara                   DewanNegara.my              
@@ -174,17 +177,14 @@ Drama Hebat                    DramaHebat
 Drama Hotpot                   DramaHotpot                 
 Drama Sangat                   DramaSangat.my              
 Filem Mantap                   FilemMantap                 
-Goal TV                        Goal.ca                     
 Golf Channel (Latin America)   GolfChannelLatinAmerica.us  
 Golf Kingdom                   30AGolfKingdom.us           
 GolfNetwork Japan              GolfNetwork.jp              
 Jom Ngaji                      JomNgaji                    
-KBS World                      KBSWorld.my                 
 KPOP Mix                       KpopMix.ar                  
 Lawak Sentral                  LawakSentral                
 meWATCH LIVE 1                 meWATCHLIVE1.sg             
 Music Japan                    MusicJapanTV.jp             
-NHK World-Japan                NHKWorld.my                 
 Oh My Ceria!                   OhMyCeria                   
 One Golf                       OneGolf.pk                  
 Pro Fight League               PFLMMA.us                   
