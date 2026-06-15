@@ -5,6 +5,7 @@ Playlist Summary:
   Total unique tvg-id entries   : 173
   #EXTINF lines with tvg-id     : 174
   #EXTINF lines without tvg-id  : 38
+  Duplicate tvg-ids (case-sensitive) : 1
 
 EPG Matching:
   Channels found in EPG         : 158
@@ -194,6 +195,13 @@ SelangorTV                     SelangorTV.my
 Sports Connect                 SportsConnect.za            
 SukeTV                         SukeTV.my                   
 ZooMoo                         ZooMoo.sg                   
+
+--------------------------------------------------------------------------------
+DUPLICATE TVG-IDS (same ID appears multiple times)
+--------------------------------------------------------------------------------
+Channel Name(s)           ID      
+----------------------------------
+Wild Earth, Wild Planet   405628  
 
 --------------------------------------------------------------------------------
 CHANNELS WITH NO TVG-ID (cannot be matched)
