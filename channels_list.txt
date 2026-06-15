@@ -1,0 +1,214 @@
+Channel Name                   tvg-id                                             
+---------------------------------------------------------------------------------
+8TV                            1122                                               
+Adventure Earth                GBBC900015D3                                       
+Al-Hijrah                      369680                                             
+Al-Jazeera (English)           3416                                               
+Animal Planet                  Animal.Planet.HD.us2                               
+Aniplus Asia                   ANIPLUS.sg                                         
+AsianCrush                     AsianCrush.us                                      
+Astro Arena Bola               4209                                               
+Astro Arena Bola 2             4215                                               
+Astro Awani                    3958                                               
+Astro Badminton                397400                                             
+Astro Football                 397399                                             
+AXN Asia                       369716                                             
+BBC Earth                      4030                                               
+BBC News                       464746                                             
+BBC Top Gear                   TopGear.peacocktv                                  
+Bein Sports 1                  beINSPORTS1.au                                     
+Bein Sports 2                  beINSPORTS2.au                                     
+Bein Sports 3                  beINSPORTS3.us                                     
+Bein Sports 4                  beINSPORTS4.us                                     
+Bein Sports 5                  beINSPORTS5.us                                     
+Bein Sports 6                  beINSPORTS6.us                                     
+Bein Sports 7                  beINSPORTS7.us                                     
+Bein Sports 8                  beINSPORTS8.us                                     
+Bein Xtra                      beINSportsXtra.us                                  
+Bein Xtra 2                    beINSportsXtra2.qa                                 
+Berita RTM                     370132                                             
+Bernama                        1835                                               
+Billiard TV                    BilliardTV.us                                      
+Bob Ross Channel               CABC2300015UM                                      
+Bollywood                      Bollywood.ro                                       
+Bollywood Classic              BollywoodClasic.ro                                 
+BorneoTV                       N/A                                                
+Cartoon Network                Cartoon.Network.HD.us2                             
+CBS News 24/7                  464941                                             
+CCTV-Golf & Tennis             CCTVGolfTennis.cn                                  
+Channel 5                      492816                                             
+Channel 8                      492894                                             
+Channel U                      492864                                             
+Cinemax                        Cinemax.HD.us2                                     
+CNA                            CNA.sg                                             
+Crunchyroll                    Crunchyroll.us                                     
+CS2                            N/A                                                
+CS2                            N/A                                                
+Dewan Negara                   DewanNegara.my                                     
+Dewan Rakyat                   DewanRakyat.my                                     
+Didik TV                       DidikTVKPM.my                                      
+Discovery Channel              Discovery.Channel.HD.us2                           
+Discovery Life                 Discovery.Life.Channel.us2                         
+Discovery Science              Science.Channel.HD.us2                             
+Disney Channel                 Disney.Channel.HD.us2                              
+Disney XD                      Disney.XD.HD.us2                                   
+Documentary+                   Documentary+.us                                    
+DotA2                          N/A                                                
+DotA2                          N/A                                                
+douyu 19                       N/A                                                
+DP World Tour                  GB5200001TM                                        
+Drama Hebat                    DramaHebat                                         
+Drama Hotpot                   DramaHotpot                                        
+Drama Sangat                   DramaSangat.my                                     
+EnjoyTV                        N/A                                                
+EuroNews                       12529                                              
+Fifa+                          492830                                             
+Filem Mantap                   FilemMantap                                        
+FOX NFL                        465532                                             
+Fuel TV                        FuelTV.pt                                          
+Go Wild                        N/A                                                
+Goal TV                        Goal.ca                                            
+Golf Channel                   GolfChannel.us                                     
+Golf Channel (Latin America)   GolfChannelLatinAmerica.us                         
+Golf Kingdom                   30AGolfKingdom.us                                  
+Golf Television                N/A                                                
+GolfNetwork                    N/A                                                
+GolfNetwork Japan              GolfNetwork.jp                                     
+GolfPass                       N/A                                                
+Hallmark Channel               Hallmark.Channel.HD.us2                            
+HBO                            HBO.East.us2                                       
+HBO 2                          HBO2.HD.us2                                        
+HBO Comedy                     HBO.Comedy.HD.us2                                  
+HBO Family                     HBO.Drama.us2                                      
+HBO Signature                  HBOSignature.sg                                    
+HBO Zone                       465104                                             
+HITS Movies                    HITSMovies.sg                                      
+HITS NOW                       HITS.sg                                            
+Jom Ngaji                      JomNgaji                                           
+K POP by CJ ENM                CA3900002PM                                        
+K-Content                      CA1800004L7                                        
+K-Drama+                       CA17000023Q                                        
+K-Stories                      N/A                                                
+KBS World                      KBSWorld.my                                        
+KCM                            IN1600011DE                                        
+KoreaTV                        N/A                                                
+KPOP Mix                       KpopMix.ar                                         
+Lawak Sentral                  LawakSentral                                       
+Love Pets                      CA300017ZS                                         
+Love The Planet                DEBC4700004VZ                                      
+MBC America                    464845                                             
+MediaCorp (English)            N/A                                                
+MediaCorp (Tamil)              N/A                                                
+meWATCH LIVE 1                 meWATCHLIVE1.sg                                    
+Miramax                        N/A                                                
+MLB                            464873                                             
+MMA-TV International           CA4600017KV                                        
+mn静静nm                         N/A                                                
+Movie Sphere 2                 N/A                                                
+Movie Sphere Aus               538953                                             
+Movie Sphere by Lionsgate      645e7828e1979c00087b75b4                           
+Movie Sphere by Lionsgate 2    64a3d96f060e830008af6745                           
+Movie Sphere UK                GBBA33000557H                                      
+Music India                    MusicIndia.uk                                      
+Music Japan                    MusicJapanTV.jp                                    
+MyTime Movie Network           MyTimeMovieNetwork.us                              
+NatureTime                     GB2100004H5                                        
+NBC News Now                   NBCNewsNow.us                                      
+NBC Sport Now                  NBCSportsNOW.pluto                                 
+New KPOP                       USAJ3000013FJ                                      
+News World                     N/A                                                
+NHK World-Japan                NHKWorld.my                                        
+NHL                            N/A                                                
+Nickelodeon Asia               NickelodeonAsia.sg                                 
+Oh My Ceria!                   OhMyCeria                                          
+Okey TV                        370134                                             
+One Golf                       OneGolf.pk                                         
+Paramount Movie Channel        ParamountMovieChannel.pluto                        
+PGA Tour                       PGATOUR.pluto                                      
+Pro Fight League               PFLMMA.us                                          
+Quran (Mecca)                  524012                                             
+Rakuten Top Movies UK          GB2600018PD                                        
+Real Madrid TV                 RealMadridTV.es                                    
+Real Wild                      GBBB1000005IO                                      
+RedBull TV                     GBBD2300003IK                                      
+Reuters                        ReutersTV.us                                       
+ROCK Action                    ROCKAction.sg                                      
+ROCK Entertainment             ROCKEntertainment.sg                               
+RTB Aneka                      N/A                                                
+RTB Sukmaindera                N/A                                                
+RTM Apetito                    479619                                             
+RTM Aura                       479618                                             
+RTM Fitrah                     479449                                             
+RTM Junior                     502308                                             
+RTM Lead                       548888                                             
+RTM Roll                       521957                                             
+RTM Snap                       548887                                             
+RTM Sukan                      370133                                             
+RTM TV1                        3683                                               
+RTM TV2                        370135                                             
+RTM World                      547581                                             
+RTM World Cup 1                N/A                                                
+RTM World Cup 2                N/A                                                
+RTM World Cup 3                N/A                                                
+Salam Baitullah 2026           SalamBaitullahTV.my                                
+SBS_Golf                       SBSGolf.kr                                         
+SBS_Golf_2                     N/A                                                
+SelangorTV                     SelangorTV.my                                      
+Sky News                       12069                                              
+Sky Sport F1                   SkySportsF1.uk                                     
+Sky Sport Football             SkySportsFootball.uk                               
+Sky Sport Golf                 SkySportsGolf.uk                                   
+Sky Sport Premier League       SkySportsPremierLeague.uk                          
+Sky Sports (UK)                N/A                                                
+Sky Sports Action              SkySportsAction.uk                                 
+Sky Sports Arena               N/A                                                
+Sky Sports Live+               SkySportsPlus.uk                                   
+Sky Sports Main Events         SkySportsMainEvent.uk                              
+Sky Sports MIX                 SkySportsMix.uk                                    
+Sky Sports News                SkySportsNews.uk                                   
+Sky Sports Racing              SkySportsRacing.uk                                 
+Song TV                        N/A                                                
+Sony Movie Channel             Sony.Movie.Channel.HD.us2                          
+Speed Vision                   SPEEDVISION.us                                     
+Sport Fishing TV               465358                                             
+Sports Connect                 SportsConnect.za                                   
+SukanPlus                      N/A                                                
+SukeTV                         SukeTV.my                                          
+Suria                          513284                                             
+Swerve Sport                   683df56f5195c2a60a3f5559                           
+TechStorm                      TechStorm.sg                                       
+Tennis Channel                 TennisChannel.us                                   
+Tennis Channel 2               N/A                                                
+Tennis TV                      6627621d56fc840008e47c90                           
+Tennis TV 2                    N/A                                                
+Tennis+                        N/A                                                
+Terra Mater Wild               DEAJ32000012H                                      
+TNA Wresling                   TNAWrestling.pluto                                 
+Travel & Taste                 TravelandTaste                                     
+TSN 1                          470446                                             
+TSN 2                          470401                                             
+TSN 3                          470389                                             
+TSN 4                          470915                                             
+TSN 5                          470513                                             
+TV IKIM                        TVIKIM.my                                          
+TV3                            1072                                               
+TV6                            370131                                             
+TV9                            DidikTVKPM                                         
+TVBS Asia                      412193                                             
+tvN Movies                     524137                                             
+TVS                            3942                                               
+UEFA Champion League           N/A                                                
+UFC 1                          446965                                             
+Universal Movie                N/A                                                
+Vevo 2k                        497977                                             
+Wedotv Movies                  64305451fc3be5947773c339-642d67a42476824150b0a6e9  
+Wild Earth                     405628                                             
+Wild Nature                    N/A                                                
+Wild Planet                    GBBB5000002PL                                      
+Wired2Fish                     6a1610bebdf296985fd95603-608a2c722957c9002c6a617b  
+World Billiards TV             KRBC3200011N3                                      
+Xumo Nature & Wildlife TV      N/A                                                
+Xumo NBC Sport                 NBCSports4K.us                                     
+Yahoo! Finance                 YahooFinance.us                                    
+ZooMoo                         ZooMoo.sg                                          
+万事通熊猫                          N/A                                                

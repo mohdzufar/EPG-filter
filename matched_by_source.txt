@@ -1,0 +1,213 @@
+Matched Channels by EPG Source
+==============================
+
+Source: https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz
+--------------------------------------------------------------------------------
+  Animal Planet (Animal.Planet.HD.us2)
+  Cartoon Network (Cartoon.Network.HD.us2)
+  Cinemax (Cinemax.HD.us2)
+  Discovery Channel (Discovery.Channel.HD.us2)
+  Discovery Life (Discovery.Life.Channel.us2)
+  Discovery Science (Science.Channel.HD.us2)
+  Disney Channel (Disney.Channel.HD.us2)
+  Disney XD (Disney.XD.HD.us2)
+  Hallmark Channel (Hallmark.Channel.HD.us2)
+  HBO (HBO.East.us2)
+  HBO 2 (HBO2.HD.us2)
+  HBO Comedy (HBO.Comedy.HD.us2)
+  HBO Family (HBO.Drama.us2)
+  Sony Movie Channel (Sony.Movie.Channel.HD.us2)
+
+Source: https://i.mjh.nz/Plex/all.xml.gz
+--------------------------------------------------------------------------------
+  Wedotv Movies (64305451fc3be5947773c339-642d67a42476824150b0a6e9)
+  Wired2Fish (6a1610bebdf296985fd95603-608a2c722957c9002c6a617b)
+
+Source: https://i.mjh.nz/PlutoTV/all.xml.gz
+--------------------------------------------------------------------------------
+  Movie Sphere by Lionsgate (645e7828e1979c00087b75b4)
+  Movie Sphere by Lionsgate 2 (64a3d96f060e830008af6745)
+  Swerve Sport (683df56f5195c2a60a3f5559)
+  Tennis TV (6627621d56fc840008e47c90)
+
+Source: https://i.mjh.nz/SamsungTVPlus/all.xml.gz
+--------------------------------------------------------------------------------
+  Adventure Earth (GBBC900015D3)
+  Bob Ross Channel (CABC2300015UM)
+  DP World Tour (GB5200001TM)
+  K POP by CJ ENM (CA3900002PM)
+  K-Content (CA1800004L7)
+  K-Drama+ (CA17000023Q)
+  KCM (IN1600011DE)
+  Love Pets (CA300017ZS)
+  Love The Planet (DEBC4700004VZ)
+  MMA-TV International (CA4600017KV)
+  Movie Sphere UK (GBBA33000557H)
+  NatureTime (GB2100004H5)
+  New KPOP (USAJ3000013FJ)
+  Rakuten Top Movies UK (GB2600018PD)
+  Real Wild (GBBB1000005IO)
+  RedBull TV (GBBD2300003IK)
+  Terra Mater Wild (DEAJ32000012H)
+  Wild Planet (GBBB5000002PL)
+  World Billiards TV (KRBC3200011N3)
+
+Source: https://iptv-epg.org/files/epg-au.xml.gz
+--------------------------------------------------------------------------------
+  Bein Sports 1 (beINSPORTS1.au)
+  Bein Sports 2 (beINSPORTS2.au)
+
+Source: https://iptv-epg.org/files/epg-ca.xml.gz
+--------------------------------------------------------------------------------
+  Goal TV (Goal.ca)
+
+Source: https://iptv-epg.org/files/epg-es.xml.gz
+--------------------------------------------------------------------------------
+  Real Madrid TV (RealMadridTV.es)
+
+Source: https://iptv-epg.org/files/epg-gb.xml.gz
+--------------------------------------------------------------------------------
+  Music India (MusicIndia.uk)
+  Sky Sport F1 (SkySportsF1.uk)
+  Sky Sport Football (SkySportsFootball.uk)
+  Sky Sport Golf (SkySportsGolf.uk)
+  Sky Sport Premier League (SkySportsPremierLeague.uk)
+  Sky Sports Action (SkySportsAction.uk)
+  Sky Sports Live+ (SkySportsPlus.uk)
+  Sky Sports Main Events (SkySportsMainEvent.uk)
+  Sky Sports MIX (SkySportsMix.uk)
+  Sky Sports News (SkySportsNews.uk)
+  Sky Sports Racing (SkySportsRacing.uk)
+
+Source: https://iptv-epg.org/files/epg-kr.xml.gz
+--------------------------------------------------------------------------------
+  SBS_Golf (SBSGolf.kr)
+
+Source: https://iptv-epg.org/files/epg-my.xml.gz
+--------------------------------------------------------------------------------
+  KBS World (KBSWorld.my)
+  NHK World-Japan (NHKWorld.my)
+
+Source: https://iptv-epg.org/files/epg-pt.xml.gz
+--------------------------------------------------------------------------------
+  Fuel TV (FuelTV.pt)
+
+Source: https://iptv-epg.org/files/epg-ro.xml.gz
+--------------------------------------------------------------------------------
+  Bollywood (Bollywood.ro)
+  Bollywood Classic (BollywoodClasic.ro)
+
+Source: https://iptv-epg.org/files/epg-sg.xml.gz
+--------------------------------------------------------------------------------
+  Aniplus Asia (ANIPLUS.sg)
+  CNA (CNA.sg)
+  HBO Signature (HBOSignature.sg)
+  HITS Movies (HITSMovies.sg)
+  HITS NOW (HITS.sg)
+  Nickelodeon Asia (NickelodeonAsia.sg)
+  ROCK Action (ROCKAction.sg)
+  ROCK Entertainment (ROCKEntertainment.sg)
+  TechStorm (TechStorm.sg)
+
+Source: https://iptv-epg.org/files/epg-us.xml.gz
+--------------------------------------------------------------------------------
+  AsianCrush (AsianCrush.us)
+  BBC Top Gear (TopGear.peacocktv)
+  Bein Sports 3 (beINSPORTS3.us)
+  Bein Sports 4 (beINSPORTS4.us)
+  Bein Sports 5 (beINSPORTS5.us)
+  Bein Sports 6 (beINSPORTS6.us)
+  Bein Sports 7 (beINSPORTS7.us)
+  Bein Sports 8 (beINSPORTS8.us)
+  Bein Xtra (beINSportsXtra.us)
+  Billiard TV (BilliardTV.us)
+  Crunchyroll (Crunchyroll.us)
+  Documentary+ (Documentary+.us)
+  Golf Channel (GolfChannel.us)
+  MyTime Movie Network (MyTimeMovieNetwork.us)
+  NBC News Now (NBCNewsNow.us)
+  NBC Sport Now (NBCSportsNOW.pluto)
+  Paramount Movie Channel (ParamountMovieChannel.pluto)
+  PGA Tour (PGATOUR.pluto)
+  Reuters (ReutersTV.us)
+  Speed Vision (SPEEDVISION.us)
+  Tennis Channel (TennisChannel.us)
+  TNA Wresling (TNAWrestling.pluto)
+  Xumo NBC Sport (NBCSports4K.us)
+  Yahoo! Finance (YahooFinance.us)
+
+Source: https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml
+--------------------------------------------------------------------------------
+  Drama Hebat (DramaHebat)
+  Drama Hotpot (DramaHotpot)
+  Filem Mantap (FilemMantap)
+  Jom Ngaji (JomNgaji)
+  Lawak Sentral (LawakSentral)
+  Oh My Ceria! (OhMyCeria)
+  Travel & Taste (TravelandTaste)
+  TV9 (DidikTVKPM)
+
+Source: https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml
+--------------------------------------------------------------------------------
+  Dewan Negara (DewanNegara.my)
+  Dewan Rakyat (DewanRakyat.my)
+  Didik TV (DidikTVKPM.my)
+  Drama Sangat (DramaSangat.my)
+  TV IKIM (TVIKIM.my)
+
+Source: https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz
+--------------------------------------------------------------------------------
+  8TV (1122)
+  Al-Hijrah (369680)
+  Al-Jazeera (English) (3416)
+  Astro Arena Bola (4209)
+  Astro Arena Bola 2 (4215)
+  Astro Awani (3958)
+  Astro Badminton (397400)
+  Astro Football (397399)
+  AXN Asia (369716)
+  BBC Earth (4030)
+  BBC News (464746)
+  Berita RTM (370132)
+  Bernama (1835)
+  CBS News 24/7 (464941)
+  Channel 5 (492816)
+  Channel 8 (492894)
+  Channel U (492864)
+  EuroNews (12529)
+  Fifa+ (492830)
+  FOX NFL (465532)
+  HBO Zone (465104)
+  MBC America (464845)
+  MLB (464873)
+  Movie Sphere Aus (538953)
+  Okey TV (370134)
+  Quran (Mecca) (524012)
+  RTM Apetito (479619)
+  RTM Aura (479618)
+  RTM Fitrah (479449)
+  RTM Junior (502308)
+  RTM Lead (548888)
+  RTM Roll (521957)
+  RTM Snap (548887)
+  RTM Sukan (370133)
+  RTM TV1 (3683)
+  RTM TV2 (370135)
+  RTM World (547581)
+  Sky News (12069)
+  Sport Fishing TV (465358)
+  Suria (513284)
+  TSN 1 (470446)
+  TSN 2 (470401)
+  TSN 3 (470389)
+  TSN 4 (470915)
+  TSN 5 (470513)
+  TV3 (1072)
+  TV6 (370131)
+  TVBS Asia (412193)
+  tvN Movies (524137)
+  TVS (3942)
+  UFC 1 (446965)
+  Vevo 2k (497977)
+  Wild Earth (405628)
+
