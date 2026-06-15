@@ -20,12 +20,16 @@ from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
 # ------------------------------------------------------------
-# 1. Parse playlist → (ids, id_to_name, stats dict)
+# 1. Parse playlist → (ids, id_to_name, no_id_channels, stats dict)
 # ------------------------------------------------------------
 def parse_playlist(location):
-    """Return (unique_ids_set, id_to_name_dict, stats_dict)."""
+    """
+    Return (unique_ids_set, id_to_name_dict, no_id_channels_list, stats_dict).
+    no_id_channels_list contains channel names from #EXTINF lines without tvg-id.
+    """
     ids = set()
     id_to_name = {}
+    no_id_channels = []
     total_extinf = 0
     with_tvg_id = 0
 
@@ -57,6 +61,22 @@ def parse_playlist(location):
                     m_name = name_quoted.search(line) or name_bare.search(line)
                     name = m_name.group(1).strip() if m_name else None
                     id_to_name[ch_id] = name
+        else:
+            # Line has no tvg-id – extract channel name for the report
+            # Try to get tvg-name first
+            m_name = name_quoted.search(line) or name_bare.search(line)
+            if m_name:
+                channel_name = m_name.group(1).strip()
+            else:
+                # Fallback: extract display name after the comma
+                # Typical format: #EXTINF:-1 tvg-id="" tvg-name="Channel Name",Channel Name
+                # Or just: #EXTINF:-1,Channel Name
+                parts = line.split(',', 1)
+                if len(parts) > 1:
+                    channel_name = parts[1].strip()
+                else:
+                    channel_name = "Unknown"
+            no_id_channels.append(channel_name)
 
     stats = {
         'total_unique_ids': len(ids),
@@ -64,7 +84,7 @@ def parse_playlist(location):
         'with_tvg_id': with_tvg_id,
         'without_tvg_id': total_extinf - with_tvg_id,
     }
-    return ids, id_to_name, stats
+    return ids, id_to_name, no_id_channels, stats
 
 # ------------------------------------------------------------
 # 2. Read EPG source URLs from a text file
@@ -108,7 +128,7 @@ def inject_display_name(channel_elem, ch_id, id_to_name):
 # ------------------------------------------------------------
 # 5. Core filter → gzipped output + report data
 # ------------------------------------------------------------
-def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist_stats=None, report_path=None):
+def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist_stats=None, report_path=None, no_id_channels=None):
     total_channels = 0
     total_programmes = 0
     seen_channels = set()
@@ -165,12 +185,12 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist
     print(f"Output written to:          {output_path}", file=sys.stderr)
 
     if report_path:
-        generate_report(report_path, seen_channels, id_to_name, channel_sources, wanted_ids, playlist_stats)
+        generate_report(report_path, seen_channels, id_to_name, channel_sources, wanted_ids, playlist_stats, no_id_channels)
 
 # ------------------------------------------------------------
-# 6. Report with summary, found channels table, missing channels table
+# 6. Report with summary, found channels, missing channels, and channels with no tvg-id
 # ------------------------------------------------------------
-def generate_report(report_path, found_channel_ids, id_to_name, channel_sources, wanted_ids, playlist_stats):
+def generate_report(report_path, found_channel_ids, id_to_name, channel_sources, wanted_ids, playlist_stats, no_id_channels):
     total_unique = playlist_stats['total_unique_ids']
     total_extinf = playlist_stats['total_extinf']
     with_tvg = playlist_stats['with_tvg_id']
@@ -178,8 +198,16 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
     found_count = len(found_channel_ids)
     not_found_count = total_unique - found_count
 
-    # Calculate missing channels
+    # Calculate missing channels (have tvg-id but no EPG)
     missing_ids = sorted(set(wanted_ids) - found_channel_ids)
+
+    # Deduplicate no_id_channels while preserving order
+    unique_no_id = []
+    seen = set()
+    for ch in no_id_channels:
+        if ch not in seen:
+            seen.add(ch)
+            unique_no_id.append(ch)
 
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write("EPG Filter Report\n")
@@ -228,7 +256,7 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
         # ------------------------------------------------------------
         if missing_ids:
             f.write("-" * 80 + "\n")
-            f.write("MISSING CHANNELS (no EPG data found)\n")
+            f.write("MISSING CHANNELS (have tvg-id but no EPG data)\n")
             f.write("-" * 80 + "\n")
 
             missing_rows = []
@@ -238,7 +266,6 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
 
             missing_rows.sort(key=lambda r: (r[0].lower(), r[1]))
 
-            # Dynamic column widths
             name_width = max(len('Channel Name'), max((len(r[0]) for r in missing_rows), default=0)) + 2
             id_width = max(len('ID'), max((len(r[1]) for r in missing_rows), default=0)) + 2
 
@@ -250,9 +277,36 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
                 f.write(line + '\n')
         else:
             f.write("-" * 80 + "\n")
-            f.write("MISSING CHANNELS (no EPG data found)\n")
+            f.write("MISSING CHANNELS (have tvg-id but no EPG data)\n")
             f.write("-" * 80 + "\n")
-            f.write("None – all channels have EPG data!\n")
+            f.write("None – all channels with tvg-id have EPG data!\n")
+        f.write("\n")
+
+        # ------------------------------------------------------------
+        # 3. TABLE OF CHANNELS WITH NO TVG-ID (only Channel Name)
+        # ------------------------------------------------------------
+        if unique_no_id:
+            f.write("-" * 80 + "\n")
+            f.write("CHANNELS WITH NO TVG-ID (cannot be matched)\n")
+            f.write("-" * 80 + "\n")
+
+            # Sort alphabetically
+            unique_no_id.sort(key=str.lower)
+
+            # Dynamic column width: only one column, but we can make it consistent
+            name_width = max(len('Channel Name'), max((len(ch) for ch in unique_no_id), default=0)) + 2
+
+            header = f"{'Channel Name':<{name_width}}"
+            f.write(header + '\n')
+            f.write('-' * len(header) + '\n')
+            for ch_name in unique_no_id:
+                line = f"{ch_name:<{name_width}}"
+                f.write(line + '\n')
+        else:
+            f.write("-" * 80 + "\n")
+            f.write("CHANNELS WITH NO TVG-ID\n")
+            f.write("-" * 80 + "\n")
+            f.write("None – all #EXTINF lines contain a tvg-id.\n")
 
     print(f"Report written to: {report_path}", file=sys.stderr)
 
@@ -279,8 +333,9 @@ if __name__ == '__main__':
         print("No EPG sources provided. Use --sources or positional arguments.", file=sys.stderr)
         sys.exit(1)
 
-    wanted_ids, id_to_name, stats = parse_playlist(args.playlist)
+    wanted_ids, id_to_name, no_id_channels, stats = parse_playlist(args.playlist)
     print(f"Extracted {stats['total_unique_ids']} unique tvg-ids, {len(id_to_name)} have names.", file=sys.stderr)
+    print(f"Found {len(no_id_channels)} #EXTINF lines without tvg-id.", file=sys.stderr)
     if wanted_ids:
         sample = list(wanted_ids)[:10]
         print(f"Sample IDs: {sample}", file=sys.stderr)
@@ -289,4 +344,4 @@ if __name__ == '__main__':
         sys.exit(1)
 
     report_path = args.report_file if args.report else None
-    filter_and_enrich(args.output, wanted_ids, id_to_name, epg_list, playlist_stats=stats, report_path=report_path)
+    filter_and_enrich(args.output, wanted_ids, id_to_name, epg_list, playlist_stats=stats, report_path=report_path, no_id_channels=no_id_channels)
