@@ -2,13 +2,13 @@ EPG Filter Report
 -------------------
 
 Playlist Summary:
-  Total unique tvg-id entries   : 168
-  #EXTINF lines with tvg-id     : 169
-  #EXTINF lines without tvg-id  : 43
+  Total unique tvg-id entries   : 173
+  #EXTINF lines with tvg-id     : 174
+  #EXTINF lines without tvg-id  : 38
 
 EPG Matching:
-  Channels found in EPG         : 152
-  Channels NOT found            : 16
+  Channels found in EPG         : 158
+  Channels NOT found            : 15
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -72,6 +72,7 @@ Fifa+                         492830                                            
 Filem Mantap                  FilemMantap                                         https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 FOX NFL                       465532                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Fuel TV                       FuelTV.pt                                           https://iptv-epg.org/files/epg-pt.xml.gz                                         
+Goal TV                       Goal.ca                                             https://iptv-epg.org/files/epg-ca.xml.gz                                         
 Golf Channel                  GolfChannel.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
 Hallmark Channel              Hallmark.Channel.HD.us2                             https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 HBO                           HBO.East.us2                                        https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
@@ -101,6 +102,8 @@ Movie Sphere UK               GBBA33000557H                                     
 Music India                   MusicIndia.uk                                       https://iptv-epg.org/files/epg-gb.xml.gz                                         
 MyTime Movie Network          MyTimeMovieNetwork.us                               https://iptv-epg.org/files/epg-us.xml.gz                                         
 NatureTime                    GB2100004H5                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
+NBC News Now                  NBCNewsNow.us                                       https://iptv-epg.org/files/epg-us.xml.gz                                         
+NBC Sport Now                 NBCSportsNOW.pluto                                  https://iptv-epg.org/files/epg-us.xml.gz                                         
 New KPOP                      USAJ3000013FJ                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
 NHK World-Japan               NHKWorld.my                                         https://iptv-epg.org/files/epg-my.xml.gz                                         
 Nickelodeon Asia              NickelodeonAsia.sg                                  https://iptv-epg.org/files/epg-sg.xml.gz                                         
@@ -135,18 +138,20 @@ Sky Sport Golf                SkySportsGolf.uk                                  
 Sky Sport Premier League      SkySportsPremierLeague.uk                           https://iptv-epg.org/files/epg-gb.xml.gz                                         
 Sky Sports Action             SkySportsAction.uk                                  https://iptv-epg.org/files/epg-gb.xml.gz                                         
 Sky Sports Live+              SkySportsPlus.uk                                    https://iptv-epg.org/files/epg-gb.xml.gz                                         
+Sky Sports Main Events        SkySportsMainEvent.uk                               https://iptv-epg.org/files/epg-gb.xml.gz                                         
 Sky Sports MIX                SkySportsMix.uk                                     https://iptv-epg.org/files/epg-gb.xml.gz                                         
 Sky Sports News               SkySportsNews.uk                                    https://iptv-epg.org/files/epg-gb.xml.gz                                         
 Sky Sports Racing             SkySportsRacing.uk                                  https://iptv-epg.org/files/epg-gb.xml.gz                                         
 Sony Movie Channel            Sony.Movie.Channel.HD.us2                           https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz              
 Speed Vision                  SPEEDVISION.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
-SSky Sports Main Events       SkySportsMainEvent.uk                               https://iptv-epg.org/files/epg-gb.xml.gz                                         
+Sport Fishing TV              465358                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Suria                         513284                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Swerve Sport                  683df56f5195c2a60a3f5559                            https://i.mjh.nz/PlutoTV/all.xml.gz                                              
 TechStorm                     TechStorm.sg                                        https://iptv-epg.org/files/epg-sg.xml.gz                                         
 Tennis Channel                TennisChannel.us                                    https://iptv-epg.org/files/epg-us.xml.gz                                         
 Tennis TV                     6627621d56fc840008e47c90                            https://i.mjh.nz/PlutoTV/all.xml.gz                                              
 Terra Mater Wild              DEAJ32000012H                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
+TNA Wresling                  TNAWrestling.pluto                                  https://iptv-epg.org/files/epg-us.xml.gz                                         
 Travel & Taste                TravelandTaste                                      https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                     
 TSN 1                         470446                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 TSN 2                         470401                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
@@ -166,10 +171,11 @@ Wedotv Movies                 64305451fc3be5947773c339-642d67a42476824150b0a6e9 
 Wild Earth                    405628                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz  
 Wired2Fish                    6a1610bebdf296985fd95603-608a2c722957c9002c6a617b   https://i.mjh.nz/Plex/all.xml.gz                                                 
 World Billiards TV            KRBC3200011N3                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                        
+Xumo NBC Sport                NBCSports4K.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                         
 Yahoo! Finance                YahooFinance.us                                     https://iptv-epg.org/files/epg-us.xml.gz                                         
 
 --------------------------------------------------------------------------------
-MISSING CHANNELS (no EPG data found)
+MISSING CHANNELS (have tvg-id but no EPG data)
 --------------------------------------------------------------------------------
 Channel Name                   ID                          
 -----------------------------------------------------------
@@ -180,12 +186,19 @@ Golf Kingdom                   30AGolfKingdom.us
 GolfNetwork Japan              GolfNetwork.jp              
 KPOP Mix                       KpopMix.ar                  
 meWATCH LIVE 1                 meWATCHLIVE1.sg             
-Music Japan                    MUSICONTVエムオン.jp            
-NBC News Now                   NBCNewsNOW.us               
-NBC Sport Now                  NBCSportsNOW.us             
+Music Japan                    MusicJapanTV.jp             
 One Golf                       OneGolf.pk                  
+Pro Fight League               PFLMMA.us                   
 Salam Baitullah 2026           SalamBaitullahTV.my         
 SelangorTV                     SelangorTV.my               
 Sports Connect                 SportsConnect.za            
 SukeTV                         SukeTV.my                   
 ZooMoo                         ZooMoo.sg                   
+
+--------------------------------------------------------------------------------
+CHANNELS WITH NO TVG-ID (cannot be matched)
+--------------------------------------------------------------------------------
+Channel Name                                
+--------------------------------------------
+like Gecko) Chrome/120.0.0.0 Safari/537.36  
+Unknown                                     
