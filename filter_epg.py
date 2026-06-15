@@ -28,13 +28,13 @@ def parse_playlist(location):
     Return:
         unique_ids_set,
         id_to_name_dict (first occurrence name),
-        no_id_channels_list (channel names without tvg-id),
+        no_id_channels_list (channel names without tvg-id OR tvg-id=""),
         duplicate_dict {id: [list of channel names]},
         stats_dict
     """
     ids = set()
     id_to_name = {}
-    no_id_channels = []
+    no_id_channels = []          # channel names for lines with missing or empty tvg-id
     id_occurrences = defaultdict(list)   # id -> list of channel names (for duplicates)
     total_extinf = 0
     with_tvg_id = 0
@@ -57,10 +57,15 @@ def parse_playlist(location):
         if re.match(r'#EXTINF', line, re.I):
             total_extinf += 1
 
+        # ----- Try to extract tvg-id -----
         m_id = id_quoted.search(line) or id_bare.search(line)
+        has_valid_id = False
+        ch_id = ""
+
         if m_id:
             ch_id = m_id.group(1).strip()
-            if ch_id:
+            if ch_id:   # non‑empty ID
+                has_valid_id = True
                 ids.add(ch_id)
                 with_tvg_id += 1
                 # Store first name for id_to_name
@@ -68,16 +73,19 @@ def parse_playlist(location):
                     m_name = name_quoted.search(line) or name_bare.search(line)
                     name = m_name.group(1).strip() if m_name else None
                     id_to_name[ch_id] = name
-                # Record occurrence for duplicate detection (store channel name)
+                # Record occurrence for duplicate detection
                 m_name = name_quoted.search(line) or name_bare.search(line)
                 channel_name = m_name.group(1).strip() if m_name else "Unknown"
                 id_occurrences[ch_id].append(channel_name)
-        else:
-            # No tvg-id – extract channel name
+
+        # ----- If no valid tvg-id, treat as "no tvg-id" -----
+        if not has_valid_id:
+            # Extract channel name
             m_name = name_quoted.search(line) or name_bare.search(line)
             if m_name:
                 channel_name = m_name.group(1).strip()
             else:
+                # Fallback: text after the last comma
                 parts = line.split(',', 1)
                 if len(parts) > 1:
                     channel_name = parts[1].strip()
@@ -305,9 +313,6 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
 
             duplicate_rows = []
             for cid, names in duplicate_dict.items():
-                # Use the first occurrence name for the channel name column
-                # But we'll list the ID and show that it appears with multiple names
-                # To keep table simple: one row per duplicate ID, concatenate names
                 unique_names = list(dict.fromkeys(names))  # preserve order, dedupe names
                 names_str = ', '.join(unique_names)
                 duplicate_rows.append((names_str, cid))
@@ -331,11 +336,11 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
         f.write("\n")
 
         # ------------------------------------------------------------
-        # 4. TABLE OF CHANNELS WITH NO TVG-ID
+        # 4. TABLE OF CHANNELS WITH NO TVG-ID (including empty tvg-id="")
         # ------------------------------------------------------------
         if unique_no_id:
             f.write("-" * 80 + "\n")
-            f.write("CHANNELS WITH NO TVG-ID (cannot be matched)\n")
+            f.write("CHANNELS WITH NO TVG-ID (missing or empty tvg-id)\n")
             f.write("-" * 80 + "\n")
 
             unique_no_id.sort(key=str.lower)
@@ -352,7 +357,7 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
             f.write("-" * 80 + "\n")
             f.write("CHANNELS WITH NO TVG-ID\n")
             f.write("-" * 80 + "\n")
-            f.write("None – all #EXTINF lines contain a tvg-id.\n")
+            f.write("None – all #EXTINF lines contain a non‑empty tvg-id.\n")
 
     print(f"Report written to: {report_path}", file=sys.stderr)
 
@@ -381,13 +386,13 @@ if __name__ == '__main__':
 
     wanted_ids, id_to_name, no_id_channels, duplicate_dict, stats = parse_playlist(args.playlist)
     print(f"Extracted {stats['total_unique_ids']} unique tvg-ids, {len(id_to_name)} have names.", file=sys.stderr)
-    print(f"Found {len(no_id_channels)} #EXTINF lines without tvg-id.", file=sys.stderr)
+    print(f"Found {len(no_id_channels)} #EXTINF lines without or with empty tvg-id.", file=sys.stderr)
     print(f"Found {stats['duplicate_id_count']} duplicate tvg-ids.", file=sys.stderr)
     if wanted_ids:
         sample = list(wanted_ids)[:10]
         print(f"Sample IDs: {sample}", file=sys.stderr)
     else:
-        print("No tvg-ids found. Exiting.", file=sys.stderr)
+        print("No valid tvg-ids found. Exiting.", file=sys.stderr)
         sys.exit(1)
 
     report_path = args.report_file if args.report else None
