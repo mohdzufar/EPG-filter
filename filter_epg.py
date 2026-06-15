@@ -6,7 +6,7 @@ EPG Filter + Channel Name Injector + Dynamic Report with Summary
 - Enriches channel names from the playlist if missing.
 - Outputs a gzip‑compressed XMLTV file.
 - Generates a report with playlist statistics and EPG matching summary.
-- Uses a browser‑like User‑Agent and retries to avoid 403 errors.
+- Uses a browser‑like User‑Agent, retries, and auto‑detects gzip content.
 """
 
 import argparse
@@ -116,11 +116,12 @@ def read_epg_sources(file_path):
         return [line.strip() for line in f if line.strip() and not line.startswith('#')]
 
 # ------------------------------------------------------------
-# 3. Smart opener for EPG sources (with browser headers + retry)
+# 3. Smart opener for EPG sources (auto‑detect gzip, retry, browser headers)
 # ------------------------------------------------------------
 def smart_open(source, retries=3, delay=5):
-    """Open a URL or local file, with retries and browser‑like headers."""
-    # Browser‑like headers to avoid 403
+    """Open a URL or local file, with retries and browser‑like headers.
+    Automatically detects gzip compression by checking the first two bytes.
+    """
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -136,25 +137,32 @@ def smart_open(source, retries=3, delay=5):
             try:
                 req = Request(source, headers=headers)
                 response = urlopen(req, timeout=30)
-                # Handle gzipped content
-                if source.lower().endswith('.gz'):
+                # Peek at the first two bytes to check for gzip magic
+                magic = response.read(2)
+                response.close()
+                # Re-open the request (we consumed the first bytes)
+                req = Request(source, headers=headers)
+                response = urlopen(req, timeout=30)
+                if magic == b'\x1f\x8b':  # gzip magic number
                     binary_stream = gzip.GzipFile(fileobj=response, mode='rb')
                     return io.TextIOWrapper(binary_stream, encoding='utf-8')
                 else:
+                    # Not compressed, treat as text
                     return io.TextIOWrapper(response, encoding='utf-8')
             except (HTTPError, URLError) as e:
                 last_exception = e
                 print(f"  Attempt {attempt+1}/{retries} failed for {source}: {e}", file=sys.stderr)
                 if attempt < retries - 1:
                     time.sleep(delay)
-        # If all retries fail, re‑raise the last exception
         raise last_exception
     else:
         # Local file
         path = Path(source)
         if path.suffix == '.gz':
             return gzip.open(path, 'rt', encoding='utf-8')
-        return open(path, 'r', encoding='utf-8')
+        else:
+            # For local files, we could also peek, but assume extension is correct
+            return open(path, 'r', encoding='utf-8')
 
 # ------------------------------------------------------------
 # 4. Inject display name if missing
