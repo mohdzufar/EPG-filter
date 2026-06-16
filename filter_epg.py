@@ -5,7 +5,8 @@ EPG Filter – Optimised single‑pass + optional parallel execution.
 - Reads EPG source URLs from a text file (--sources) or command line.
 - Enriches channel names from the playlist if missing.
 - Outputs a gzip‑compressed XMLTV file.
-- Generates multiple reports without re‑fetching any data.
+- Generates a main report (EPG_Report.txt) and a dynamic multi‑column
+  full EPG channel dump (EPG_channel_and_ID_list.txt).
 - Uses browser headers, retry logic, and gzip auto‑detection.
 - Supports parallel workers (--workers) for faster processing.
 """
@@ -89,7 +90,7 @@ def parse_playlist(location):
     return ids, id_to_name, no_id_list, duplicate_dict, stats, all_channels
 
 # ------------------------------------------------------------
-# 2. Read EPG source URLs
+# 2. Read EPG source URLs (ignores comments / empty lines)
 # ------------------------------------------------------------
 def read_epg_sources(file_path):
     urls = []
@@ -105,7 +106,7 @@ def read_epg_sources(file_path):
     return urls
 
 # ------------------------------------------------------------
-# 3. Smart opener with retry and gzip detection
+# 3. Smart opener with retry, browser headers, and gzip detection
 # ------------------------------------------------------------
 def smart_open(source, retries=3, delay=5):
     headers = {
@@ -145,7 +146,7 @@ def smart_open(source, retries=3, delay=5):
             return open(path, 'r', encoding='utf-8')
 
 # ------------------------------------------------------------
-# 4. Inject display name
+# 4. Inject display name if missing
 # ------------------------------------------------------------
 def inject_display_name(channel_elem, ch_id, id_to_name):
     existing = channel_elem.findall('display-name')
@@ -159,7 +160,7 @@ def inject_display_name(channel_elem, ch_id, id_to_name):
         channel_elem.insert(0, dn_elem)
 
 # ------------------------------------------------------------
-# 5. Process a single EPG source (returns all needed data)
+# 5. Process a single EPG source – returns all needed data
 # ------------------------------------------------------------
 def process_source(src, wanted_ids, id_to_name):
     result = {
@@ -202,37 +203,10 @@ def process_source(src, wanted_ids, id_to_name):
     return result
 
 # ------------------------------------------------------------
-# 6. Report writers (unchanged)
+# 6. Dynamic multi‑column full EPG dump
 # ------------------------------------------------------------
-def write_channel_list(file_path, all_channels):
-    sorted_channels = sorted(all_channels, key=lambda x: x[0].lower())
-    name_width = max(len('Channel Name'), max((len(ch[0]) for ch in sorted_channels), default=0)) + 2
-    id_width = max(len('tvg-id'), max((len(ch[1] if ch[1] else 'N/A') for ch in sorted_channels), default=0)) + 2
-    with open(file_path, 'w', encoding='utf-8') as f:
-        f.write(f"{'Channel Name':<{name_width}} {'tvg-id':<{id_width}}\n")
-        f.write('-' * (name_width + id_width) + '\n')
-        for name, tvg_id, _ in sorted_channels:
-            id_str = tvg_id if tvg_id else 'N/A'
-            f.write(f"{name:<{name_width}} {id_str:<{id_width}}\n")
-    print(f"Channel list (playlist) written to: {file_path}", file=sys.stderr)
-
-def write_per_source_channel_list(file_path, per_source_channels):
-    with open(file_path, 'w', encoding='utf-8') as f:
-        f.write("Matched Channels by EPG Source\n")
-        f.write("==============================\n\n")
-        for source, channels in sorted(per_source_channels.items()):
-            f.write(f"Source: {source}\n")
-            f.write("-" * 80 + "\n")
-            unique = {}
-            for name, cid in channels:
-                if cid not in unique:
-                    unique[cid] = name
-            for cid, name in sorted(unique.items(), key=lambda x: x[1].lower()):
-                f.write(f"  {name} ({cid})\n")
-            f.write("\n")
-    print(f"Per‑source matched channel list written to: {file_path}", file=sys.stderr)
-
-def write_full_epg_channel_list_from_data(file_path, full_epg_data, columns=2):
+def write_full_epg_channel_list_from_data(file_path, full_epg_data, max_width=120):
+    """Write full EPG channel list, auto‑choosing column count to fit max_width."""
     with open(file_path, 'w', encoding='utf-8') as out:
         out.write("Full EPG Channel List by Source\n")
         out.write("===============================\n\n")
@@ -242,30 +216,48 @@ def write_full_epg_channel_list_from_data(file_path, full_epg_data, columns=2):
             if not channels:
                 out.write("No channels found in this source.\n\n")
                 continue
+
             sorted_ch = sorted(channels, key=lambda x: x[0].lower())
             formatted = [f"{name} ({cid})" for name, cid in sorted_ch]
+            if not formatted:
+                continue
+
+            # Determine optimal number of columns
+            max_entry_len = max(len(entry) for entry in formatted) + 2  # padding
+            best_cols = 1
+            for cols in range(6, 1, -1):  # try from 6 down to 2
+                total_width = cols * max_entry_len + (cols - 1) * 3  # 3 spaces between columns
+                if total_width <= max_width:
+                    best_cols = cols
+                    break
+
             n = len(formatted)
-            col_size = (n + columns - 1) // columns
+            col_size = (n + best_cols - 1) // best_cols
             cols = []
-            for i in range(columns):
+            for i in range(best_cols):
                 start = i * col_size
                 end = min(start + col_size, n)
                 cols.append(formatted[start:end])
+
             col_widths = [max((len(item) for item in col), default=0) + 2 for col in cols]
-            header_parts = [f"Column {c+1:<{col_widths[c]-2}}" for c in range(columns)]
+            header_parts = [f"Column {c+1:<{col_widths[c]-2}}" for c in range(best_cols)]
             out.write('   '.join(header_parts) + '\n')
-            out.write('-' * (sum(col_widths) + 2*(columns-1)) + '\n')
+            out.write('-' * (sum(col_widths) + 2*(best_cols-1)) + '\n')
+
             for row_idx in range(col_size):
                 row_parts = []
-                for c in range(columns):
+                for c in range(best_cols):
                     if row_idx < len(cols[c]):
                         row_parts.append(f"{cols[c][row_idx]:<{col_widths[c]}}")
                     else:
                         row_parts.append(" " * col_widths[c])
                 out.write('   '.join(row_parts).rstrip() + '\n')
             out.write("\n")
-    print(f"Full EPG channel list (2 columns) written to: {file_path}", file=sys.stderr)
+    print(f"Full EPG channel list (dynamic columns) written to: {file_path}", file=sys.stderr)
 
+# ------------------------------------------------------------
+# 7. Main report – unchanged (still includes all sections)
+# ------------------------------------------------------------
 def generate_report(report_path, found_channel_ids, id_to_name, channel_sources, wanted_ids,
                     playlist_stats, no_id_list, duplicate_dict):
     total_unique = playlist_stats['total_unique_ids']
@@ -376,13 +368,12 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
     print(f"Report written to: {report_path}", file=sys.stderr)
 
 # ------------------------------------------------------------
-# 7. Main filter – parallel‑aware, single pass
+# 8. Main filter – parallel‑aware, single pass, improved logging
 # ------------------------------------------------------------
 def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist_stats=None,
-                      report_path=None, no_id_list=None, duplicate_dict=None, all_channels=None,
-                      channel_list_path=None, per_source_path=None, epg_full_dump_path=None,
-                      workers=1):
-    per_source_channels = defaultdict(list)
+                      report_path=None, no_id_list=None, duplicate_dict=None,
+                      epg_full_dump_path=None, workers=1):
+    per_source_channels = defaultdict(list)   # kept but only used for report generation
     full_epg_data = {}
     channel_id_to_xml = {}
     channel_sources = defaultdict(set)
@@ -393,10 +384,13 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist
             futures = {executor.submit(process_source, src, wanted_ids, id_to_name): src for src in epg_sources}
             for future in as_completed(futures):
                 src = futures[future]
-                print(f">>> Completed: {src}", file=sys.stderr)
                 data = future.result()
                 full_epg_data[src] = data['full_channels']
                 per_source_channels[src] = data['matched_channels']
+
+                kept_channels = len(data['channel_elements'])
+                kept_programmes = len(data['programme_strings'])
+                print(f">>> {src}: kept {kept_channels} channel defs, {kept_programmes} programmes.", file=sys.stderr)
 
                 for ch_id, ch_xml in data['channel_elements']:
                     if ch_id not in channel_id_to_xml:
@@ -413,6 +407,10 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist
             data = process_source(src, wanted_ids, id_to_name)
             full_epg_data[src] = data['full_channels']
             per_source_channels[src] = data['matched_channels']
+
+            kept_channels = len(data['channel_elements'])
+            kept_programmes = len(data['programme_strings'])
+            print(f"  Kept {kept_channels} channel definitions and {kept_programmes} programmes.", file=sys.stderr)
 
             for ch_id, ch_xml in data['channel_elements']:
                 if ch_id not in channel_id_to_xml:
@@ -441,19 +439,15 @@ def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist
     print(f"Total programmes kept:      {total_programmes}", file=sys.stderr)
     print(f"Output written to:          {output_path}", file=sys.stderr)
 
-    # Write reports
+    # Generate reports
     if report_path:
         generate_report(report_path, set(channel_id_to_xml.keys()), id_to_name, channel_sources,
                         wanted_ids, playlist_stats, no_id_list, duplicate_dict)
-    if channel_list_path and all_channels:
-        write_channel_list(channel_list_path, all_channels)
-    if per_source_path:
-        write_per_source_channel_list(per_source_path, per_source_channels)
     if epg_full_dump_path:
         write_full_epg_channel_list_from_data(epg_full_dump_path, full_epg_data)
 
 # ------------------------------------------------------------
-# 8. CLI
+# 9. CLI (simplified – no channel_list or per_source)
 # ------------------------------------------------------------
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Fast EPG filter with optional parallel processing')
@@ -463,9 +457,8 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--output', default='EPG.xml.gz', help='Output gzipped XML')
     parser.add_argument('--report', action='store_true', help='Generate main report')
     parser.add_argument('--report-file', default='EPG_Report.txt')
-    parser.add_argument('--channel-list', default='channels_list.txt', help='Playlist channel list')
-    parser.add_argument('--per-source', default='matched_by_source.txt', help='Per‑source matched list')
-    parser.add_argument('--epg-full-dump', default='EPG_channel_and_ID_list.txt', help='Full EPG dump')
+    parser.add_argument('--epg-full-dump', default='EPG_channel_and_ID_list.txt',
+                        help='Full EPG channel dump with dynamic columns')
     parser.add_argument('--workers', type=int, default=1, help='Number of parallel workers (default 1)')
     args = parser.parse_args()
 
@@ -487,7 +480,6 @@ if __name__ == '__main__':
     report_path = args.report_file if args.report else None
     filter_and_enrich(args.output, wanted_ids, id_to_name, epg_list, playlist_stats=stats,
                       report_path=report_path, no_id_list=no_id_list,
-                      duplicate_dict=duplicate_dict, all_channels=all_channels,
-                      channel_list_path=args.channel_list, per_source_path=args.per_source,
+                      duplicate_dict=duplicate_dict,
                       epg_full_dump_path=args.epg_full_dump,
                       workers=args.workers)
