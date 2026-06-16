@@ -66,13 +66,13 @@ Fifa+                          492830
 Filem Mantap                   FilemMantap                                        
 FOX NFL                        465532                                             
 Fuel TV                        FuelTV.pt                                          
-Go Wild                        N/A                                                
+Go Wild                        plex.tv.Go.Wild.plex                               
 Goal TV                        Goal.ca                                            
 Golf Channel                   GolfChannel.us                                     
 Golf Channel (Latin America)   GolfChannelLatinAmerica.us                         
 Golf Kingdom                   30AGolfKingdom.us                                  
-Golf Television                N/A                                                
-GolfNetwork                    N/A                                                
+Golf Television                IT4200001D8                                        
+GolfNetwork                    IN400057EZ                                         
 GolfNetwork Japan              GolfNetwork.jp                                     
 GolfPass                       N/A                                                
 Hallmark Channel               Hallmark.Channel.HD.us2                            
@@ -88,7 +88,7 @@ Jom Ngaji                      JomNgaji
 K POP by CJ ENM                CA3900002PM                                        
 K-Content                      CA1800004L7                                        
 K-Drama+                       CA17000023Q                                        
-K-Stories                      N/A                                                
+K-Stories                      USBB2900001P9                                      
 KBS World                      KBSWorld.my                                        
 KCM                            IN1600011DE                                        
 KoreaTV                        N/A                                                
@@ -100,11 +100,11 @@ MBC America                    464845
 MediaCorp (English)            N/A                                                
 MediaCorp (Tamil)              N/A                                                
 meWATCH LIVE 1                 meWATCHLIVE1.sg                                    
-Miramax                        N/A                                                
+Miramax                        plex.tv.Miramax.Movie.Channel.plex                 
 MLB                            464873                                             
 MMA-TV International           CA4600017KV                                        
 mn静静nm                         N/A                                                
-Movie Sphere 2                 N/A                                                
+Movie Sphere 2                 ES4200001MR                                        
 Movie Sphere Aus               538953                                             
 Movie Sphere by Lionsgate      645e7828e1979c00087b75b4                           
 Movie Sphere by Lionsgate 2    64a3d96f060e830008af6745                           
@@ -116,9 +116,9 @@ NatureTime                     GB2100004H5
 NBC News Now                   NBCNewsNow.us                                      
 NBC Sport Now                  NBCSportsNOW.pluto                                 
 New KPOP                       USAJ3000013FJ                                      
-News World                     N/A                                                
+News World                     News.World.India.in                                
 NHK World-Japan                NHKWorld.my                                        
-NHL                            N/A                                                
+NHL                            NHLNetwork.us                                      
 Nickelodeon Asia               NickelodeonAsia.sg                                 
 Oh My Ceria!                   OhMyCeria                                          
 Okey TV                        370134                                             
@@ -152,14 +152,14 @@ RTM World Cup 2                N/A
 RTM World Cup 3                N/A                                                
 Salam Baitullah 2026           SalamBaitullahTV.my                                
 SBS_Golf                       SBSGolf.kr                                         
-SBS_Golf_2                     N/A                                                
+SBS_Golf_2                     SBS.Golf2.kr                                       
 SelangorTV                     SelangorTV.my                                      
 Sky News                       12069                                              
 Sky Sport F1                   SkySportsF1.uk                                     
 Sky Sport Football             SkySportsFootball.uk                               
 Sky Sport Golf                 SkySportsGolf.uk                                   
 Sky Sport Premier League       SkySportsPremierLeague.uk                          
-Sky Sports (UK)                N/A                                                
+Sky Sports (UK)                412959                                             
 Sky Sports Action              SkySportsAction.uk                                 
 Sky Sports Arena               N/A                                                
 Sky Sports Live+               SkySportsPlus.uk                                   
@@ -178,10 +178,10 @@ Suria                          513284
 Swerve Sport                   683df56f5195c2a60a3f5559                           
 TechStorm                      TechStorm.sg                                       
 Tennis Channel                 TennisChannel.us                                   
-Tennis Channel 2               N/A                                                
+Tennis Channel 2               plex.tv.Tennis.Channel.2.plex                      
 Tennis TV                      6627621d56fc840008e47c90                           
-Tennis TV 2                    N/A                                                
-Tennis+                        N/A                                                
+Tennis TV 2                    TennisTV247.us                                     
+Tennis+                        plex.tv.Tennis+.plex                               
 Terra Mater Wild               DEAJ32000012H                                      
 TNA Wresling                   TNAWrestling.pluto                                 
 Travel & Taste                 TravelandTaste                                     
@@ -197,13 +197,13 @@ TV9                            DidikTVKPM
 TVBS Asia                      412193                                             
 tvN Movies                     524137                                             
 TVS                            3942                                               
-UEFA Champion League           N/A                                                
+UEFA Champion League           US1000012ML                                        
 UFC 1                          446965                                             
-Universal Movie                N/A                                                
+Universal Movie                USBB3200030CG                                      
 Vevo 2k                        497977                                             
 Wedotv Movies                  64305451fc3be5947773c339-642d67a42476824150b0a6e9  
 Wild Earth                     405628                                             
-Wild Nature                    N/A                                                
+Wild Nature                    Wild.nature.cz                                     
 Wild Planet                    GBBB5000002PL                                      
 Wired2Fish                     6a1610bebdf296985fd95603-608a2c722957c9002c6a617b  
 World Billiards TV             KRBC3200011N3                                      
