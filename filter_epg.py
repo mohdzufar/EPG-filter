@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-EPG Filter + Channel Name Injector + Dynamic Report with Summary
+EPG Filter – Optimised single‑pass + optional parallel execution.
 - Filters EPG by tvg-id from an M3U playlist.
 - Reads EPG source URLs from a text file (--sources) or command line.
 - Enriches channel names from the playlist if missing.
 - Outputs a gzip‑compressed XMLTV file.
-- Generates a report with playlist statistics and EPG matching summary.
-- Generates separate files: all playlist channels, matched per source, full EPG dump (2 columns).
-- Uses a browser‑like User‑Agent, retries, auto‑detects gzip content.
+- Generates multiple reports without re‑fetching any data.
+- Uses browser headers, retry logic, and gzip auto‑detection.
+- Supports parallel workers (--workers) for faster processing.
 """
 
 import argparse
@@ -21,20 +21,12 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ------------------------------------------------------------
-# 1. Parse playlist → (ids, id_to_name, no_id_list, duplicates, stats, all_channels)
+# 1. Parse playlist → all needed info
 # ------------------------------------------------------------
 def parse_playlist(location):
-    """
-    Return:
-        unique_ids_set,
-        id_to_name_dict (first occurrence name),
-        no_id_list: list of (channel_name, line_number) for #EXTINF lines without valid tvg-id,
-        duplicate_dict {id: [(name, line), ...]},
-        stats_dict,
-        all_channels: list of (channel_name, tvg_id, line_number) for every #EXTINF line
-    """
     ids = set()
     id_to_name = {}
     no_id_list = []
@@ -60,10 +52,8 @@ def parse_playlist(location):
     for line_num, line in enumerate(lines, start=1):
         if not re.match(r'#EXTINF', line, re.I):
             continue
-
         total_extinf += 1
 
-        # Extract channel name
         m_name = name_quoted.search(line) or name_bare.search(line)
         if m_name:
             channel_name = m_name.group(1).strip()
@@ -71,7 +61,6 @@ def parse_playlist(location):
             parts = line.split(',', 1)
             channel_name = parts[1].strip() if len(parts) > 1 else "Unknown"
 
-        # Try to extract tvg-id
         m_id = id_quoted.search(line) or id_bare.search(line)
         if m_id:
             ch_id = m_id.group(1).strip()
@@ -100,7 +89,7 @@ def parse_playlist(location):
     return ids, id_to_name, no_id_list, duplicate_dict, stats, all_channels
 
 # ------------------------------------------------------------
-# 2. Read EPG source URLs (robust: skip empty lines and comments)
+# 2. Read EPG source URLs
 # ------------------------------------------------------------
 def read_epg_sources(file_path):
     urls = []
@@ -116,7 +105,7 @@ def read_epg_sources(file_path):
     return urls
 
 # ------------------------------------------------------------
-# 3. Smart opener with retry, browser headers, and gzip detection
+# 3. Smart opener with retry and gzip detection
 # ------------------------------------------------------------
 def smart_open(source, retries=3, delay=5):
     headers = {
@@ -127,14 +116,12 @@ def smart_open(source, retries=3, delay=5):
         'Connection': 'keep-alive',
         'Upgrade-Insecure-Requests': '1',
     }
-
     if re.match(r'https?://', source):
         last_exception = None
         for attempt in range(retries):
             try:
                 req = Request(source, headers=headers)
                 response = urlopen(req, timeout=30)
-                # Peek at first two bytes for gzip magic
                 magic = response.read(2)
                 response.close()
                 req = Request(source, headers=headers)
@@ -158,7 +145,7 @@ def smart_open(source, retries=3, delay=5):
             return open(path, 'r', encoding='utf-8')
 
 # ------------------------------------------------------------
-# 4. Inject display name if missing
+# 4. Inject display name
 # ------------------------------------------------------------
 def inject_display_name(channel_elem, ch_id, id_to_name):
     existing = channel_elem.findall('display-name')
@@ -172,7 +159,50 @@ def inject_display_name(channel_elem, ch_id, id_to_name):
         channel_elem.insert(0, dn_elem)
 
 # ------------------------------------------------------------
-# 5. Write the overall playlist channel list (all channels)
+# 5. Process a single EPG source (returns all needed data)
+# ------------------------------------------------------------
+def process_source(src, wanted_ids, id_to_name):
+    result = {
+        'channel_elements': [],         # (ch_id, xml_string)
+        'programme_strings': [],
+        'full_channels': [],            # (name, id)
+        'matched_channels': [],         # (name, id)
+        'programme_matched_ids': set()  # ch_ids from programmes
+    }
+    try:
+        fh = smart_open(src)
+        seen_in_source = set()
+        context = ET.iterparse(fh, events=('end',))
+        for event, elem in context:
+            tag = elem.tag
+            if tag == 'channel':
+                ch_id = elem.get('id')
+                if not ch_id:
+                    elem.clear()
+                    continue
+                name_elem = elem.find('display-name')
+                ch_name = name_elem.text.strip() if (name_elem is not None and name_elem.text) else ch_id
+                result['full_channels'].append((ch_name, ch_id))
+                if ch_id in wanted_ids and ch_id not in seen_in_source:
+                    seen_in_source.add(ch_id)
+                    inject_display_name(elem, ch_id, id_to_name)
+                    result['channel_elements'].append((ch_id, ET.tostring(elem, encoding='unicode')))
+                    name_for_report = id_to_name.get(ch_id, ch_id)
+                    result['matched_channels'].append((name_for_report, ch_id))
+                elem.clear()
+            elif tag == 'programme':
+                prog_ch = elem.get('channel')
+                if prog_ch in wanted_ids:
+                    result['programme_strings'].append(ET.tostring(elem, encoding='unicode'))
+                    result['programme_matched_ids'].add(prog_ch)
+                elem.clear()
+        fh.close()
+    except Exception as e:
+        print(f"  Error processing {src}: {e} (skipping)", file=sys.stderr)
+    return result
+
+# ------------------------------------------------------------
+# 6. Report writers (unchanged)
 # ------------------------------------------------------------
 def write_channel_list(file_path, all_channels):
     sorted_channels = sorted(all_channels, key=lambda x: x[0].lower())
@@ -186,9 +216,6 @@ def write_channel_list(file_path, all_channels):
             f.write(f"{name:<{name_width}} {id_str:<{id_width}}\n")
     print(f"Channel list (playlist) written to: {file_path}", file=sys.stderr)
 
-# ------------------------------------------------------------
-# 6. Write per‑source matched channel list (only channels that were kept)
-# ------------------------------------------------------------
 def write_per_source_channel_list(file_path, per_source_channels):
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write("Matched Channels by EPG Source\n")
@@ -196,7 +223,6 @@ def write_per_source_channel_list(file_path, per_source_channels):
         for source, channels in sorted(per_source_channels.items()):
             f.write(f"Source: {source}\n")
             f.write("-" * 80 + "\n")
-            # Remove duplicates per source (same ID may appear multiple times)
             unique = {}
             for name, cid in channels:
                 if cid not in unique:
@@ -206,71 +232,29 @@ def write_per_source_channel_list(file_path, per_source_channels):
             f.write("\n")
     print(f"Per‑source matched channel list written to: {file_path}", file=sys.stderr)
 
-# ------------------------------------------------------------
-# 7. Write full EPG channel dump (2 columns per line) – all channels from each source
-# ------------------------------------------------------------
-def write_full_epg_channel_list(file_path, epg_sources, columns=2):
-    """Write all channels from every EPG source, with configurable columns (default 2)."""
+def write_full_epg_channel_list_from_data(file_path, full_epg_data, columns=2):
     with open(file_path, 'w', encoding='utf-8') as out:
         out.write("Full EPG Channel List by Source\n")
         out.write("===============================\n\n")
-        for src in epg_sources:
+        for src, channels in full_epg_data.items():
             out.write(f"\nSource: {src}\n")
             out.write("=" * 80 + "\n")
-            channels = []
-            try:
-                with smart_open(src) as fh:
-                    context = ET.iterparse(fh, events=('end',))
-                    for event, elem in context:
-                        if elem.tag == 'channel':
-                            ch_id = elem.get('id')
-                            if not ch_id:
-                                elem.clear()
-                                continue
-                            # Get display-name (fallback to id)
-                            name_elem = elem.find('display-name')
-                            if name_elem is not None and name_elem.text:
-                                ch_name = name_elem.text.strip()
-                            else:
-                                ch_name = ch_id
-                            channels.append((ch_name, ch_id))
-                            elem.clear()
-            except Exception as e:
-                out.write(f"ERROR: Could not read source – {e}\n\n")
-                print(f"  Error reading full channel list from {src}: {e}", file=sys.stderr)
-                continue
-
             if not channels:
                 out.write("No channels found in this source.\n\n")
                 continue
-
-            # Sort by channel name
-            channels.sort(key=lambda x: x[0].lower())
-            formatted = [f"{name} ({cid})" for name, cid in channels]
-
-            # Split into columns
+            sorted_ch = sorted(channels, key=lambda x: x[0].lower())
+            formatted = [f"{name} ({cid})" for name, cid in sorted_ch]
             n = len(formatted)
-            col_size = (n + columns - 1) // columns  # ceiling division
+            col_size = (n + columns - 1) // columns
             cols = []
             for i in range(columns):
                 start = i * col_size
                 end = min(start + col_size, n)
                 cols.append(formatted[start:end])
-
-            # Calculate max width for each column
-            col_widths = []
-            for col in cols:
-                max_len = max((len(item) for item in col), default=0) + 2  # +2 padding
-                col_widths.append(max_len)
-
-            # Write header
-            header_parts = []
-            for c in range(columns):
-                header_parts.append(f"Column {c+1:<{col_widths[c]-2}}")
+            col_widths = [max((len(item) for item in col), default=0) + 2 for col in cols]
+            header_parts = [f"Column {c+1:<{col_widths[c]-2}}" for c in range(columns)]
             out.write('   '.join(header_parts) + '\n')
             out.write('-' * (sum(col_widths) + 2*(columns-1)) + '\n')
-
-            # Write rows
             for row_idx in range(col_size):
                 row_parts = []
                 for c in range(columns):
@@ -282,9 +266,6 @@ def write_full_epg_channel_list(file_path, epg_sources, columns=2):
             out.write("\n")
     print(f"Full EPG channel list (2 columns) written to: {file_path}", file=sys.stderr)
 
-# ------------------------------------------------------------
-# 8. Generate main EPG report (found, missing, duplicate, no‑ID tables)
-# ------------------------------------------------------------
 def generate_report(report_path, found_channel_ids, id_to_name, channel_sources, wanted_ids,
                     playlist_stats, no_id_list, duplicate_dict):
     total_unique = playlist_stats['total_unique_ids']
@@ -309,7 +290,6 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
         f.write(f"  Channels found in EPG         : {found_count}\n")
         f.write(f"  Channels NOT found            : {not_found_count}\n\n")
         
-        # Found channels table
         f.write("-" * 80 + "\n")
         f.write("FOUND CHANNELS (with EPG data)\n")
         f.write("-" * 80 + "\n")
@@ -333,7 +313,6 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
             f.write("No channels found.\n")
         f.write("\n")
 
-        # Missing channels table
         if missing_ids:
             f.write("-" * 80 + "\n")
             f.write("MISSING CHANNELS (have tvg-id but no EPG data)\n")
@@ -354,7 +333,6 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
             f.write("None – all channels with tvg-id have EPG data!\n")
         f.write("\n")
 
-        # Duplicate IDs table
         if duplicate_dict:
             f.write("-" * 80 + "\n")
             f.write("DUPLICATE TVG-IDS (same ID appears multiple times)\n")
@@ -379,7 +357,6 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
             f.write("None – all tvg-ids are unique.\n")
         f.write("\n")
 
-        # Channels with no tvg-id (with line numbers)
         if no_id_rows:
             f.write("-" * 80 + "\n")
             f.write("CHANNELS WITH NO TVG-ID (missing or empty tvg-id)\n")
@@ -399,98 +376,97 @@ def generate_report(report_path, found_channel_ids, id_to_name, channel_sources,
     print(f"Report written to: {report_path}", file=sys.stderr)
 
 # ------------------------------------------------------------
-# 9. Core filter and output generation
+# 7. Main filter – parallel‑aware, single pass
 # ------------------------------------------------------------
 def filter_and_enrich(output_path, wanted_ids, id_to_name, epg_sources, playlist_stats=None,
                       report_path=None, no_id_list=None, duplicate_dict=None, all_channels=None,
-                      channel_list_path=None, per_source_path=None, epg_full_dump_path=None):
-    total_channels = 0
-    total_programmes = 0
-    seen_channels = set()
-    channel_sources = {}
-    per_source_channels = defaultdict(list)   # source -> list of (name, id)
+                      channel_list_path=None, per_source_path=None, epg_full_dump_path=None,
+                      workers=1):
+    per_source_channels = defaultdict(list)
+    full_epg_data = {}
+    channel_id_to_xml = {}
+    channel_sources = defaultdict(set)
+    all_programme_strings = []
 
+    if workers > 1:
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            futures = {executor.submit(process_source, src, wanted_ids, id_to_name): src for src in epg_sources}
+            for future in as_completed(futures):
+                src = futures[future]
+                print(f">>> Completed: {src}", file=sys.stderr)
+                data = future.result()
+                full_epg_data[src] = data['full_channels']
+                per_source_channels[src] = data['matched_channels']
+
+                for ch_id, ch_xml in data['channel_elements']:
+                    if ch_id not in channel_id_to_xml:
+                        channel_id_to_xml[ch_id] = ch_xml
+                        channel_sources[ch_id].add(src)
+
+                for ch_id in data['programme_matched_ids']:
+                    channel_sources[ch_id].add(src)
+
+                all_programme_strings.extend(data['programme_strings'])
+    else:
+        for src in epg_sources:
+            print(f"\n>>> Processing: {src}", file=sys.stderr)
+            data = process_source(src, wanted_ids, id_to_name)
+            full_epg_data[src] = data['full_channels']
+            per_source_channels[src] = data['matched_channels']
+
+            for ch_id, ch_xml in data['channel_elements']:
+                if ch_id not in channel_id_to_xml:
+                    channel_id_to_xml[ch_id] = ch_xml
+                    channel_sources[ch_id].add(src)
+
+            for ch_id in data['programme_matched_ids']:
+                channel_sources[ch_id].add(src)
+
+            all_programme_strings.extend(data['programme_strings'])
+
+    # Write final EPG
     with gzip.open(output_path, 'wt', encoding='utf-8') as out:
         out.write('<?xml version="1.0" encoding="utf-8"?>\n')
         out.write('<tv>\n')
-
-        for src in epg_sources:
-            source_identifier = src
-            print(f"\n>>> Processing source: {src}", file=sys.stderr)
-            src_channels = 0
-            src_programmes = 0
-            try:
-                with smart_open(src) as fh:
-                    context = ET.iterparse(fh, events=('end',))
-                    for event, elem in context:
-                        tag = elem.tag
-                        if tag == 'channel':
-                            ch_id = elem.get('id')
-                            if ch_id in wanted_ids and ch_id not in seen_channels:
-                                seen_channels.add(ch_id)
-                                inject_display_name(elem, ch_id, id_to_name)
-                                out.write(ET.tostring(elem, encoding='unicode'))
-                                src_channels += 1
-                                channel_sources.setdefault(ch_id, set()).add(source_identifier)
-                                name = id_to_name.get(ch_id, ch_id)
-                                per_source_channels[source_identifier].append((name, ch_id))
-                            elif ch_id in wanted_ids:
-                                channel_sources.setdefault(ch_id, set()).add(source_identifier)
-                                name = id_to_name.get(ch_id, ch_id)
-                                per_source_channels[source_identifier].append((name, ch_id))
-                            elem.clear()
-                        elif tag == 'programme':
-                            prog_ch = elem.get('channel')
-                            if prog_ch in wanted_ids:
-                                out.write(ET.tostring(elem, encoding='unicode'))
-                                src_programmes += 1
-                                channel_sources.setdefault(prog_ch, set()).add(source_identifier)
-                            elem.clear()
-            except Exception as e:
-                print(f"  Error processing {src}: {e} (skipping source)", file=sys.stderr)
-                continue
-
-            total_channels += src_channels
-            total_programmes += src_programmes
-            print(f"  Kept {src_channels} channel definitions and {src_programmes} programmes.", file=sys.stderr)
-
+        for ch_xml in channel_id_to_xml.values():
+            out.write(ch_xml)
+        for prog_xml in all_programme_strings:
+            out.write(prog_xml)
         out.write('</tv>\n')
 
+    total_channels = len(channel_id_to_xml)
+    total_programmes = len(all_programme_strings)
     print(f"\n--- FINAL SUMMARY ---", file=sys.stderr)
-    print(f"Total unique channels kept: {len(seen_channels)}", file=sys.stderr)
+    print(f"Total unique channels kept: {total_channels}", file=sys.stderr)
     print(f"Total programmes kept:      {total_programmes}", file=sys.stderr)
     print(f"Output written to:          {output_path}", file=sys.stderr)
 
+    # Write reports
     if report_path:
-        generate_report(report_path, seen_channels, id_to_name, channel_sources, wanted_ids,
-                        playlist_stats, no_id_list, duplicate_dict)
-
+        generate_report(report_path, set(channel_id_to_xml.keys()), id_to_name, channel_sources,
+                        wanted_ids, playlist_stats, no_id_list, duplicate_dict)
     if channel_list_path and all_channels:
         write_channel_list(channel_list_path, all_channels)
-
-    if per_source_path and per_source_channels:
+    if per_source_path:
         write_per_source_channel_list(per_source_path, per_source_channels)
-
     if epg_full_dump_path:
-        write_full_epg_channel_list(epg_full_dump_path, epg_sources, columns=2)
+        write_full_epg_channel_list_from_data(epg_full_dump_path, full_epg_data)
 
 # ------------------------------------------------------------
-# 10. CLI
+# 8. CLI
 # ------------------------------------------------------------
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-        description='EPG Filter with multiple output files and full EPG dump'
-    )
+    parser = argparse.ArgumentParser(description='Fast EPG filter with optional parallel processing')
     parser.add_argument('playlist', help='URL or local path to M3U playlist')
-    parser.add_argument('epg_sources', nargs='*', help='EPG URLs or local files (ignored if --sources is used)')
-    parser.add_argument('--sources', help='Text file containing EPG source URLs (one per line)')
-    parser.add_argument('-o', '--output', default='EPG.xml.gz', help='Output gzipped XML file')
-    parser.add_argument('--report', action='store_true', help='Generate channel report')
-    parser.add_argument('--report-file', default='EPG_Report.txt', help='Report file name')
-    parser.add_argument('--channel-list', default='channels_list.txt', help='All channels from playlist (name + id)')
-    parser.add_argument('--per-source', default='matched_by_source.txt', help='Per‑source list of matched channels')
-    parser.add_argument('--epg-full-dump', default='EPG_channel_and_ID_list.txt',
-                        help='Full EPG channel dump (all channels from each source, 2 columns)')
+    parser.add_argument('epg_sources', nargs='*', help='EPG URLs (ignored if --sources used)')
+    parser.add_argument('--sources', help='Text file with EPG source URLs')
+    parser.add_argument('-o', '--output', default='EPG.xml.gz', help='Output gzipped XML')
+    parser.add_argument('--report', action='store_true', help='Generate main report')
+    parser.add_argument('--report-file', default='EPG_Report.txt')
+    parser.add_argument('--channel-list', default='channels_list.txt', help='Playlist channel list')
+    parser.add_argument('--per-source', default='matched_by_source.txt', help='Per‑source matched list')
+    parser.add_argument('--epg-full-dump', default='EPG_channel_and_ID_list.txt', help='Full EPG dump')
+    parser.add_argument('--workers', type=int, default=1, help='Number of parallel workers (default 1)')
     args = parser.parse_args()
 
     if args.sources:
@@ -498,13 +474,12 @@ if __name__ == '__main__':
     elif args.epg_sources:
         epg_list = args.epg_sources
     else:
-        print("No EPG sources provided. Use --sources or positional arguments.", file=sys.stderr)
+        print("No EPG sources provided.", file=sys.stderr)
         sys.exit(1)
 
     wanted_ids, id_to_name, no_id_list, duplicate_dict, stats, all_channels = parse_playlist(args.playlist)
-    print(f"Extracted {stats['total_unique_ids']} unique tvg-ids, {len(id_to_name)} have names.", file=sys.stderr)
-    print(f"Found {len(no_id_list)} #EXTINF lines without or with empty tvg-id.", file=sys.stderr)
-    print(f"Found {stats['duplicate_id_count']} duplicate tvg-ids.", file=sys.stderr)
+    print(f"Extracted {stats['total_unique_ids']} unique tvg-ids.", file=sys.stderr)
+    print(f"{len(no_id_list)} without tvg-id, {stats['duplicate_id_count']} duplicates.", file=sys.stderr)
     if not wanted_ids:
         print("No valid tvg-ids found. Exiting.", file=sys.stderr)
         sys.exit(1)
@@ -514,4 +489,5 @@ if __name__ == '__main__':
                       report_path=report_path, no_id_list=no_id_list,
                       duplicate_dict=duplicate_dict, all_channels=all_channels,
                       channel_list_path=args.channel_list, per_source_path=args.per_source,
-                      epg_full_dump_path=args.epg_full_dump)
+                      epg_full_dump_path=args.epg_full_dump,
+                      workers=args.workers)
