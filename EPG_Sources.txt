@@ -9,6 +9,10 @@ https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists
 ##---epgshare01---##
 https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz
 https://epgshare01.online/epgshare01/epg_ripper_DUMMY_CHANNELS.xml.gz
+https://epgshare01.online/epgshare01/epg_ripper_DISTROTV1.xml.gz
+https://epgshare01.online/epgshare01/epg_ripper_PEACOCK1.xml.gz
+https://epgshare01.online/epgshare01/epg_ripper_RAKUTEN1.xml.gz
+https://epgshare01.online/epgshare01/epg_ripper_US_LOCALS1.xml.gz
 
 ##---i.mjh.nz---##
 https://i.mjh.nz/Binge/epg.xml.gz
