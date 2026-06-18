@@ -2,13 +2,13 @@ EPG Filter Report
 -------------------
 
 Playlist Summary:
-  Total unique tvg-id entries   : 196
-  #EXTINF lines with tvg-id     : 196
+  Total unique tvg-id entries   : 197
+  #EXTINF lines with tvg-id     : 197
   #EXTINF lines without tvg-id  : 16
   Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 180
+  Channels found in EPG         : 181
   Channels NOT found            : 16
 
 --------------------------------------------------------------------------------
@@ -99,8 +99,8 @@ Lawak Sentral                 LawakSentral                                      
 Love Pets                     CA300017ZS                                          https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 Love The Planet               DEBC4700004VZ                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 MBC America                   464845                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
-MediaCorp (English)           Mediacorp.Entertainment.–.English.distro            https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
-MediaCorp (Tamil)             Mediacorp.Entertainment.–.Tamil.distro              https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
+MediaCorp (English)           Mediacorp.Entertainment.–.English.distro            https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz, https://epgshare01.online/epgshare01/epg_ripper_DISTROTV1.xml.gz     
+MediaCorp (Tamil)             Mediacorp.Entertainment.–.Tamil.distro              https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz, https://epgshare01.online/epgshare01/epg_ripper_DISTROTV1.xml.gz     
 Miramax                       plex.tv.Miramax.Movie.Channel.plex                  https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
 MLB                           464873                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 MMA-TV International          CA4600017KV                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
@@ -114,6 +114,7 @@ MyTime Movie Network          MyTimeMovieNetwork.us                             
 NatureTime                    GB2100004H5                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 NBC News Now                  NBCNewsNow.us                                       https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 NBC Sport Now                 NBCSportsNOW.pluto                                  https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
+NEW KMovies                   USAJ30000122O                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 New KPOP                      USAJ3000013FJ                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 News World                    News.World.India.in                                 https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
 NHK World-Japan               NHKWorld.my                                         https://iptv-epg.org/files/epg-my.xml.gz                                                                                                  
