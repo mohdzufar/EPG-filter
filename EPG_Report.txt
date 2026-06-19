@@ -2,13 +2,13 @@ EPG Filter Report
 -------------------
 
 Playlist Summary:
-  Total unique tvg-id entries   : 197
-  #EXTINF lines with tvg-id     : 197
+  Total unique tvg-id entries   : 201
+  #EXTINF lines with tvg-id     : 201
   #EXTINF lines without tvg-id  : 16
   Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 181
+  Channels found in EPG         : 185
   Channels NOT found            : 16
 
 --------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ Channel 8                     492894                                            
 Channel U                     492864                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 Cinemax                       Cinemax.HD.us2                                      https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
 CNA                           CNA.sg                                              https://iptv-epg.org/files/epg-sg.xml.gz, https://www.open-epg.com/files/singapore2.xml.gz                                                
-Crunchyroll                   Crunchyroll.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
+Crunchyroll                   Crunchyroll.us                                      https://iptv-epg.org/files/epg-us.xml.gz, https://www.open-epg.com/files/unitedstates9.xml.gz                                             
 Dewan Negara                  DewanNegara.my                                      https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml                                                              
 Dewan Rakyat                  DewanRakyat.my                                      https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml                                                              
 Didik TV                      DidikTVKPM.my                                       https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml                                                              
@@ -91,6 +91,7 @@ Jom Ngaji                     JomNgaji                                          
 K POP by CJ ENM               CA3900002PM                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 K-Content                     CA1800004L7                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 K-Drama+                      CA17000023Q                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
+K-Movies                      K-Movies.Pinoy.ph                                   https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
 K-Stories                     USBB2900001P9                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 KBS World                     KBSWorld.my                                         https://iptv-epg.org/files/epg-my.xml.gz                                                                                                  
 KCM                           IN1600011DE                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
@@ -114,6 +115,7 @@ MyTime Movie Network          MyTimeMovieNetwork.us                             
 NatureTime                    GB2100004H5                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 NBC News Now                  NBCNewsNow.us                                       https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 NBC Sport Now                 NBCSportsNOW.pluto                                  https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
+NEW KFood                     plex.tv.NEW.KFOOD.plex                              https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
 NEW KMovies                   USAJ30000122O                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 New KPOP                      USAJ3000013FJ                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 News World                    News.World.India.in                                 https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
@@ -145,6 +147,8 @@ RTM TV2                       370135                                            
 RTM World                     547581                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 SBS_Golf                      SBSGolf.kr                                          https://iptv-epg.org/files/epg-kr.xml.gz                                                                                                  
 SBS_Golf_2                    SBS.Golf2.kr                                        https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
+Series K Drama                ES200040YF                                          https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
+Series K Legacy               GB200093HQ                                          https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 Sky News                      12069                                               https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 Sky Sport F1                  SkySportsF1.uk                                      https://iptv-epg.org/files/epg-gb.xml.gz, https://www.open-epg.com/files/unitedkingdom.xml.gz                                             
 Sky Sport Football            SkySportsFootball.uk                                https://iptv-epg.org/files/epg-gb.xml.gz, https://www.open-epg.com/files/unitedkingdom.xml.gz                                             
