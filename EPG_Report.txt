@@ -8,8 +8,8 @@ Playlist Summary:
   Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 185
-  Channels NOT found            : 16
+  Channels found in EPG         : 177
+  Channels NOT found            : 24
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -65,12 +65,9 @@ Disney Channel                Disney.Channel.HD.us2                             
 Disney XD                     Disney.XD.HD.us2                                    https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
 Documentary+                  Documentary+.us                                     https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 DP World Tour                 GB5200001TM                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
-Drama Hebat                   DramaHebat                                          https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                                                                              
-Drama Hotpot                  DramaHotpot                                         https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                                                                              
 Drama Sangat                  DramaSangat.my                                      https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml                                                              
 EuroNews                      12529                                               https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 Fifa+                         492830                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
-Filem Mantap                  FilemMantap                                         https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                                                                              
 FOX NFL                       465532                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 Fuel TV                       FuelTV.pt                                           https://iptv-epg.org/files/epg-pt.xml.gz                                                                                                  
 Go Wild                       plex.tv.Go.Wild.plex                                https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
@@ -87,7 +84,6 @@ HBO Signature                 HBOSignature.sg                                   
 HBO Zone                      465104                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 HITS Movies                   HITSMovies.sg                                       https://iptv-epg.org/files/epg-sg.xml.gz                                                                                                  
 HITS NOW                      HITS.sg                                             https://iptv-epg.org/files/epg-sg.xml.gz                                                                                                  
-Jom Ngaji                     JomNgaji                                            https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                                                                              
 K POP by CJ ENM               CA3900002PM                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 K-Content                     CA1800004L7                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 K-Drama+                      CA17000023Q                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
@@ -96,7 +92,6 @@ K-Stories                     USBB2900001P9                                     
 KBS World                     KBSWorld.my                                         https://iptv-epg.org/files/epg-my.xml.gz                                                                                                  
 KCM                           IN1600011DE                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 KoreaTV                       IN3600005NF                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
-Lawak Sentral                 LawakSentral                                        https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                                                                              
 Love Pets                     CA300017ZS                                          https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 Love The Planet               DEBC4700004VZ                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 MBC America                   464845                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
@@ -122,7 +117,6 @@ News World                    News.World.India.in                               
 NHK World-Japan               NHKWorld.my                                         https://iptv-epg.org/files/epg-my.xml.gz                                                                                                  
 NHL                           NHLNetwork.us                                       https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 Nickelodeon Asia              NickelodeonAsia.sg                                  https://iptv-epg.org/files/epg-sg.xml.gz                                                                                                  
-Oh My Ceria!                  OhMyCeria                                           https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                                                                              
 Okey TV                       370134                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 Paramount Movie Channel       ParamountMovieChannel.pluto                         https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 PGA Tour                      PGATOUR.pluto                                       https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
@@ -176,7 +170,6 @@ Tennis TV 2                   TennisTV247.us                                    
 Tennis+                       plex.tv.Tennis+.plex                                https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
 Terra Mater Wild              DEAJ32000012H                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 TNA Wresling                  TNAWrestling.pluto                                  https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
-Travel & Taste                TravelandTaste                                      https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                                                                              
 TSN 1                         470446                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 TSN 2                         470401                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 TSN 3                         470389                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
@@ -185,7 +178,6 @@ TSN 5                         470513                                            
 TV IKIM                       TVIKIM.my                                           https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml                                                              
 TV3                           1072                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 TV6                           370131                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
-TV9                           DidikTVKPM                                          https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                                                                              
 TVBS Asia                     412193                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 tvN Movies                    524137                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 TVS                           3942                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
@@ -209,19 +201,27 @@ Channel Name                   ID
 -----------------------------------------------------------
 Bein Xtra 2                    beINSportsXtra2.qa          
 CCTV-Golf & Tennis             CCTVGolfTennis.cn           
+Drama Hebat                    DramaHebat                  
+Drama Hotpot                   DramaHotpot                 
+Filem Mantap                   FilemMantap                 
 Golf Channel (Latin America)   GolfChannelLatinAmerica.us  
 Golf Kingdom                   30AGolfKingdom.us           
 GolfNetwork Japan              GolfNetwork.jp              
 GolfPass                       PK24.us                     
+Jom Ngaji                      JomNgaji                    
 KPOP Mix                       KpopMix.ar                  
+Lawak Sentral                  LawakSentral                
 meWATCH LIVE 1                 meWATCHLIVE1.sg             
 Music Japan                    MusicJapanTV.jp             
+Oh My Ceria!                   OhMyCeria                   
 One Golf                       OneGolf.pk                  
 Pro Fight League               PFLMMA.us                   
 Salam Baitullah 2026           SalamBaitullahTV.my         
 SelangorTV                     SelangorTV.my               
 Sports Connect                 SportsConnect.za            
 SukeTV                         SukeTV.my                   
+Travel & Taste                 TravelandTaste              
+TV9                            DidikTVKPM                  
 ZooMoo                         ZooMoo.sg                   
 
 --------------------------------------------------------------------------------
