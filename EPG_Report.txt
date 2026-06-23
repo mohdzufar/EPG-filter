@@ -246,9 +246,9 @@ CS2                         332
 CS2                         334   
 DotA2                       336   
 DotA2                       338   
-douyu 19                    477   
+douyu 19                    476   
 EnjoyTV                     57    
-mn静静nm                      473   
+mn静静nm                      472   
 RTB Aneka                   148   
 RTB Sukmaindera             150   
 RTM World Cup 1             35    
@@ -257,4 +257,4 @@ RTM World Cup 3             39
 SukanPlus                   67    
 Vevo '90s & '00s            356   
 Xumo Nature & Wildlife TV   450   
-万事通熊猫                       475   
+万事通熊猫                       474   
