@@ -8,8 +8,8 @@ Playlist Summary:
   Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 190
-  Channels NOT found            : 19
+  Channels found in EPG         : 189
+  Channels NOT found            : 20
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -101,8 +101,8 @@ Lawak Sentral                 LawakSentral                                      
 Love Pets                     CA300017ZS                                          https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 Love The Planet               DEBC4700004VZ                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 MBC America                   464845                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
-MediaCorp (English)           Mediacorp.Entertainment.–.English.distro            https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz, https://epgshare01.online/epgshare01/epg_ripper_DISTROTV1.xml.gz     
-MediaCorp (Tamil)             Mediacorp.Entertainment.–.Tamil.distro              https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz, https://epgshare01.online/epgshare01/epg_ripper_DISTROTV1.xml.gz     
+MediaCorp (English)           Mediacorp.Entertainment.–.English.distro            https://epgshare01.online/epgshare01/epg_ripper_DISTROTV1.xml.gz                                                                          
+MediaCorp (Tamil)             Mediacorp.Entertainment.–.Tamil.distro              https://epgshare01.online/epgshare01/epg_ripper_DISTROTV1.xml.gz                                                                          
 Miramax                       plex.tv.Miramax.Movie.Channel.plex                  https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
 MLB                           464873                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 MMA-TV International          CA4600017KV                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
@@ -169,7 +169,6 @@ Sony Movie Channel            Sony.Movie.Channel.HD.us2                         
 Speed Vision                  SPEEDVISION.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 Sport Fishing TV              465358                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 Suria                         513284                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
-Swerve Sport                  683df56f5195c2a60a3f5559                            https://i.mjh.nz/PlutoTV/all.xml.gz                                                                                                       
 TechStorm                     TechStorm.sg                                        https://iptv-epg.org/files/epg-sg.xml.gz                                                                                                  
 Tennis Channel                TennisChannel.us                                    https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 Tennis Channel 2              plex.tv.Tennis.Channel.2.plex                       https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
@@ -227,6 +226,7 @@ Salam Baitullah 2026           SalamBaitullahTV.my
 SelangorTV                     SelangorTV.my               
 Sports Connect                 SportsConnect.za            
 SukeTV                         SukeTV.my                   
+Swerve Sport                   683df56f5195c2a60a3f5559    
 Totalmusic                     Totalmusic.uk               
 Totalmusic 00s                 Totalmusic2000s.uk          
 TV6                            370131                      
