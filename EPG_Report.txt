@@ -8,8 +8,8 @@ Playlist Summary:
   Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 188
-  Channels NOT found            : 21
+  Channels found in EPG         : 190
+  Channels NOT found            : 19
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -32,6 +32,8 @@ AXN Asia                      369716                                            
 BBC Earth                     4030                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 BBC News                      464746                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 BBC Top Gear                  TopGear.peacocktv                                   https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
+Bein Sports 1                 beINSPORTS1.au                                      https://iptv-epg.org/files/epg-au.xml.gz                                                                                                  
+Bein Sports 2                 beINSPORTS2.au                                      https://iptv-epg.org/files/epg-au.xml.gz                                                                                                  
 Bein Sports 3                 beINSPORTS3.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 Bein Sports 4                 beINSPORTS4.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 Bein Sports 5                 beINSPORTS5.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
@@ -210,8 +212,6 @@ MISSING CHANNELS (have tvg-id but no EPG data)
 --------------------------------------------------------------------------------
 Channel Name                   ID                          
 -----------------------------------------------------------
-Bein Sports 1                  beINSPORTS1.au              
-Bein Sports 2                  beINSPORTS2.au              
 Bein Xtra 2                    beINSportsXtra2.qa          
 CCTV-Golf & Tennis             CCTVGolfTennis.cn           
 Golf Channel (Latin America)   GolfChannelLatinAmerica.us  
