@@ -8,8 +8,8 @@ Playlist Summary:
   Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 190
-  Channels NOT found            : 19
+  Channels found in EPG         : 189
+  Channels NOT found            : 20
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -191,7 +191,6 @@ TSN 5                         470513                                            
 TV IKIM                       TVIKIM.my                                           https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml                                                              
 TV3                           1072                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 TV9                           DidikTVKPM                                          https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                                                                              
-TVBS Asia                     412193                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 tvN Movies                    524137                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 TVS                           3942                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 UEFA Champion League          US1000012ML                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
@@ -230,6 +229,7 @@ SukeTV                         SukeTV.my
 Totalmusic                     Totalmusic.uk               
 Totalmusic 00s                 Totalmusic2000s.uk          
 TV6                            370131                      
+TVBS Asia                      412193                      
 ZooMoo                         ZooMoo.sg                   
 
 --------------------------------------------------------------------------------
