@@ -2,13 +2,13 @@ EPG Filter Report
 -------------------
 
 Playlist Summary:
-  Total unique tvg-id entries   : 209
-  #EXTINF lines with tvg-id     : 209
-  #EXTINF lines without tvg-id  : 18
+  Total unique tvg-id entries   : 210
+  #EXTINF lines with tvg-id     : 210
+  #EXTINF lines without tvg-id  : 19
   Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 188
+  Channels found in EPG         : 189
   Channels NOT found            : 21
 
 --------------------------------------------------------------------------------
@@ -89,6 +89,7 @@ HBO Zone                      465104                                            
 HITS Movies                   HITSMovies.sg                                       https://iptv-epg.org/files/epg-sg.xml.gz                                                                                                  
 HITS NOW                      HITS.sg                                             https://iptv-epg.org/files/epg-sg.xml.gz                                                                                                  
 Jom Ngaji                     JomNgaji                                            https://raw.githubusercontent.com/AqFad2811/epg/main/epg.xml                                                                              
+Journal du Golf TV            FR2000005YM                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 K POP by CJ ENM               CA3900002PM                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 K-Content                     CA1800004L7                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 K-Drama+                      CA17000023Q                                         https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
@@ -242,21 +243,22 @@ CHANNELS WITH NO TVG-ID (missing or empty tvg-id)
 --------------------------------------------------------------------------------
 Channel Name                Line  
 ----------------------------------
+Astro Golf                  202   
 BorneoTV                    59    
-CS2                         334   
-CS2                         336   
-DotA2                       338   
-DotA2                       340   
-douyu 19                    482   
+CS2                         338   
+CS2                         340   
+DotA2                       342   
+DotA2                       344   
+douyu 19                    486   
 EnjoyTV                     57    
 Free Movies                 71    
-mn静静nm                      478   
+mn静静nm                      482   
 RTB Aneka                   150   
 RTB Sukmaindera             152   
 RTM World Cup 1             35    
 RTM World Cup 2             37    
 RTM World Cup 3             39    
 SukanPlus                   67    
-Vevo '90s & '00s            358   
-Xumo Nature & Wildlife TV   456   
-万事通熊猫                       480   
+Vevo '90s & '00s            362   
+Xumo Nature & Wildlife TV   460   
+万事通熊猫                       484   
