@@ -8,8 +8,8 @@ Playlist Summary:
   Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 189
-  Channels NOT found            : 21
+  Channels found in EPG         : 188
+  Channels NOT found            : 22
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -54,7 +54,7 @@ Channel 8                     492894                                            
 Channel U                     492864                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 Cinemax                       Cinemax.HD.us2                                      https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
 CNA                           CNA.sg                                              https://iptv-epg.org/files/epg-sg.xml.gz, https://www.open-epg.com/files/singapore2.xml.gz                                                
-Crunchyroll                   Crunchyroll.us                                      https://iptv-epg.org/files/epg-us.xml.gz, https://www.open-epg.com/files/unitedstates9.xml.gz                                             
+Crunchyroll                   Crunchyroll.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 Dewan Negara                  DewanNegara.my                                      https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml                                                              
 Dewan Rakyat                  DewanRakyat.my                                      https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml                                                              
 Didik TV                      DidikTVKPM.my                                       https://raw.githubusercontent.com/Jerrie-Aries/EPG/refs/heads/master/epg.xml                                                              
@@ -139,7 +139,6 @@ ROCK Action                   ROCKAction.sg                                     
 ROCK Entertainment            ROCKEntertainment.sg                                https://iptv-epg.org/files/epg-sg.xml.gz                                                                                                  
 RTM Apetito                   479619                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 RTM Aura                      479618                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
-RTM Fitrah                    479449                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 RTM Junior                    502308                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 RTM Lead                      548888                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 RTM Roll                      521957                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
@@ -222,6 +221,7 @@ meWATCH LIVE 1                 meWATCHLIVE1.sg
 Music Japan                    MusicJapanTV.jp             
 One Golf                       OneGolf.pk                  
 Pro Fight League               PFLMMA.us                   
+RTM Fitrah                     479449                      
 Salam Baitullah 2026           SalamBaitullahTV.my         
 SelangorTV                     SelangorTV.my               
 Sports Connect                 SportsConnect.za            
