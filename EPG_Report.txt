@@ -8,8 +8,8 @@ Playlist Summary:
   Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 185
-  Channels NOT found            : 25
+  Channels found in EPG         : 187
+  Channels NOT found            : 23
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -31,6 +31,7 @@ Astro Football                397399                                            
 AXN Asia                      369716                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 BBC Earth                     4030                                                https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
 BBC News                      464746                                              https://raw.githubusercontent.com/mohdzufar/IPTV/refs/heads/main/EPG/epg.xml.gz                                                           
+BBC Top Gear                  TopGear.peacocktv                                   https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 Bein Sports 1                 beINSPORTS1.au                                      https://iptv-epg.org/files/epg-au.xml.gz                                                                                                  
 Bein Sports 2                 beINSPORTS2.au                                      https://iptv-epg.org/files/epg-au.xml.gz                                                                                                  
 Bein Sports 3                 beINSPORTS3.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
@@ -172,6 +173,7 @@ TechStorm                     TechStorm.sg                                      
 Tennis Channel                TennisChannel.us                                    https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 Tennis Channel 2              plex.tv.Tennis.Channel.2.plex                       https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
 Tennis TV                     6627621d56fc840008e47c90                            https://i.mjh.nz/PlutoTV/all.xml.gz                                                                                                       
+Tennis TV 2                   TennisTV247.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 Tennis+                       plex.tv.Tennis+.plex                                https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
 Terra Mater Wild              DEAJ32000012H                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 TNA Wresling                  TNAWrestling.pluto                                  https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
@@ -207,7 +209,6 @@ MISSING CHANNELS (have tvg-id but no EPG data)
 --------------------------------------------------------------------------------
 Channel Name                   ID                          
 -----------------------------------------------------------
-BBC Top Gear                   TopGear.peacocktv           
 Bein Xtra 2                    beINSportsXtra2.qa          
 CCTV-Golf & Tennis             CCTVGolfTennis.cn           
 Golf Channel (Latin America)   GolfChannelLatinAmerica.us  
@@ -225,7 +226,6 @@ Salam Baitullah 2026           SalamBaitullahTV.my
 SelangorTV                     SelangorTV.my               
 Sports Connect                 SportsConnect.za            
 SukeTV                         SukeTV.my                   
-Tennis TV 2                    TennisTV247.us              
 Totalmusic                     Totalmusic.uk               
 Totalmusic 00s                 Totalmusic2000s.uk          
 TV6                            370131                      
