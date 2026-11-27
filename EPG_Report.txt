@@ -8,8 +8,8 @@ Playlist Summary:
   Duplicate tvg-ids (case-sensitive) : 0
 
 EPG Matching:
-  Channels found in EPG         : 186
-  Channels NOT found            : 24
+  Channels found in EPG         : 185
+  Channels NOT found            : 25
 
 --------------------------------------------------------------------------------
 FOUND CHANNELS (with EPG data)
@@ -198,7 +198,6 @@ Vevo 2k                       497977                                            
 Wedotv Movies                 64305451fc3be5947773c339-642d67a42476824150b0a6e9   https://i.mjh.nz/Plex/all.xml.gz                                                                                                          
 Wild Nature                   Wild.nature.cz                                      https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz                                                                       
 Wild Planet                   GBBB5000002PL                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
-Wired2Fish                    6a1610bebdf296985fd95603-608a2c722957c9002c6a617b   https://i.mjh.nz/Plex/all.xml.gz                                                                                                          
 World Billiards TV            KRBC3200011N3                                       https://i.mjh.nz/SamsungTVPlus/all.xml.gz                                                                                                 
 Xumo NBC Sport                NBCSports4K.us                                      https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
 Yahoo! Finance                YahooFinance.us                                     https://iptv-epg.org/files/epg-us.xml.gz                                                                                                  
@@ -206,32 +205,33 @@ Yahoo! Finance                YahooFinance.us                                   
 --------------------------------------------------------------------------------
 MISSING CHANNELS (have tvg-id but no EPG data)
 --------------------------------------------------------------------------------
-Channel Name                   ID                          
------------------------------------------------------------
-Bein Xtra 2                    beINSportsXtra2.qa          
-CCTV-Golf & Tennis             CCTVGolfTennis.cn           
-Golf Channel (Latin America)   GolfChannelLatinAmerica.us  
-Golf Kingdom                   30AGolfKingdom.us           
-GolfNetwork Japan              GolfNetwork.jp              
-GolfPass                       PK24.us                     
-KPOP Mix                       KpopMix.ar                  
-meWATCH LIVE 1                 meWATCHLIVE1.sg             
-Music Japan                    MusicJapanTV.jp             
-One Golf                       OneGolf.pk                  
-Pro Fight League               PFLMMA.us                   
-RTM Fitrah                     479449                      
-RTM World                      547581                      
-Salam Baitullah 2026           SalamBaitullahTV.my         
-SelangorTV                     SelangorTV.my               
-Sports Connect                 SportsConnect.za            
-SukeTV                         SukeTV.my                   
-Totalmusic                     Totalmusic.uk               
-Totalmusic 00s                 Totalmusic2000s.uk          
-TV6                            370131                      
-TVBS Asia                      412193                      
-UFC 1                          446965                      
-Wild Earth                     405628                      
-ZooMoo                         ZooMoo.sg                   
+Channel Name                   ID                                                 
+----------------------------------------------------------------------------------
+Bein Xtra 2                    beINSportsXtra2.qa                                 
+CCTV-Golf & Tennis             CCTVGolfTennis.cn                                  
+Golf Channel (Latin America)   GolfChannelLatinAmerica.us                         
+Golf Kingdom                   30AGolfKingdom.us                                  
+GolfNetwork Japan              GolfNetwork.jp                                     
+GolfPass                       PK24.us                                            
+KPOP Mix                       KpopMix.ar                                         
+meWATCH LIVE 1                 meWATCHLIVE1.sg                                    
+Music Japan                    MusicJapanTV.jp                                    
+One Golf                       OneGolf.pk                                         
+Pro Fight League               PFLMMA.us                                          
+RTM Fitrah                     479449                                             
+RTM World                      547581                                             
+Salam Baitullah 2026           SalamBaitullahTV.my                                
+SelangorTV                     SelangorTV.my                                      
+Sports Connect                 SportsConnect.za                                   
+SukeTV                         SukeTV.my                                          
+Totalmusic                     Totalmusic.uk                                      
+Totalmusic 00s                 Totalmusic2000s.uk                                 
+TV6                            370131                                             
+TVBS Asia                      412193                                             
+UFC 1                          446965                                             
+Wild Earth                     405628                                             
+Wired2Fish                     6a1610bebdf296985fd95603-608a2c722957c9002c6a617b  
+ZooMoo                         ZooMoo.sg                                          
 
 --------------------------------------------------------------------------------
 DUPLICATE TVG-IDS
